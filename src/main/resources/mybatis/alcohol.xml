@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="alcohol">
+
+    <select id="alcoholList" resultType="Alcohol">
+        SELECT *
+        FROM alcohol
+        <where>
+            <if test="kind == 1">
+                alcohol_num = #{keyword}
+            </if>
+
+            <if test="kind == 2">
+                alcohol_name LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+            </if>
+
+            <if test="kind == 3">
+                alcohol_publisher like CONCAT(CONCAT('%',#{keyword}),'%')
+            </if>
+
+            <if test="kind == 4">
+                alcohol_price like CONCAT(CONCAT('%',#{keyword}),'%')
+            </if>
+        </where>
+        ORDER BY alcohol_num
+    </select>
+
+    <insert id="alcoholAdd">
+        INSERT INTO alcohol (alcohol_name, alcohol_publisher, alcohol_price, alcohol_reg_date)
+        VALUES (#{alcoholName}, #{alcoholPublisher}, #{alcoholPrice}, NOW())
+    </insert>
+
+
+    <select id="alcoholItem" resultType="Alcohol">
+        SELECT *
+        FROM alcohol
+        WHERE alcohol_num = #{alcoholNum}
+    </select>
+
+    <update id="alcoholUpdate">
+        UPDATE alcohol
+        SET alcohol_name      = #{alcoholName},
+            alcohol_publisher = #{alcoholPublisher},
+            alcohol_price     = #{alcoholPrice},
+            alcohol_reg_date  = NOW()
+        WHERE alcohol_num = #{alcoholNum}
+    </update>
+
+    <delete id="alcoholDelete">
+        DELETE
+        FROM alcohol
+        WHERE alcohol_num = #{alcoholNum}
+    </delete>
+
+</mapper>
