@@ -1,0 +1,340 @@
+-- --------------------------------------------------------
+-- 호스트:                          127.0.0.1
+-- 서버 버전:                        10.8.4-MariaDB - mariadb.org binary distribution
+-- 서버 OS:                        Win64
+-- HeidiSQL 버전:                  11.3.0.6295
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+-- alcoholiday 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `alcoholiday`;
+CREATE DATABASE IF NOT EXISTS `alcoholiday` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `alcoholiday`;
+
+-- 테이블 alcoholiday.alcohol 구조 내보내기
+DROP TABLE IF EXISTS `alcohol`;
+CREATE TABLE IF NOT EXISTS `alcohol` (
+  `stuff_num` int(32) NOT NULL AUTO_INCREMENT COMMENT '술, 도구, 레시피 고유 번호',
+  `stuff_name` varchar(128) NOT NULL COMMENT '술, 도구, 레시피 이름',
+  `stuff_publisher` varchar(128) NOT NULL COMMENT '술, 도구, 레시피 제조사',
+  `stuff_price` int(32) DEFAULT NULL COMMENT '술, 도구, 레시피 가격',
+  `stuff_reg_date` datetime NOT NULL COMMENT '술, 도구, 레시피 등록일',
+  `stuff_user_id` varchar(128) NOT NULL DEFAULT '' COMMENT '유저 고유 아이디',
+  `stuff_split` int(11) DEFAULT NULL,
+  PRIMARY KEY (`stuff_num`) USING BTREE,
+  KEY `alcohol_user_id` (`stuff_user_id`) USING BTREE,
+  CONSTRAINT `FK_stuff_user` FOREIGN KEY (`stuff_user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COMMENT='게시판';
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 alcoholiday.alcohol_detail 구조 내보내기
+DROP TABLE IF EXISTS `alcohol_detail`;
+CREATE TABLE IF NOT EXISTS `alcohol_detail` (
+  `alcohol_detail_num` int(11) NOT NULL AUTO_INCREMENT COMMENT '알코올 디테일 고유 번호',
+  `alcohol_detail_title` varchar(128) NOT NULL DEFAULT '0' COMMENT '알코올 디테일 제목',
+  `alcohol_detail_contents` text NOT NULL COMMENT '알코올 디테일 내용',
+  `alcohol_detail_` text NOT NULL,
+  PRIMARY KEY (`alcohol_detail_num`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='알코올 테이블 상세 정보';
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 alcoholiday.attach 구조 내보내기
+DROP TABLE IF EXISTS `attach`;
+CREATE TABLE IF NOT EXISTS `attach` (
+  `attach_num` int(32) NOT NULL AUTO_INCREMENT COMMENT '이미지 고유 번호',
+  `attach_filename` text DEFAULT NULL COMMENT '이미지 파일 이름',
+  PRIMARY KEY (`attach_num`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='이미지 파일\r\n';
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 alcoholiday.board 구조 내보내기
+DROP TABLE IF EXISTS `board`;
+CREATE TABLE IF NOT EXISTS `board` (
+  `board_num` int(32) NOT NULL AUTO_INCREMENT COMMENT '보드 고유 번호',
+  `board_title` varchar(128) NOT NULL COMMENT '보드 제목',
+  `board_content` text DEFAULT NULL COMMENT '보드 상세내용',
+  `board_reg_date` datetime NOT NULL COMMENT '보드 등록일',
+  `board_user_id` varchar(128) NOT NULL DEFAULT '' COMMENT '유저 고유 아이디',
+  PRIMARY KEY (`board_num`),
+  KEY `FK_board_user` (`board_user_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='상세페이지';
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 alcoholiday.user 구조 내보내기
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` varchar(128) NOT NULL COMMENT '유저 고유 아이디',
+  `user_pwd` varchar(128) NOT NULL COMMENT '유저 비밀번호',
+  `user_name` varchar(32) NOT NULL COMMENT '유저 이름',
+  `user_phone` varchar(128) NOT NULL DEFAULT '0' COMMENT '유저 전화번호',
+  `user_email` text NOT NULL COMMENT '유저 이메일',
+  `user_join_date` datetime NOT NULL COMMENT '유저 가입일',
+  PRIMARY KEY (`user_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='사용자';
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 alcoholiday.views 구조 내보내기
+DROP TABLE IF EXISTS `views`;
+CREATE TABLE IF NOT EXISTS `views` (
+  `views_num` int(32) NOT NULL AUTO_INCREMENT COMMENT '조회수 고유 번호',
+  `views_user_id` varchar(128) NOT NULL DEFAULT '' COMMENT '유저 고유 아이디',
+  PRIMARY KEY (`views_num`),
+  KEY `FK_views_user` (`views_user_id`) USING BTREE,
+  CONSTRAINT `FK_views_user` FOREIGN KEY (`views_user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='조회수';
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+
+-- information_schema 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `information_schema`;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
