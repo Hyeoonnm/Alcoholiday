@@ -10,9 +10,9 @@ public interface AlcoholService {
 
     void add(Alcohol item);
 
-    Alcohol item(int alcoholNum);
+    Alcohol item(int stuffNum);
 
     void update(Alcohol item);
 
-    void delete(int alcoholNum);
+    void delete(int stuffNum);
 }

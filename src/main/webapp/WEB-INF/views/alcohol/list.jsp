@@ -44,20 +44,20 @@
     <tbody>
     <c:forEach items="${alcohol}" var="alcohol">
         <tr>
-            <td>${alcohol.alcoholNum}</td>
+            <td>${alcohol.stuffNum}</td>
 
-            <td>${alcohol.alcoholName}</td>
+            <td>${alcohol.stuffName}</td>
 
-            <td>${alcohol.alcoholPublisher}</td>
+            <td>${alcohol.stuffPublisher}</td>
 
-            <td>${alcohol.alcoholPrice}</td>
+            <td>${alcohol.stuffPrice}</td>
 
             <td>
-                <p><a href="update/${alcohol.alcoholNum}">update</a></p>
+                <p><a href="update/${alcohol.stuffNum}">update</a></p>
             </td>
 
             <td>
-                <p><a href="delete/${alcohol.alcoholNum}">delete</a></p>
+                <p><a href="delete/${alcohol.stuffNum}">delete</a></p>
             </td>
         </tr>
 

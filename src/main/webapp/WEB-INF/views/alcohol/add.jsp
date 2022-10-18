@@ -21,17 +21,17 @@
             <form method="post">
                 <div>
                     <label>Alcohol Name : </label>
-                    <input type="text" name="alcoholName">
+                    <input type="text" name="stuffName">
                 </div>
 
                 <div>
                     <label>Alcohol Publisher : </label>
-                    <input type="text" name="alcoholPublisher">
+                    <input type="text" name="stuffPublisher">
                 </div>
 
                 <div>
                     <label>Alcohol Price : </label>
-                    <input type="text" name="alcoholPrice">
+                    <input type="text" name="stuffPrice">
                 </div>
 
                 <button>OK</button>

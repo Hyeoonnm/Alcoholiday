@@ -9,10 +9,16 @@ import java.util.Date;
 @Setter
 
 public class Alcohol {
-    private int alcoholNum;
-    private String alcoholName;
-    private String alcoholPublisher;
-    private String alcoholPrice;
-    private Date alcoholRegDate;
 
+    // alcohol table
+    private int stuffNum;
+    private String stuffName;
+    private String stuffPublisher;
+    private String stuffPrice;
+    private Date stuffRegDate;
+
+    // -- end alcohol table
+
+    // FK
+    private String stuffUserId;
 }

@@ -43,27 +43,27 @@ public class AlcoholController {
         return "redirect:./list";
     }
 
-    @GetMapping("/update/{alcoholNum}")
-    public String update(@PathVariable int alcoholNum, Model model) {
-        Alcohol item = service.item(alcoholNum);
+    @GetMapping("/update/{stuffNum}")
+    public String update(@PathVariable int stuffNum, Model model) {
+        Alcohol item = service.item(stuffNum);
 
         model.addAttribute("item", item);
 
         return "alcohol/update";
     }
 
-    @PostMapping("/update/{alcoholNum}")
-    public String update(@PathVariable int alcoholNum, Alcohol item) {
+    @PostMapping("/update/{stuffNum}")
+    public String update(@PathVariable int stuffNum, Alcohol item) {
 
         service.update(item);
 
         return "redirect:../list";
     }
 
-    @RequestMapping("/delete/{alcoholNum}")
-    public String delete(@PathVariable int alcoholNum) {
+    @RequestMapping("/delete/{stuffNum}")
+    public String delete(@PathVariable int stuffNum) {
 
-        service.delete(alcoholNum);
+        service.delete(stuffNum);
 
         return "redirect:../list";
     }

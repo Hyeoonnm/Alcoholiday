@@ -3,54 +3,54 @@
 
 <mapper namespace="alcohol">
 
-    <select id="alcoholList" resultType="Alcohol">
+    <select id="list" resultType="Alcohol">
         SELECT *
         FROM alcohol
         <where>
             <if test="kind == 1">
-                alcohol_num = #{keyword}
+               stuff_num = #{keyword}
             </if>
 
             <if test="kind == 2">
-                alcohol_name LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+                stuff_name LIKE CONCAT(CONCAT('%',#{keyword}),'%')
             </if>
 
             <if test="kind == 3">
-                alcohol_publisher like CONCAT(CONCAT('%',#{keyword}),'%')
+                stuff_publisher like CONCAT(CONCAT('%',#{keyword}),'%')
             </if>
 
             <if test="kind == 4">
-                alcohol_price like CONCAT(CONCAT('%',#{keyword}),'%')
+                stuff_price like CONCAT(CONCAT('%',#{keyword}),'%')
             </if>
         </where>
-        ORDER BY alcohol_num
+        ORDER BY stuff_num
     </select>
 
-    <insert id="alcoholAdd">
-        INSERT INTO alcohol (alcohol_name, alcohol_publisher, alcohol_price, alcohol_reg_date)
-        VALUES (#{alcoholName}, #{alcoholPublisher}, #{alcoholPrice}, NOW())
+    <insert id="add">
+        INSERT INTO alcohol (stuff_name, stuff_publisher, stuff_price, stuff_reg_date)
+        VALUES (#{stuffName}, #{stuffPublisher}, #{stuffPrice}, NOW())
     </insert>
 
 
-    <select id="alcoholItem" resultType="Alcohol">
+    <select id="item" resultType="Alcohol">
         SELECT *
         FROM alcohol
-        WHERE alcohol_num = #{alcoholNum}
+        WHERE stuff_num = #{stuffNum}
     </select>
 
-    <update id="alcoholUpdate">
+    <update id="update">
         UPDATE alcohol
-        SET alcohol_name      = #{alcoholName},
-            alcohol_publisher = #{alcoholPublisher},
-            alcohol_price     = #{alcoholPrice},
-            alcohol_reg_date  = NOW()
-        WHERE alcohol_num = #{alcoholNum}
+        SET stuff_name      = #{stuffName},
+            stuff_publisher = #{stuffPublisher},
+            stuff_price     = #{stuffPrice},
+            stuff_reg_date  = NOW()
+        WHERE stuff_num = #{stuffNum}
     </update>
 
-    <delete id="alcoholDelete">
+    <delete id="delete">
         DELETE
         FROM alcohol
-        WHERE alcohol_num = #{alcoholNum}
+        WHERE stuff_num = #{stuffNum}
     </delete>
 
 </mapper>
