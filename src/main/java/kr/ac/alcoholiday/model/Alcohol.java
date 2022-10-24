@@ -10,15 +10,35 @@ import java.util.Date;
 
 public class Alcohol {
 
-    // alcohol table
+    // == Alcohol table start ==
+
+    // 고유 번호
     private int stuffNum;
+
+    // 이름
     private String stuffName;
+
+    // 제작사
     private String stuffPublisher;
+
+    // 가격
     private String stuffPrice;
+
+    // 등록일
     private Date stuffRegDate;
 
-    // -- end alcohol table
+    // 술, 도구, 레시피 등 구분 번호
+    private int stuffSplit;
 
-    // FK
+    // 썸네일 이미지
+    private String stuffThumbnail;
+
+    // 상세 내용
+    private String stuffContent;
+
+    // == Alcohol table end ==
+
+    // User FK
     private String stuffUserId;
+
 }

@@ -47,7 +47,9 @@
                                                class="form-control form-control-lg" placeholder="ID">
 
                                         <div class="input-group-append form-outline">
-                                            <button type="button" class="btn btn-outline-secondary btn-lg" id="checkId">Check</button>
+                                            <button type="button" class="btn btn-outline-secondary btn-lg" id="checkId">
+                                                Check
+                                            </button>
                                         </div>
 
                                         <label class="form-label" for="userId"/>
@@ -240,7 +242,11 @@
             emailCheck.focus();
             return;
         }
-        form.submit();
+
+        if (confirm("Would you like to signup ?")) {
+            alert("Success Signup.");
+            $("form").submit();
+        }
     }
 </script>
 </body>

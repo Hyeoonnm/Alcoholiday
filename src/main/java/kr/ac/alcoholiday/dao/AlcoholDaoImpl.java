@@ -16,27 +16,27 @@ public class AlcoholDaoImpl implements AlcoholDao{
 
     @Override
     public List<Alcohol> list(Pager pager) {
-        return sql.selectList("alcohol.list", pager);
+        return sql.selectList("drink.list", pager);
     }
 
     @Override
     public void add(Alcohol item) {
-        sql.insert("alcohol.add",item);
+        sql.insert("drink.add",item);
     }
 
     @Override
     public Alcohol item(int stuffNum) {
-        return sql.selectOne("alcohol.item", stuffNum);
+        return sql.selectOne("drink.item", stuffNum);
     }
 
     @Override
     public void update(Alcohol item) {
-        sql.update("alcohol.update", item);
+        sql.update("drink.update", item);
     }
 
     @Override
     public void delete(int stuffNum) {
-        sql.delete("alcohol.delete", stuffNum);
+        sql.delete("drink.delete", stuffNum);
     }
 
 }

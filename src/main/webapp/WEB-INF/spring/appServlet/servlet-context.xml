@@ -22,7 +22,15 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.ac.alcoholiday" />
-	
+
+
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/"/>
+			<beans:bean class="kr.ac.alcoholiday.interceptor.UserInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>
 	
 	
 </beans:beans>

@@ -8,13 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Update Alcoholiday Alcohol Imformation</title>
+    <title>Update Alcoholiday Alcohol Information</title>
 </head>
 <body>
 <div>
 
     <div>
-        <h2>Update Alcohol Imformation</h2>
+        <h2>Update Alcohol Information</h2>
     </div>
 
     <div>
@@ -39,11 +39,11 @@
             </div>
 
             <button>OK</button>
-            <button><a href="../list">Cancel</a></button>
+            <button><a href="./dirnk">Cancel</a></button>
         </form>
     </div>
 </div>
 
-<button><a href="/">Main</a></button>
+<button><a href="/main">Main</a></button>
 </body>
 </html>
