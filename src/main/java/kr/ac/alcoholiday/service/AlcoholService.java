@@ -14,5 +14,5 @@ public interface AlcoholService {
 
     void update(Alcohol item);
 
-    void delete(int stuffNum);
+    void delete(int stuffNum, String userId);
 }

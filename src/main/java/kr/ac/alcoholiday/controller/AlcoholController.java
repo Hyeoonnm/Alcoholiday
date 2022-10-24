@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -62,9 +63,10 @@ public class AlcoholController {
     }
 
     @RequestMapping("/delete/{stuffNum}")
-    public String delete(@PathVariable int stuffNum) {
+    public String delete(@PathVariable int stuffNum, @SessionAttribute User user) {
 
-        service.delete(stuffNum);
+
+        service.delete(stuffNum, user.getUserId());
 
         return "redirect:../drink";
     }

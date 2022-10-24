@@ -35,7 +35,7 @@ public class AlcoholServiceImpl implements AlcoholService{
     }
 
     @Override
-    public void delete(int stuffNum) {
+    public void delete(int stuffNum, String userId) {
         dao.delete(stuffNum);
     }
 }

@@ -28,6 +28,7 @@
 		<interceptor>
 			<mapping path="/**"/>
 			<exclude-mapping path="/"/>
+			<exclude-mapping path="/signup"/>
 			<beans:bean class="kr.ac.alcoholiday.interceptor.UserInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
