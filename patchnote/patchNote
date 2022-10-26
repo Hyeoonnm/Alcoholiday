@@ -16,3 +16,9 @@
 9. drink.jsp css 세부 조정 10/24
 10. db 구조 재설계 10/24
 11. 모달창으로 main.jsp에 있는 정보 표시 10/24
+
+12. attach 이미지 추가 구현 중 controller 오류 발생 10/26
+attach.transferTo(new File("D://img//" + filename)); 이 부분 구현 중 발생한 오류
+- java: cannot access java.nio.file.Path
+- class file for java.nio.file.Path not found
+

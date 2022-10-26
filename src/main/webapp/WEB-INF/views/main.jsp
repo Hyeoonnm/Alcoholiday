@@ -66,13 +66,7 @@
                 <li><a href="alcohol/drink">DRINK</a></li>
                 <li><a href="recipes">RECIPES</a></li>
                 <li><a href="tools">TOOLS</a></li>
-                <li>
-                    <a href="#">SHARE</a>
-                    <ul>
-                        <li><a href="place/list">PLACE</a></li>
-                        <li><a href="alcohol/drink">COCKTAIL</a></li>
-                    </ul>
-                </li>
+                <li><a href="place/list">PLACE</a></li>
             </ul>
         </nav>
 
@@ -170,37 +164,10 @@
                                     <header>
                                         <h3>Long Island Iced Tea</h3>
                                     </header>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1"
-                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    ...
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close
-                                                    </button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <p>아이스티와 비슷하며 콜라의 단맛이 술을 중화 시켜주어 마시기 쉽기 때문에 인기있는 칵테일 중 하나이다.</p>
                                     <footer>
                                         <ul class="actions">
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal">
-                                                Launch demo modal
-                                            </button>
-                                            <%--<li><a href="#" class="button alt">Other cocktail</a></li>--%>
+                                            <li><a href="#" class="button alt">Other cocktail</a></li>
                                         </ul>
                                     </footer>
                                 </section>

@@ -23,18 +23,16 @@ DROP TABLE IF EXISTS `alcohol`;
 CREATE TABLE IF NOT EXISTS `alcohol` (
   `stuff_num` int(32) NOT NULL AUTO_INCREMENT COMMENT '술, 도구, 레시피 고유 번호',
   `stuff_name` varchar(128) NOT NULL COMMENT '술, 도구, 레시피 이름',
-  `stuff_publisher` varchar(128) NOT NULL COMMENT '술, 도구, 레시피 제조사',
   `stuff_price` int(32) NOT NULL COMMENT '술, 도구, 레시피 가격',
   `stuff_reg_date` datetime NOT NULL COMMENT '술, 도구, 레시피 등록일',
   `stuff_split` int(32) NOT NULL COMMENT '술, 도구 ,레시피 등 분류 번호',
-  `stuff_thumbnail` varchar(128) DEFAULT NULL COMMENT '술, 도구 ,레시피 썸네일 이미지',
   `stuff_user_id` varchar(128) NOT NULL DEFAULT '' COMMENT '유저 고유 아이디',
   `stuff_content` text DEFAULT NULL COMMENT '술, 도구, 레시피 설명',
   PRIMARY KEY (`stuff_num`) USING BTREE,
   KEY `alcohol_user_id` (`stuff_user_id`) USING BTREE,
   KEY `stuff_num` (`stuff_num`),
-  CONSTRAINT `FK_alcohol_user` FOREIGN KEY (`stuff_user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COMMENT='게시판';
+  CONSTRAINT `FK_stuff_user` FOREIGN KEY (`stuff_user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COMMENT='게시판';
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -307,4 +305,3 @@ DROP DATABASE IF EXISTS `information_schema`;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
--- /

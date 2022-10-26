@@ -15,10 +15,6 @@
                 stuff_name LIKE CONCAT(CONCAT('%',#{keyword}),'%')
             </if>
 
-            <if test="kind == 3">
-                stuff_publisher like CONCAT(CONCAT('%',#{keyword}),'%')
-            </if>
-
             <if test="kind == 4">
                 stuff_price like CONCAT(CONCAT('%',#{keyword}),'%')
             </if>
@@ -26,9 +22,10 @@
         ORDER BY stuff_num
     </select>
 
+    <!--drink 메뉴는 split 번호 1-->
     <insert id="add">
-        INSERT INTO alcohol (stuff_name, stuff_publisher, stuff_price, stuff_reg_date, stuff_split, stuff_user_id)
-        VALUES (#{stuffName}, #{stuffPublisher}, #{stuffPrice}, NOW(), 1, #{stuffUserId})
+        INSERT INTO alcohol (stuff_name, stuff_price, stuff_reg_date, stuff_split, stuff_user_id, stuff_content)
+        VALUES (#{stuffName}, #{stuffPrice}, NOW(), 1, #{stuffUserId}, #{stuffContent})
     </insert>
 
 
@@ -40,18 +37,19 @@
 
     <update id="update">
         UPDATE alcohol
-        SET stuff_name      = #{stuffName},
-            stuff_publisher = #{stuffPublisher},
-            stuff_price     = #{stuffPrice},
-            stuff_reg_date  = NOW(),
-            stuff_split     = 1
-            WHERE stuff_num = #{stuffNum} AND stuff_user_id = #{stuffUserId}
+        SET stuff_name     = #{stuffName},
+            stuff_price    = #{stuffPrice},
+            stuff_reg_date = NOW(),
+            stuff_split    = 1
+        WHERE stuff_num = #{stuffNum}
+          AND stuff_user_id = #{stuffUserId}
     </update>
 
     <delete id="delete">
         DELETE
         FROM alcohol
         WHERE stuff_num = #{stuffNum}
+          AND stuff_user_id = #{userId}
     </delete>
 
 </mapper>

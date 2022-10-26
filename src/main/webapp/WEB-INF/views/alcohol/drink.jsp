@@ -86,11 +86,16 @@
 
         <%--글쓰기--%>
         <div style="position: absolute; left: 48%; bottom: 10px; width: auto">
-            <a href="./add">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-lg btn-outline-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                <h7 style="color: black">Write</h7>
+            </button>
+            <%--<a href="./add">
                 <button class="btn btn-lg btn-outline-primary">
                     <h7 style="color: black">Write</h7>
                 </button>
-            </a>
+            </a>--%>
         </div>
 
     </section>
@@ -200,6 +205,51 @@
         </div>
     </section>
 </div>
+
+<!-- Add Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1"
+     aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addModalLabel">Add new drink</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form method="post" action="/alcohol/add" enctype="multipart/form-data">
+                    <div>
+                        <input class="mb-2" type="text" name="stuffName" placeholder="Drink Name">
+                    </div>
+
+                    <div>
+                        <input class="mb-2" type="text" name="stuffPrice" placeholder="Total price">
+                    </div>
+
+                    <div class="form-floating">
+                        <textarea class="form-control mb-2" id="floatingTextarea2" style="height: 150px" name="stuffContent"></textarea>
+                        <label for="floatingTextarea2">Contents</label>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="inputGroupFile02" name="">
+                    </div>
+
+                    <%--Add button--%>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Close
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <!-- Scripts -->
 <script src="/resources/assets/js/jquery.min.js"></script>
 <script src="/resources/assets/js/jquery.dropotron.min.js"></script>

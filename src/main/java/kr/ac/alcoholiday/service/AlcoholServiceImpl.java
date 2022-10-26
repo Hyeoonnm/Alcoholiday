@@ -1,7 +1,9 @@
 package kr.ac.alcoholiday.service;
 
 import kr.ac.alcoholiday.dao.AlcoholDao;
+import kr.ac.alcoholiday.dao.AttachDao;
 import kr.ac.alcoholiday.model.Alcohol;
+import kr.ac.alcoholiday.model.Attach;
 import kr.ac.alcoholiday.pager.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +38,6 @@ public class AlcoholServiceImpl implements AlcoholService{
 
     @Override
     public void delete(int stuffNum, String userId) {
-        dao.delete(stuffNum);
+        dao.delete(stuffNum, userId);
     }
 }

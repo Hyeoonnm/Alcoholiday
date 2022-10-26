@@ -10,10 +10,12 @@ public class Attach {
     // == Attach table start ==
 
     private int attachNum;
+
     private String attachFilename;
 
     // == Attach table end ==
 
-    // Detail FK
-    private int detailNum;
+
+    // Alcohol FK
+    private int attachStuffNum;
 }
