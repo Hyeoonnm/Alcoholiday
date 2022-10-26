@@ -14,7 +14,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="alcoholiday" options="" />
+      <module name="alcoholiday" options="-Xlint:all" />
     </option>
   </component>
 </project>

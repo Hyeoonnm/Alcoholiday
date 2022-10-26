@@ -86,16 +86,11 @@
 
         <%--글쓰기--%>
         <div style="position: absolute; left: 48%; bottom: 10px; width: auto">
-            <!-- Button trigger modal -->
+            <!-- Add Button trigger modal -->
             <button type="button" class="btn btn-lg btn-outline-primary" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
                 <h7 style="color: black">Write</h7>
             </button>
-            <%--<a href="./add">
-                <button class="btn btn-lg btn-outline-primary">
-                    <h7 style="color: black">Write</h7>
-                </button>
-            </a>--%>
         </div>
 
     </section>
@@ -113,7 +108,7 @@
                                  alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">${drink.stuffName}</h5>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="#" class="btn btn-primary">Read more.</a>
                             </div>
                         </div>
                     </div>

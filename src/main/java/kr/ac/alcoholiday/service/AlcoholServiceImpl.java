@@ -16,6 +16,9 @@ public class AlcoholServiceImpl implements AlcoholService{
     @Autowired
     AlcoholDao dao;
 
+    @Autowired
+    AttachDao attachDao;
+
     @Override
     public List<Alcohol> list(Pager pager) {
         return dao.list(pager);
@@ -24,6 +27,14 @@ public class AlcoholServiceImpl implements AlcoholService{
     @Override
     public void add(Alcohol item) {
         dao.add(item);
+
+        if (item.getAttaches() != null) {
+            for(Attach attach : item.getAttaches()) {
+                attach.setAttachStuffNum(item.getStuffNum());
+
+                attachDao.add(attach);
+            }
+        }
     }
 
     @Override

@@ -26,6 +26,9 @@
     <insert id="add">
         INSERT INTO alcohol (stuff_name, stuff_price, stuff_reg_date, stuff_split, stuff_user_id, stuff_content)
         VALUES (#{stuffName}, #{stuffPrice}, NOW(), 1, #{stuffUserId}, #{stuffContent})
+        <selectKey order="AFTER" keyProperty="stuffNum" resultType="Integer">
+        SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
 
