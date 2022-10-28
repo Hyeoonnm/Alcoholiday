@@ -22,3 +22,6 @@ attach.transferTo(new File("D://img//" + filename)); 이 부분 구현 중 발�
 - java: cannot access java.nio.file.Path
 - class file for java.nio.file.Path not found
 
+
+13. 리스트에 이미지파일 넣고 추가하기 구현 10/28
+

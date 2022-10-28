@@ -105,12 +105,27 @@
                     <div>
                         <c:forEach items="${drink.attaches}" var="attaches">
                         <div class="card" style="width: 25rem;">
-                            <img src="/img/${attaches.attachFilename}" class="card-img-top" style="width: 25rem; height: 20rem;"
+                            <c:if test="${attaches.attachFilename == null}">
+                                <img src="/resources/images/pic09.jpg" class="card-img-top"
+                                     style="width: 25rem; height: 20rem;"
+                                     alt="...">
+                            </c:if>
+                            <img src="/img/${attaches.attachFilename}" class="card-img-top"
+                                 style="width: 25rem; height: 20rem;"
                                  alt="...">
+
                             </c:forEach>
                             <div class="card-body">
                                 <h5 class="card-title">${drink.stuffName}</h5>
                                 <a href="#" class="btn btn-primary">Read more.</a>
+                                    <%--<c:if test="${sessionScope.user.userId == drink.stuffUserId}">--%>
+                                <a href="/alcohol/update/${drink.stuffNum}">
+                                    <button class="btn btn-success">Update</button>
+                                </a>
+                                <a href="/alcohol/delete/${drink.stuffNum}">
+                                    <button class="btn btn-danger">Delete</button>
+                                </a>
+                                    <%--</c:if>--%>
                             </div>
                         </div>
                     </div>
@@ -225,13 +240,14 @@
                     </div>
 
                     <div class="form-floating">
-                        <textarea class="form-control mb-2" id="floatingTextarea2" style="height: 150px" name="stuffContent"></textarea>
+                        <textarea class="form-control mb-2" id="floatingTextarea2" style="height: 150px"
+                                  name="stuffContent"></textarea>
                         <label for="floatingTextarea2">Contents</label>
                     </div>
 
                     <input type="hidden" name="stuffUserId" value="${sessionScope.user.userId}">
                     <div class="input-group mb-3">
-                        <input type="file" name="attach"  class="form-control" id="inputGroupFile02">
+                        <input type="file" name="attach" class="form-control" id="inputGroupFile02">
                     </div>
 
                     <%--Add button--%>
