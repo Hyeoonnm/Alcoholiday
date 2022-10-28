@@ -103,9 +103,11 @@
 
                 <c:forEach items="${drink}" var="drink">
                     <div>
+                        <c:forEach items="${drink.attaches}" var="attaches">
                         <div class="card" style="width: 25rem;">
-                            <img src="/resources/images/1.png" class="card-img-top" style="width: 25rem; height: 20rem;"
+                            <img src="/img/${attaches.attachFilename}" class="card-img-top" style="width: 25rem; height: 20rem;"
                                  alt="...">
+                            </c:forEach>
                             <div class="card-body">
                                 <h5 class="card-title">${drink.stuffName}</h5>
                                 <a href="#" class="btn btn-primary">Read more.</a>
@@ -213,13 +215,13 @@
             </div>
             <div class="modal-body">
 
-                <form method="post" action="/alcohol/add" enctype="multipart/form-data">
+                <form method="post" action="../alcohol/add" enctype="multipart/form-data">
                     <div>
                         <input class="mb-2" type="text" name="stuffName" placeholder="Drink Name">
                     </div>
 
                     <div>
-                        <input class="mb-2" type="text" name="stuffPrice" placeholder="Total price">
+                        <input class="mb-2" type="number" name="stuffPrice" placeholder="Total price">
                     </div>
 
                     <div class="form-floating">
@@ -227,8 +229,9 @@
                         <label for="floatingTextarea2">Contents</label>
                     </div>
 
+                    <input type="hidden" name="stuffUserId" value="${sessionScope.user.userId}">
                     <div class="input-group mb-3">
-                        <input type="file" class="form-control" id="inputGroupFile02" name="">
+                        <input type="file" name="attach"  class="form-control" id="inputGroupFile02">
                     </div>
 
                     <%--Add button--%>

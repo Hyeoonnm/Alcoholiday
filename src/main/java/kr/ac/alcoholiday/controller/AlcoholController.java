@@ -5,6 +5,7 @@ import kr.ac.alcoholiday.model.Attach;
 import kr.ac.alcoholiday.model.User;
 import kr.ac.alcoholiday.pager.Pager;
 import kr.ac.alcoholiday.service.AlcoholService;
+import kr.ac.alcoholiday.util.MutipartBinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,29 +38,25 @@ public class AlcoholController {
     @PostMapping("/add")
     public String add(Alcohol item, @SessionAttribute User user) {
         item.setStuffUserId(user.getUserId());
+        List<Attach> list = new ArrayList<Attach>(); // 이미지를 담을 list
+        MutipartBinder binder = new MutipartBinder();
 
-        try {
-            List<Attach> list = new ArrayList<Attach>(); // 이미지를 담을 list
+        for(MultipartFile attach : item.getAttach()) {
+            if(attach != null && !attach.isEmpty()) {
+                String fileName = binder.binding(attach);
 
-            for (MultipartFile attach : item.getAttach()) {
-                if (attach != null && !attach.isEmpty()) {
-                    String filename = attach.getOriginalFilename();
-                    attach.transferTo(new File("D://img/" + filename));
-                    Attach attachItem = new Attach();
-                    attachItem.setAttachFilename(filename);
+                Attach file = new Attach();
+                file.setAttachFilename(fileName);
 
-                    list.add(attachItem);
-                }
+                list.add(file);
             }
 
             item.setAttaches(list);
-            service.add(item);
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            service.add(item);
         }
 
-        return "redirect:drink";
+        return "redirect:/alcohol/drink";
     }
 
     @GetMapping("/update/{stuffNum}")

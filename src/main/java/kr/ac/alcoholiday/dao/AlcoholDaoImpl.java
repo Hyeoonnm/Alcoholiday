@@ -23,6 +23,7 @@ public class AlcoholDaoImpl implements AlcoholDao{
     @Override
     public void add(Alcohol item) {
         sql.insert("drink.add",item);
+        System.out.println("쿼리 날렸음" + item.getStuffNum());
     }
 
     @Override

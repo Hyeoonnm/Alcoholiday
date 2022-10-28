@@ -3,31 +3,29 @@
 
 <mapper namespace="drink">
 
-    <select id="list" resultType="Alcohol">
-        SELECT *
-        FROM alcohol
-        <where>
-            <if test="kind == 1">
-                stuff_num = #{keyword}
-            </if>
+    <resultMap type="Alcohol" id="AlcoholMap">
+        <id column="stuff_num" property="stuffNum"/>
+        <collection property="attaches" column="attach_stuff_num" ofType="Attach" javaType="ArrayList" autoMapping="true">
+            <id column="attach_num" property="attachNum"/>
+            <id column="attach_filename" property="attachFilename"/>
+            <id column="attach_stuff_num" property="stuffAttachNum"/>
+        </collection>
+    </resultMap>
 
-            <if test="kind == 2">
-                stuff_name LIKE CONCAT(CONCAT('%',#{keyword}),'%')
-            </if>
 
-            <if test="kind == 4">
-                stuff_price like CONCAT(CONCAT('%',#{keyword}),'%')
-            </if>
-        </where>
-        ORDER BY stuff_num
+    <select id="list" resultMap="AlcoholMap">
+        select alcohol.*, attach.attach_num , attach_filename
+        from alcohol
+                 left join attach on (alcohol.stuff_num = attach.attach_stuff_num)
+        ORDER BY stuff_num;
     </select>
 
     <!--drink 메뉴는 split 번호 1-->
-    <insert id="add">
+    <insert id="add" parameterType="kr.ac.alcoholiday.model.Alcohol">
         INSERT INTO alcohol (stuff_name, stuff_price, stuff_reg_date, stuff_split, stuff_user_id, stuff_content)
         VALUES (#{stuffName}, #{stuffPrice}, NOW(), 1, #{stuffUserId}, #{stuffContent})
         <selectKey order="AFTER" keyProperty="stuffNum" resultType="Integer">
-        SELECT LAST_INSERT_ID()
+            SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
 
