@@ -47,6 +47,7 @@ public class AlcoholController {
 
     @PostMapping("/add")
     public String add(Alcohol item, @SessionAttribute User user) {
+
         item.setStuffUserId(user.getUserId());
         List<Attach> list = new ArrayList<Attach>(); // 이미지를 담을 list
         MutipartBinder binder = new MutipartBinder();
@@ -63,9 +64,8 @@ public class AlcoholController {
 
             item.setAttaches(list);
 
-            service.add(item);
         }
-
+        service.add(item);
         return "redirect:/alcohol/drink";
     }
 

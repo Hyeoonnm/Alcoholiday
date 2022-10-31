@@ -28,6 +28,7 @@ public class AlcoholServiceImpl implements AlcoholService{
     @Override
     @Transactional
     public void add(Alcohol item) {
+
         dao.add(item);
 
         if (item.getAttaches() != null) {

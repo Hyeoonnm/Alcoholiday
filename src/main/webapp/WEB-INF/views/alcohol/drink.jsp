@@ -130,7 +130,6 @@
                 </c:forEach>--%>
                 <c:forEach items="${drink}" var="drink">
                     <c:choose>
-
                         <%--attach에 파일이 존재하지 않을 경우--%>
                         <c:when test="${empty drink.attaches}">
                             <div>
@@ -139,7 +138,7 @@
                                          style="width: 25rem; height: 20rem;"
                                          alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-title">}${drink.stuffName}</h5>
+                                        <h5 class="card-title">${drink.stuffName}</h5>
                                         <p>Writer : ${drink.stuffUserId}</p>
                                         <p><fmt:formatDate value="${drink.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
                                                            type="both"/></p>
@@ -163,16 +162,12 @@
                         <c:otherwise>
                             <div>
                                 <c:forEach items="${drink.attaches}" var="attaches">
-                                <div class="card carousel slide" style="width: 25rem;" id="carouselExampleSlidesOnly"
-                                     data-bs-ride="carousel">
-                                    <div class="carousel-inner" id="slideFirst">
-                                        <div class="carousel-item active">
-                                            <img src="/img/${attaches.attachFilename}" class="card-img-top"
-                                                 style="width: 25rem; height: 20rem;"
-                                                 alt="...">
-                                        </div>
-                                    </div>
-                                    </c:forEach>
+                                <div class="card" style="width: 25rem;">
+                                    <img src="/img/${attaches.attachFilename}" class="card-img-top"
+                                         style="width: 25rem; height: 20rem;"
+                                         alt="...">
+                                </c:forEach>
+
                                     <div class="card-body">
                                         <h5 class="card-title">${drink.stuffName}</h5>
                                         <p>Writer : ${drink.stuffUserId}</p>
@@ -191,6 +186,7 @@
                                         </c:if>
                                     </div>
                                 </div>
+
                             </div>
                         </c:otherwise>
                     </c:choose>
@@ -337,8 +333,6 @@
     </div>
 </div>
 <script>
-
-    $("#slideFirst").next().addClass("active");
 
     $("#attachAdd").click(function () {
         const div = $("<div>");
