@@ -29,11 +29,6 @@
             </div>
 
             <div>
-                <label>Publisher : </label>
-                <input type="text" name="stuffPublisher" value="${item.stuffPublisher}">
-            </div>
-
-            <div>
                 <label>Price : </label>
                 <input type="text" name="stuffPrice" value="${item.stuffPrice}">
             </div>

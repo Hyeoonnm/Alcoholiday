@@ -16,8 +16,8 @@ public class AlcoholDaoImpl implements AlcoholDao{
     SqlSession sql;
 
     @Override
-    public List<Alcohol> list(Pager pager) {
-        return sql.selectList("drink.list", pager);
+    public List<Alcohol> list() {
+        return sql.selectList("drink.list");
     }
 
     @Override

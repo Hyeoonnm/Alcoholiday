@@ -26,12 +26,22 @@ public class AlcoholController {
 
 
     @RequestMapping("/drink")
-    public String list(Model model, Pager pager) {
+    public String list(Model model) {
 
-        List<Alcohol> drink = service.list(pager);
+        List<Alcohol> drink = service.list();
         model.addAttribute("drink", drink);
 
         return "alcohol/drink";
+    }
+
+    @RequestMapping("/detail/{stuffNum}")
+    public String detail(@PathVariable int stuffNum , Model model) {
+
+        Alcohol item = service.item(stuffNum);
+
+        model.addAttribute("drink", item);
+
+        return "alcohol/detail";
     }
 
 

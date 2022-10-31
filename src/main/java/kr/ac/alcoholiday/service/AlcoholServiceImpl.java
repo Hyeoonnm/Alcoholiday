@@ -21,8 +21,8 @@ public class AlcoholServiceImpl implements AlcoholService{
     AttachDao attachDao;
 
     @Override
-    public List<Alcohol> list(Pager pager) {
-        return dao.list(pager);
+    public List<Alcohol> list() {
+        return dao.list();
     }
 
     @Override

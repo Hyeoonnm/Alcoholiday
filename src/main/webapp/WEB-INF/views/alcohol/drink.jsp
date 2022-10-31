@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -101,34 +102,98 @@
         <div class="container">
             <div class="row row-cols-3">
 
-                <c:forEach items="${drink}" var="drink">
+                <%--<c:forEach items="${drink}" var="drink">
                     <div>
                         <c:forEach items="${drink.attaches}" var="attaches">
                         <div class="card" style="width: 25rem;">
-                            <c:if test="${attaches.attachFilename == null}">
-                                <img src="/resources/images/pic09.jpg" class="card-img-top"
-                                     style="width: 25rem; height: 20rem;"
-                                     alt="...">
-                            </c:if>
-                            <img src="/img/${attaches.attachFilename}" class="card-img-top"
+                            <img src="/resources/images/pic09.jpg" class="card-img-top"
                                  style="width: 25rem; height: 20rem;"
                                  alt="...">
-
                             </c:forEach>
                             <div class="card-body">
                                 <h5 class="card-title">${drink.stuffName}</h5>
-                                <a href="#" class="btn btn-primary">Read more.</a>
-                                    <%--<c:if test="${sessionScope.user.userId == drink.stuffUserId}">--%>
-                                <a href="/alcohol/update/${drink.stuffNum}">
-                                    <button class="btn btn-success">Update</button>
-                                </a>
-                                <a href="/alcohol/delete/${drink.stuffNum}">
-                                    <button class="btn btn-danger">Delete</button>
-                                </a>
-                                    <%--</c:if>--%>
+                                <p>Writer : ${drink.stuffUserId}</p>
+                                <p><fmt:formatDate value="${drink.stuffRegDate}" pattern="yyyy/MM/dd HH:mm" type="both"/></p>
+                                <a href="/alcohol/detail/${drink.stuffNum}" class="btn btn-primary">Read more.</a>
+
+                                <c:if test="${sessionScope.user.userId == drink.stuffUserId}">
+                                    <a href="/alcohol/update/${drink.stuffNum}">
+                                        <button class="btn btn-success">Update</button>
+                                    </a>
+                                    <a href="/alcohol/delete/${drink.stuffNum}">
+                                        <button class="btn btn-danger">Delete</button>
+                                    </a>
+                                </c:if>
                             </div>
                         </div>
                     </div>
+                </c:forEach>--%>
+                <c:forEach items="${drink}" var="drink">
+                    <c:choose>
+
+                        <%--attach에 파일이 존재하지 않을 경우--%>
+                        <c:when test="${empty drink.attaches}">
+                            <div>
+                                <div class="card" style="width: 25rem;">
+                                    <img src="/resources/images/nopic.png" class="card-img-top"
+                                         style="width: 25rem; height: 20rem;"
+                                         alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">}${drink.stuffName}</h5>
+                                        <p>Writer : ${drink.stuffUserId}</p>
+                                        <p><fmt:formatDate value="${drink.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
+                                                           type="both"/></p>
+                                        <a href="/alcohol/detail/${drink.stuffNum}" class="btn btn-primary">Read
+                                            more.</a>
+
+                                        <c:if test="${sessionScope.user.userId == drink.stuffUserId}">
+                                            <a href="/alcohol/update/${drink.stuffNum}">
+                                                <button class="btn btn-success">Update</button>
+                                            </a>
+                                            <a href="/alcohol/delete/${drink.stuffNum}">
+                                                <button class="btn btn-danger">Delete</button>
+                                            </a>
+                                        </c:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:when>
+
+                        <%--attach에 사진 파일이 존재 할 경우--%>
+                        <c:otherwise>
+                            <div>
+                                <c:forEach items="${drink.attaches}" var="attaches">
+                                <div class="card carousel slide" style="width: 25rem;" id="carouselExampleSlidesOnly"
+                                     data-bs-ride="carousel">
+                                    <div class="carousel-inner" id="slideFirst">
+                                        <div class="carousel-item active">
+                                            <img src="/img/${attaches.attachFilename}" class="card-img-top"
+                                                 style="width: 25rem; height: 20rem;"
+                                                 alt="...">
+                                        </div>
+                                    </div>
+                                    </c:forEach>
+                                    <div class="card-body">
+                                        <h5 class="card-title">${drink.stuffName}</h5>
+                                        <p>Writer : ${drink.stuffUserId}</p>
+                                        <p><fmt:formatDate value="${drink.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
+                                                           type="both"/></p>
+                                        <a href="/alcohol/detail/${drink.stuffNum}" class="btn btn-primary">Read
+                                            more.</a>
+
+                                        <c:if test="${sessionScope.user.userId == drink.stuffUserId}">
+                                            <a href="/alcohol/update/${drink.stuffNum}">
+                                                <button class="btn btn-success">Update</button>
+                                            </a>
+                                            <a href="/alcohol/delete/${drink.stuffNum}">
+                                                <button class="btn btn-danger">Delete</button>
+                                            </a>
+                                        </c:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
                 </c:forEach>
 
             </div>
@@ -232,11 +297,12 @@
 
                 <form method="post" action="../alcohol/add" enctype="multipart/form-data">
                     <div>
-                        <input class="mb-2" type="text" name="stuffName" placeholder="Drink Name">
+                        <input class="mb-2 form-control" type="text" name="stuffName" placeholder="Drink Name">
                     </div>
 
                     <div>
-                        <input class="mb-2" type="number" name="stuffPrice" placeholder="Total price">
+                        <input class="mb-2 form-control" type="number" name="stuffPrice" value="0"
+                               placeholder="Total price">
                     </div>
 
                     <div class="form-floating">
@@ -246,7 +312,8 @@
                     </div>
 
                     <input type="hidden" name="stuffUserId" value="${sessionScope.user.userId}">
-                    <div class="input-group mb-3">
+
+                    <div class="input-group mb-3" id="attachMain">
                         <input type="file" name="attach" class="form-control" id="inputGroupFile02">
                     </div>
 
@@ -256,6 +323,12 @@
                         <button type="button" class="btn btn-secondary"
                                 data-bs-dismiss="modal">Close
                         </button>
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-primary" style="float: left;" id="attachAdd">Add
+                                pictures
+                            </button>
+                            <button type="button" class="btn btn-danger" id="attachDelete">Delete picture</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -263,7 +336,33 @@
         </div>
     </div>
 </div>
+<script>
 
+    $("#slideFirst").next().addClass("active");
+
+    $("#attachAdd").click(function () {
+        const div = $("<div>");
+        div.addClass("input-group mb-3");
+
+        const input = $("<input>");
+        input.addClass("form-control");
+        input.attr("type", "file");
+        input.attr("name", "attach");
+        input.attr("id", "inputGroupFile02");
+
+        const button = $("<button>");
+        button.text("Delete");
+        button.attr("type", "button");
+        button.addClass("btn-sm");
+        button.addClass("btn-outline-danger");
+        button.addClass("delete");
+
+        div.append(input);
+        div.append(button);
+
+        $("#attachMain").append(div);
+    });
+</script>
 <!-- Scripts -->
 <script src="/resources/assets/js/jquery.min.js"></script>
 <script src="/resources/assets/js/jquery.dropotron.min.js"></script>

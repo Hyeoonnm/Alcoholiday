@@ -75,10 +75,4 @@ public class RootController {
         else
             return "FAIL"; // 불가능
     }
-
-    /* 메인 화면 드링크 탭 */
-    @RequestMapping("/drink")
-    public String drink() {
-        return "drink";
-    }
 }

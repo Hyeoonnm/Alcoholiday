@@ -6,7 +6,7 @@ import kr.ac.alcoholiday.pager.Pager;
 import java.util.List;
 
 public interface AlcoholDao {
-    List<Alcohol> list(Pager pager);
+    List<Alcohol> list();
 
     void add(Alcohol item);
 

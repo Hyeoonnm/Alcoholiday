@@ -17,6 +17,11 @@
         .card-registration .select-arrow {
             top: 13px;
         }
+
+        a {
+            text-decoration: none;
+        }
+
     </style>
 </head>
 <section class="vh-100">
@@ -45,14 +50,14 @@
                                     <div class="form-outline input-group">
                                         <input type="text" id="userId" name="userId"
                                                class="form-control form-control-lg" placeholder="ID">
-
+                                        <label class="form-label" for="userId"/>
                                         <div class="input-group-append form-outline">
-                                            <button type="button" class="btn btn-outline-secondary btn-lg" id="checkId">
+                                            <button type="button" class="btn btn-primary" id="checkId" style="margin-left: 4%; width: 100%; height: 120%">
                                                 Check
                                             </button>
                                         </div>
 
-                                        <label class="form-label" for="userId"/>
+
                                     </div>
 
                                 </div>
@@ -100,10 +105,8 @@
                                 </div>
                             </div>
 
-                            <div class="mt-4 pt-2">
-                                <button type="button" onclick="signup()" id="signup_btn">Signup</button>
-                                <button><a href="/">Back</a></button>
-                            </div>
+                                <button disabled type="button" style="width: 100%; height: 100%" class="mb-3 btn bnt-sm btn-dark bg-gradient btn-outline-light signupButton" onclick="signup()" id="signup_btn">Signup</button>
+                                <a href="/main" style="color : white"><button type="button" class="btn btn-sm btn-dark bg-gradient btn-outline-light" style="width: 100%; height: 100%">Back</button></a>
 
                         </form>
                     </div>
@@ -154,6 +157,7 @@
     }*/
 
     /*아이디 중복 펑션 (성민ver)*/
+
     $('#checkId').click(function () {
         $.ajax({
             type: 'POST',
@@ -163,11 +167,13 @@
             },
             success: function (result) {
                 if (result == 'OK') {
-                    /*console.log(result);*/
+                    console.log(result);
                     alert("사용 가능한 아이디입니다.");
+                    $('.signupButton').removeAttr('disabled');
                 } else {
+                    console.log(result);
                     alert("이미 사용 중인 아이디입니다.");
-                    /*console.log(result);*/
+                    $('.signupButton').attr('disabled');
                 }
             }
         });
@@ -242,11 +248,7 @@
             emailCheck.focus();
             return;
         }
-
-        if (confirm("Would you like to signup ?")) {
-            alert("Success Signup.");
-            $("form").submit();
-        }
+        form.submit();
     }
 </script>
 </body>
