@@ -16,6 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/slideShow.css">
 
     <style>
         a {
@@ -101,35 +102,9 @@
     <section id="main">
         <div class="container">
             <div class="row row-cols-3">
-
-                <%--<c:forEach items="${drink}" var="drink">
-                    <div>
-                        <c:forEach items="${drink.attaches}" var="attaches">
-                        <div class="card" style="width: 25rem;">
-                            <img src="/resources/images/pic09.jpg" class="card-img-top"
-                                 style="width: 25rem; height: 20rem;"
-                                 alt="...">
-                            </c:forEach>
-                            <div class="card-body">
-                                <h5 class="card-title">${drink.stuffName}</h5>
-                                <p>Writer : ${drink.stuffUserId}</p>
-                                <p><fmt:formatDate value="${drink.stuffRegDate}" pattern="yyyy/MM/dd HH:mm" type="both"/></p>
-                                <a href="/alcohol/detail/${drink.stuffNum}" class="btn btn-primary">Read more.</a>
-
-                                <c:if test="${sessionScope.user.userId == drink.stuffUserId}">
-                                    <a href="/alcohol/update/${drink.stuffNum}">
-                                        <button class="btn btn-success">Update</button>
-                                    </a>
-                                    <a href="/alcohol/delete/${drink.stuffNum}">
-                                        <button class="btn btn-danger">Delete</button>
-                                    </a>
-                                </c:if>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>--%>
                 <c:forEach items="${drink}" var="drink">
                     <c:choose>
+
                         <%--attach에 파일이 존재하지 않을 경우--%>
                         <c:when test="${empty drink.attaches}">
                             <div>
@@ -138,6 +113,7 @@
                                          style="width: 25rem; height: 20rem;"
                                          alt="...">
                                     <div class="card-body">
+                                        <hr>
                                         <h5 class="card-title">${drink.stuffName}</h5>
                                         <p>Writer : ${drink.stuffUserId}</p>
                                         <p><fmt:formatDate value="${drink.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
@@ -160,15 +136,17 @@
 
                         <%--attach에 사진 파일이 존재 할 경우--%>
                         <c:otherwise>
-                            <div>
-                                <c:forEach items="${drink.attaches}" var="attaches">
-                                <div class="card" style="width: 25rem;">
-                                    <img src="/img/${attaches.attachFilename}" class="card-img-top"
-                                         style="width: 25rem; height: 20rem;"
-                                         alt="...">
-                                </c:forEach>
-
+                            <div id="index_03">
+                                <div class="card" style="width: 25rem;" id="header3">
+                                    <div class="album" id="slide3">
+                                        <c:forEach items="${drink.attaches}" var="attaches">
+                                                <img src="/img/${attaches.attachFilename}" class="card-img-top slide1"
+                                                     style="width: 100%; height: 100%;"
+                                                     alt="...">
+                                        </c:forEach>
+                                    </div>
                                     <div class="card-body">
+                                        <hr>
                                         <h5 class="card-title">${drink.stuffName}</h5>
                                         <p>Writer : ${drink.stuffUserId}</p>
                                         <p><fmt:formatDate value="${drink.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
@@ -364,5 +342,7 @@
 <script src="/resources/assets/js/breakpoints.min.js"></script>
 <script src="/resources/assets/js/util.js"></script>
 <script src="/resources/assets/js/main.js"></script>
+
+<script src="/resources/js/autoSlide.js"></script>
 </body>
 </html>
