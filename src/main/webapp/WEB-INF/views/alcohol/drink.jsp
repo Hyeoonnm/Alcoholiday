@@ -40,7 +40,7 @@
 
         <%--로그아웃--%>
         <div style="position: absolute; left: 95%; top: 10px;">
-            <a href="/logout"><img src="/resources/images/logout.jpg" width="60" height="60"></a>
+            <a href="/logout"><img src="/resources/images/logout.jpg" style="width: 50%; height: 50%;"></a>
         </div>
 
         <%--페이지 상단으로 이동--%>
@@ -85,21 +85,18 @@
                 <p>DON'T DRINK TOO MUCH</p>
             </header>
         </section>
+    </section>
 
+    <!-- Main -->
+    <section id="main">
         <%--글쓰기--%>
-        <div style="position: absolute; left: 48%; bottom: 10px; width: auto">
+        <div style="text-align: center">
             <!-- Add Button trigger modal -->
             <button type="button" class="btn btn-lg btn-outline-primary" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
                 <h7 style="color: black">Write</h7>
             </button>
         </div>
-
-    </section>
-
-
-    <!-- Main -->
-    <section id="main">
         <div class="container">
             <div class="row row-cols-3">
                 <c:forEach items="${drink}" var="drink">
@@ -109,8 +106,9 @@
                         <c:when test="${empty drink.attaches}">
                             <div>
                                 <div class="card" style="width: 25rem;">
-                                    <img src="/resources/images/nopic.png" class="card-img-top images"
-                                         alt="...">
+                                    <a href="/alcohol/detail/${drink.stuffNum}"><img src="/resources/images/nopic.png"
+                                                                                     class="card-img-top images"
+                                                                                     alt="..."></a>
                                     <div class="card-body">
                                         <hr>
                                         <h5 class="card-title">${drink.stuffName}</h5>
@@ -139,8 +137,9 @@
                                 <div class="card" style="width: 25rem;">
                                     <div class="album" id="slider">
                                         <c:forEach items="${drink.attaches}" var="attaches">
-                                            <img src="/img/${attaches.attachFilename}" class="card-img-top images"
-                                                 alt="...">
+                                            <a href="/alcohol/detail/${drink.stuffNum}"><img
+                                                    src="/img/${attaches.attachFilename}" class="card-img-top images"
+                                                    alt="..."></a>
                                         </c:forEach>
                                     </div>
                                     <div class="card-body">
@@ -304,14 +303,14 @@
         </div>
     </div>
 </div>
-
+<%--===== add modal end =====--%>
 <script>
     $(function () {
 
         // 이미지 추가한 것 삭제하는 기능
-        $("#attachMain").on("click", "#attachDelete", function() {
-           const div = $(this).closest(".input-group");
-           div.remove();
+        $("#attachMain").on("click", "#attachDelete", function () {
+            const div = $(this).closest(".input-group");
+            div.remove();
         });
 
 

@@ -38,7 +38,7 @@
 
         <%--로그아웃--%>
         <div style="position: absolute; left: 95%; top: 10px;">
-            <a href="/logout"><img src="/resources/images/logout.jpg" width="60" height="60"></a>
+            <a href="/logout"><img src="/resources/images/logout.jpg" style="width: 50%; height: 50%;"></a>
         </div>
 
         <%--페이지 상단으로 이동--%>
@@ -145,15 +145,15 @@
     <section id="drinkimg">
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <%--<div class="col-12">
 
-                    <%--DRINK--%>
+                    &lt;%&ndash;DRINK&ndash;%&gt;
                     <section>
                         <header class="major">
                             <h2>Drink</h2>
                         </header>
 
-                        <%--롱티--%>
+                        &lt;%&ndash;롱티&ndash;%&gt;
                         <div class="row">
                             <div class="col-4 col-6-medium col-12-small">
                                 <section class="box">
@@ -172,7 +172,7 @@
                                 </section>
                             </div>
 
-                            <%--피치크러쉬--%>
+                            &lt;%&ndash;피치크러쉬&ndash;%&gt;
                             <div class="col-4 col-6-medium col-12-small">
                                 <section class="box">
                                     <a href="#" class="image featured"><img src="/resources/images/2.jpg"
@@ -190,7 +190,7 @@
                                 </section>
                             </div>
 
-                            <%--미도리샤워--%>
+                            &lt;%&ndash;미도리샤워&ndash;%&gt;
                             <div class="col-4 col-6-medium col-12-small">
                                 <section class="box">
                                     <a href="#" class="image featured"><img src="/resources/images/3.jpg"
@@ -208,7 +208,7 @@
                                 </section>
                             </div>
 
-                            <%--아디오스--%>
+                            &lt;%&ndash;아디오스&ndash;%&gt;
                             <div class="col-4 col-6-medium col-12-small">
                                 <section class="box">
                                     <a href="#" class="image featured"><img src="/resources/images/4.jpg"
@@ -227,7 +227,7 @@
                                 </section>
                             </div>
 
-                            <%--섹스온더비치--%>
+                            &lt;%&ndash;섹스온더비치&ndash;%&gt;
                             <div class="col-4 col-6-medium col-12-small">
                                 <section class="box">
                                     <a href="#" class="image featured"><img src="/resources/images/5.jpg"
@@ -245,7 +245,7 @@
                                 </section>
                             </div>
 
-                            <%--옥보단--%>
+                            &lt;%&ndash;옥보단&ndash;%&gt;
                             <div class="col-4 col-6-medium col-12-small">
                                 <section class="box">
                                     <a href="#" class="image featured"><img src="/resources/images/6.jpg"
@@ -265,7 +265,7 @@
                         </div>
                     </section>
 
-                </div>
+                </div>--%>
                 <div class="col-12">
 
                     <!-- Best Contents -->

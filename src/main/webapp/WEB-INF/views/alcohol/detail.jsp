@@ -41,7 +41,7 @@
 
         <%--로그아웃--%>
         <div style="position: absolute; left: 95%; top: 10px;">
-            <a href="/logout"><img src="/resources/images/logout.jpg" width="60" height="60"></a>
+            <a href="/logout"><img src="/resources/images/logout.jpg" style="width: 50%; height: 50%;"></a>
         </div>
 
         <%--페이지 상단으로 이동--%>
@@ -81,26 +81,39 @@
                         <div class="card-body">
                             <h3 class="card-title">${drink.stuffName}</h3>
                             <div class="row">
+
                                 <c:forEach items="${drink.attaches}" var="attaches">
-                                <div class="col-lg-5 col-md-5 col-sm-6">
-                                    <div class="white-box text-center"><img src="/img/${attaches.attachFilename}" style="width: 80%; height: 80%;" class="img-responsive"></div>
-                                </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-6">
+                                        <div class="white-box text-center">
+                                            <c:if test="${empty drink.attaches}">
+                                                <img src="/resources/images/no_image.jpg"
+                                                     style="width: 80%; height: 80%;"
+                                                     class="img-responsive" alt="...">>
+                                            </c:if>
+                                            <img src="/img/${attaches.attachFilename}"
+                                                 style="width: 80%; height: 80%;"
+                                                 class="img-responsive" alt="..."></div>
+                                    </div>
                                 </c:forEach>
                                 <div class="col-lg-7 col-md-7 col-sm-6">
-                                    <h4 class="box-title mt-5">Alcohol inpormation</h4>
+                                    <h4 class="box-title mt-5">Alcohol information</h4>
                                     <p>${drink.stuffContent}</p>
                                     <h2 class="mt-5">
                                         $153<small class="text-success">(36%off)</small>
                                     </h2>
-                                    <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart">
+                                    <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title=""
+                                            data-original-title="Add to cart">
                                         <i class="fa fa-shopping-cart"></i>
                                     </button>
                                     <button class="btn btn-primary btn-rounded">Buy Now</button>
                                     <h3 class="box-title mt-5">Key Highlights</h3>
                                     <ul class="list-unstyled">
                                         <li><i class="fa fa-check text-success"></i>Sturdy structure</li>
-                                        <li><i class="fa fa-check text-success"></i>Designed to foster easy portability</li>
-                                        <li><i class="fa fa-check text-success"></i>Perfect furniture to flaunt your wonderful collectibles</li>
+                                        <li><i class="fa fa-check text-success"></i>Designed to foster easy portability
+                                        </li>
+                                        <li><i class="fa fa-check text-success"></i>Perfect furniture to flaunt your
+                                            wonderful collectibles
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -123,87 +136,89 @@
             </header>
         </section>
 
-            <!-- Footer -->
-            <section id="footer" class="bg-dark">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-4 col-6-medium col-12-small">
-                            <section>
-                                <header>
-                                    <h2>Cocktail Youtuber</h2>
-                                </header>
-                                <ul class="divided">
-                                    <li><a href="https://www.youtube.com/c/%EC%88%A0%EB%8D%95%ED%9B%84" target="_blank">Youtuber
-                                        : 술덕후</a></li>
-                                    <li><a href="https://www.youtube.com/channel/UCA7ZsD-PoJ2mxAHYPmUdDYA" target="_blank">Youtuber
-                                        : KOREA BARTENDER</a></li>
-                                    <li><a href="https://www.youtube.com/c/RiniBini%EB%A6%AC%EB%8B%88%EB%B9%84%EB%8B%88sister"
-                                           target="_blank">Youtuber : RiniBini</a></li>
-                                    <li><a href="https://www.youtube.com/c/Yancon_YC" target="_blank">Youtuber : Yancon</a></li>
-                                    <li>
-                                        <a href="https://www.youtube.com/c/%ED%99%88%ED%85%90%EB%94%A9%EB%B0%B1%EA%B3%BC%EB%9D%A0%EB%8F%99%EA%B0%91%EB%B0%94%ED%85%90%EB%8D%94"
-                                           target="_blank">Youtuber : 홈텐딩백과</a></li>
-                                    <li><a href="https://www.youtube.com/c/GeorgeBodistean" target="_blank">Youtuber :
-                                        BODISTEAN</a></li>
-                                </ul>
-                            </section>
-                        </div>
-                        <div class="col-4 col-6-medium col-12-small">
-                            <section>
-                                <header>
-                                    <h2>Another Sites</h2>
-                                </header>
-                                <ul class="divided">
-                                    <li><a href="https://www.beveragemaster.kr/" target="_blank">한국 베버리지 마스터 협회</a></li>
-                                    <li><a href="https://iba-world.com/" target="_blank">국제 바텐더 협회</a></li>
-                                    <li><a href="https://cocktail.com/" target="_blank">Cocktail</a></li>
-                                    <li><a href="https://en.1001cocktails.com/" target="_blank">1001 Cocktail</a></li>
-                                    <li><a href="http://www.drinksmixer.com/" target="_blank">Drinks mixer</a></li>
-                                    <li><a href="https://www.diffordsguide.com/" target="_blank">Diffords guide</a></li>
-                                </ul>
-                            </section>
-                        </div>
-                        <div class="col-4 col-12-medium">
-                            <section>
-                                <header>
+        <!-- Footer -->
+        <section id="footer" class="bg-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4 col-6-medium col-12-small">
+                        <section>
+                            <header>
+                                <h2>Cocktail Youtuber</h2>
+                            </header>
+                            <ul class="divided">
+                                <li><a href="https://www.youtube.com/c/%EC%88%A0%EB%8D%95%ED%9B%84" target="_blank">Youtuber
+                                    : 술덕후</a></li>
+                                <li><a href="https://www.youtube.com/channel/UCA7ZsD-PoJ2mxAHYPmUdDYA" target="_blank">Youtuber
+                                    : KOREA BARTENDER</a></li>
+                                <li>
+                                    <a href="https://www.youtube.com/c/RiniBini%EB%A6%AC%EB%8B%88%EB%B9%84%EB%8B%88sister"
+                                       target="_blank">Youtuber : RiniBini</a></li>
+                                <li><a href="https://www.youtube.com/c/Yancon_YC" target="_blank">Youtuber : Yancon</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.youtube.com/c/%ED%99%88%ED%85%90%EB%94%A9%EB%B0%B1%EA%B3%BC%EB%9D%A0%EB%8F%99%EA%B0%91%EB%B0%94%ED%85%90%EB%8D%94"
+                                       target="_blank">Youtuber : 홈텐딩백과</a></li>
+                                <li><a href="https://www.youtube.com/c/GeorgeBodistean" target="_blank">Youtuber :
+                                    BODISTEAN</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <section>
+                            <header>
+                                <h2>Another Sites</h2>
+                            </header>
+                            <ul class="divided">
+                                <li><a href="https://www.beveragemaster.kr/" target="_blank">한국 베버리지 마스터 협회</a></li>
+                                <li><a href="https://iba-world.com/" target="_blank">국제 바텐더 협회</a></li>
+                                <li><a href="https://cocktail.com/" target="_blank">Cocktail</a></li>
+                                <li><a href="https://en.1001cocktails.com/" target="_blank">1001 Cocktail</a></li>
+                                <li><a href="http://www.drinksmixer.com/" target="_blank">Drinks mixer</a></li>
+                                <li><a href="https://www.diffordsguide.com/" target="_blank">Diffords guide</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="col-4 col-12-medium">
+                        <section>
+                            <header>
 
-                                </header>
-                                <ul class="social">
-                                </ul>
-                                <ul class="contact">
-                                    <li>
-                                        <h3>Address</h3>
-                                        <p>
-                                            352-21, Uam-ro, Dong-gu,<br/>
-                                            Daejeon<br/>
-                                            Republic of Korea
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <h3>Mail</h3>
-                                        <p><a href="#">alcoholiday@gmail.com</a></p>
-                                    </li>
-                                    <li>
-                                        <h3>Phone</h3>
-                                        <p>042) 670-0600</p>
-                                    </li>
-                                </ul>
-                            </section>
-                        </div>
-                        <div class="col-12">
+                            </header>
+                            <ul class="social">
+                            </ul>
+                            <ul class="contact">
+                                <li>
+                                    <h3>Address</h3>
+                                    <p>
+                                        352-21, Uam-ro, Dong-gu,<br/>
+                                        Daejeon<br/>
+                                        Republic of Korea
+                                    </p>
+                                </li>
+                                <li>
+                                    <h3>Mail</h3>
+                                    <p><a href="#">alcoholiday@gmail.com</a></p>
+                                </li>
+                                <li>
+                                    <h3>Phone</h3>
+                                    <p>042) 670-0600</p>
+                                </li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="col-12">
 
-                            <!-- Copyright -->
-                            <div id="copyright">
-                                <ul class="links">
-                                    <li><a href="#logo">&copy; Alcohol.com</a></li>
-                                    <li>developer : <a href="https://google.com" target="_blank">Google</a></li>
-                                </ul>
-                            </div>
-
+                        <!-- Copyright -->
+                        <div id="copyright">
+                            <ul class="links">
+                                <li><a href="#logo">&copy; Alcohol.com</a></li>
+                                <li>developer : <a href="https://google.com" target="_blank">Google</a></li>
+                            </ul>
                         </div>
+
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 </div>
 <!-- Scripts -->
 <script src="/resources/assets/js/jquery.min.js"></script>
