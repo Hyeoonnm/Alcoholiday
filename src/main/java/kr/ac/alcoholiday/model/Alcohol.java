@@ -32,9 +32,6 @@ public class Alcohol {
     // 상세 내용
     private String stuffContent;
 
-    // 썸네일
-    private String stuffThumbnail;
-
     // == Alcohol table end ==
 
 

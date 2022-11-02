@@ -12,25 +12,6 @@ h1{
     height: 20rem;
 }
 img{
-    width: 25rem;
     height: 20rem;
-}
-.slideButton{
-    width: 25px; height: 20px;
-    border: none;
-    color: white;
-    background-color: teal;
-    outline: none;
-}
-button:hover{
-    background-color: turquoise;
-}
-button:disabled{
-    background-color: gray;
-}
-.prev{
-    float: left;
-}
-.next{
-    float: right;
+    width: 25rem;
 }

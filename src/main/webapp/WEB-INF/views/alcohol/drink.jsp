@@ -109,8 +109,7 @@
                         <c:when test="${empty drink.attaches}">
                             <div>
                                 <div class="card" style="width: 25rem;">
-                                    <img src="/resources/images/nopic.png" class="card-img-top"
-                                         style="width: 25rem; height: 20rem;"
+                                    <img src="/resources/images/nopic.png" class="card-img-top images"
                                          alt="...">
                                     <div class="card-body">
                                         <hr>
@@ -136,13 +135,12 @@
 
                         <%--attach에 사진 파일이 존재 할 경우--%>
                         <c:otherwise>
-                            <div id="index_03">
-                                <div class="card" style="width: 25rem;" id="header3">
-                                    <div class="album" id="slide3">
+                            <div>
+                                <div class="card" style="width: 25rem;">
+                                    <div class="album" id="slider">
                                         <c:forEach items="${drink.attaches}" var="attaches">
-                                                <img src="/img/${attaches.attachFilename}" class="card-img-top slide1"
-                                                     style="width: 100%; height: 100%;"
-                                                     alt="...">
+                                            <img src="/img/${attaches.attachFilename}" class="card-img-top images"
+                                                 alt="...">
                                         </c:forEach>
                                     </div>
                                     <div class="card-body">
@@ -271,7 +269,8 @@
 
                 <form method="post" action="../alcohol/add" enctype="multipart/form-data">
                     <div>
-                        <input class="mb-2 form-control" type="text" name="stuffName" placeholder="Drink Name">
+                        <input class="mb-2 form-control" type="text" name="stuffName" id="stuffName"
+                               placeholder="Drink Name">
                     </div>
 
                     <div>
@@ -288,21 +287,16 @@
                     <input type="hidden" name="stuffUserId" value="${sessionScope.user.userId}">
 
                     <div class="input-group mb-3" id="attachMain">
-                        <input type="file" name="attach" class="form-control" id="inputGroupFile02">
+                        <input type="file" class="form-control" id="inputGroupFile04"
+                               aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="attach">
+                        <button class="btn btn-secondary" type="button">Main image</button>
                     </div>
 
                     <%--Add button--%>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="attachAdd">Add picture</button>
                         <button class="btn btn-primary">Save</button>
-                        <button type="button" class="btn btn-secondary"
-                                data-bs-dismiss="modal">Close
-                        </button>
-                        <div style="float: left;">
-                            <button type="button" class="btn btn-primary" style="float: left;" id="attachAdd">Add
-                                pictures
-                            </button>
-                            <button type="button" class="btn btn-danger" id="attachDelete">Delete picture</button>
-                        </div>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -310,31 +304,46 @@
         </div>
     </div>
 </div>
+
 <script>
+    $(function () {
 
-    $("#attachAdd").click(function () {
-        const div = $("<div>");
-        div.addClass("input-group mb-3");
+        // 이미지 추가한 것 삭제하는 기능
+        $("#attachMain").on("click", "#attachDelete", function() {
+           const div = $(this).closest(".input-group");
+           div.remove();
+        });
 
-        const input = $("<input>");
-        input.addClass("form-control");
-        input.attr("type", "file");
-        input.attr("name", "attach");
-        input.attr("id", "inputGroupFile02");
 
-        const button = $("<button>");
-        button.text("Delete");
-        button.attr("type", "button");
-        button.addClass("btn-sm");
-        button.addClass("btn-outline-danger");
-        button.addClass("delete");
+        // 이미지 추가 버튼
+        $("#attachAdd").click(function () {
+            const div = $("<div>");
+            div.addClass("input-group mt-3");
 
-        div.append(input);
-        div.append(button);
+            const input = $("<input>");
+            input.addClass("form-control");
+            input.attr("type", "file");
+            input.attr("name", "attach");
+            input.attr("id", "inputGroupFile04");
+            input.attr("aria-describedby", "inputGroupFileAddon04");
+            input.attr("aria-label", "Upload");
 
-        $("#attachMain").append(div);
+            const button = $("<button>");
+            button.text("delete");
+            button.attr("type", "button");
+            button.attr("id", "inputGroupFileAddon04");
+            button.attr("id", "attachDelete");
+            button.addClass("btn-danger");
+            button.addClass("btn")
+
+            div.append(input);
+            div.append(button);
+
+            $("#attachMain").append(div);
+        });
     });
 </script>
+
 <!-- Scripts -->
 <script src="/resources/assets/js/jquery.min.js"></script>
 <script src="/resources/assets/js/jquery.dropotron.min.js"></script>
@@ -342,7 +351,5 @@
 <script src="/resources/assets/js/breakpoints.min.js"></script>
 <script src="/resources/assets/js/util.js"></script>
 <script src="/resources/assets/js/main.js"></script>
-
-<script src="/resources/js/autoSlide.js"></script>
 </body>
 </html>
