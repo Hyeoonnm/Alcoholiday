@@ -112,15 +112,19 @@
                 </div>
 
                 <div class="col-md-7">
-                    <div id="carouselExampleSlidesOnly" class="carousel slide"
-                         data-bs-ride="carousel">
+                   <%-- <div id="carouselExampleSlidesOnly" class="carousel slide"
+                         data-bs-ride="carousel">--%>
                         <div class="project-info-box mt-0">
-                            <div class="carousel-inner" id="imgDiv">
+                            <%--<div class="carousel-inner" id="imgDiv">--%>
                                 <c:forEach items="${item.attaches}" var="attaches">
-                                    <div class="carousel-item">
-                                        <img src="/img/${attaches.attachFilename}" class="d-block"
-                                             style="width: 100%; height: 40rem; border-radius: 5px;" alt="...">
+                                    <%--<div class="carousel-item">--%>
+                                    <div class="input-group mb-3" id="attachMain">
+                                        <input type="file" class="form-control" id="inputGroupFile04"
+                                               aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="attach">
+                                        <button class="btn btn-secondary" type="button">Main image</button>
                                     </div>
+
+                                    <%--</div>--%>
                                 </c:forEach>
                             </div>
                         </div>
@@ -223,12 +227,13 @@
             </div>
         </div>
     </section>
-</div>
+
 <script>
     $(document).ready(function () {
         $('#imgDiv :first-child').addClass('active');
     });
 </script>
+
 
 <!-- Scripts -->
 <script src="/resources/assets/js/jquery.min.js"></script>
