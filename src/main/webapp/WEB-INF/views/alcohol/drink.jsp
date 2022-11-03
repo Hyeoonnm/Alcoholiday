@@ -256,7 +256,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="addModalLabel">Add new drink</h1>
+                <h1 class="modal-title fs-5" id="ModalLabel">Add new drink</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
@@ -300,55 +300,6 @@
 </div>
 <%--===== add modal end =====--%>
 
-<!-- Add Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1"
-     aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="addModalLabel">Add new drink</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                <form method="post" action="../alcohol/add" enctype="multipart/form-data">
-                    <div>
-                        <input class="mb-2 form-control" type="text" name="stuffName" id="stuffName"
-                               placeholder="Drink Name">
-                    </div>
-
-                    <div>
-                        <input class="mb-2 form-control" type="number" name="stuffPrice" placeholder="Total price">
-                    </div>
-
-                    <div class="form-floating">
-                        <textarea class="form-control mb-2" id="floatingTextarea2" style="height: 150px"
-                                  name="stuffContent" maxlength="800"></textarea>
-                        <label for="floatingTextarea2">Contents</label>
-                    </div>
-
-                    <input type="hidden" name="stuffUserId" value="${sessionScope.user.userId}">
-
-                    <div class="input-group mb-3" id="attachMain">
-                        <input type="file" class="form-control" id="inputGroupFile04"
-                               aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="attach">
-                        <button class="btn btn-secondary" type="button">Main image</button>
-                    </div>
-
-                    <%--Add button--%>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" id="attachAdd">Add picture</button>
-                        <button class="btn btn-primary">Save</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div>
-<%--===== add modal end =====--%>
 <script>
     $(function () {
 
