@@ -4,4 +4,6 @@ import kr.ac.alcoholiday.model.Attach;
 
 public interface AttachDao {
     void add(Attach attach);
+
+    void delete(int stuffNum);
 }

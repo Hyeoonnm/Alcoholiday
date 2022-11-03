@@ -51,7 +51,10 @@ public class AlcoholServiceImpl implements AlcoholService{
     }
 
     @Override
+    @Transactional
     public void delete(int stuffNum, String userId) {
+        attachDao.delete(stuffNum);
+
         dao.delete(stuffNum, userId);
     }
 }

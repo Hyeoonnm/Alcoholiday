@@ -1,0 +1,22 @@
+input {
+
+    border-top: none;
+    border-left:none;
+    border-right: none;
+    border-bottom: 3px black solid;
+    background-color:transparent;
+    text-align: center;
+    color: aliceblue;
+
+}
+
+input:focus{
+    outline: none;   /* 아웃라인 지우기 */
+}
+
+input::placeholder {
+    color:rgb(255, 255, 255);
+    font-size: 15px;
+    text-align: center;
+}
+input::-webkit-input-placeholder {color:rgb(0, 0, 0);}

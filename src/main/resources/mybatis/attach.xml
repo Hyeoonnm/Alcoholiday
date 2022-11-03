@@ -7,4 +7,9 @@
         VALUES (#{attachFilename}, #{attachStuffNum})
     </insert>
 
+    <delete id="delete">
+        DELETE
+        FROM attach
+        WHERE attach_stuff_num = #{stuffNum}
+    </delete>
 </mapper>

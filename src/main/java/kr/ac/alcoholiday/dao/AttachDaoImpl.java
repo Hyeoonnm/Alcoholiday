@@ -14,4 +14,9 @@ public class AttachDaoImpl implements AttachDao{
     public void add(Attach attach) {
         sql.insert("attach.add", attach);
     }
+
+    @Override
+    public void delete(int stuffNum) {
+        sql.delete("attach.delete", stuffNum);
+    }
 }
