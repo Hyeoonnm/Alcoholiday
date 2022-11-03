@@ -16,7 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="/resources/css/slideShow.css">
+    <link rel="stylesheet" href="/resources/css/drinklist.css">
 
     <style>
         a {
@@ -90,13 +90,14 @@
     <!-- Main -->
     <section id="main">
         <%--글쓰기--%>
-        <div style="text-align: center">
             <!-- Add Button trigger modal -->
+            <div style="text-align: center">
             <button type="button" class="btn btn-lg btn-outline-primary" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
-                <h7 style="color: black">Write</h7>
+                <h7 style="color: black">new Writing</h7>
             </button>
-        </div>
+            </div>
+
         <div class="container">
             <div class="row row-cols-3">
                 <c:forEach items="${drink}" var="drink">

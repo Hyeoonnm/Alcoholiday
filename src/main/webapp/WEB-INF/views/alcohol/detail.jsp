@@ -16,6 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/css/detail.css">
 
 
     <style>
@@ -66,75 +67,14 @@
         <nav id="nav">
             <ul>
                 <li><a href="/main">MAIN</a></li>
-                <li class="current"><a href="alcohol/drink">DRINK</a></li>
+                <li class="current"><a href="../drink">DRINK</a></li>
                 <li><a href="recipes">RECIPES</a></li>
                 <li><a href="tools">TOOLS</a></li>
                 <li><a href="place/list">PLACE</a></li>
             </ul>
         </nav>
 
-        <!-- Banner -->
-        <section id="banner" style="background: white !important;">
-            <header>
-                <div class="container">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title">${drink.stuffName}</h3>
-                            <div class="row">
 
-                                <c:forEach items="${drink.attaches}" var="attaches">
-                                    <div class="col-lg-5 col-md-5 col-sm-6">
-                                        <div class="white-box text-center">
-                                            <c:if test="${empty drink.attaches}">
-                                                <img src="/resources/images/no_image.jpg"
-                                                     style="width: 80%; height: 80%;"
-                                                     class="img-responsive" alt="...">>
-                                            </c:if>
-                                            <img src="/img/${attaches.attachFilename}"
-                                                 style="width: 80%; height: 80%;"
-                                                 class="img-responsive" alt="..."></div>
-                                    </div>
-                                </c:forEach>
-                                <div class="col-lg-7 col-md-7 col-sm-6">
-                                    <h4 class="box-title mt-5">Alcohol information</h4>
-                                    <p>${drink.stuffContent}</p>
-                                    <h2 class="mt-5">
-                                        $153<small class="text-success">(36%off)</small>
-                                    </h2>
-                                    <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title=""
-                                            data-original-title="Add to cart">
-                                        <i class="fa fa-shopping-cart"></i>
-                                    </button>
-                                    <button class="btn btn-primary btn-rounded">Buy Now</button>
-                                    <h3 class="box-title mt-5">Key Highlights</h3>
-                                    <ul class="list-unstyled">
-                                        <li><i class="fa fa-check text-success"></i>Sturdy structure</li>
-                                        <li><i class="fa fa-check text-success"></i>Designed to foster easy portability
-                                        </li>
-                                        <li><i class="fa fa-check text-success"></i>Perfect furniture to flaunt your
-                                            wonderful collectibles
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <h3 class="box-title mt-5">Recipes</h3>
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-product">
-                                            <tbody>
-                                            <tr>
-                                                <td width="390">alcohol</td>
-                                                <td>oz</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        </section>
 
         <!-- Footer -->
         <section id="footer" class="bg-dark">
@@ -220,6 +160,14 @@
             </div>
         </section>
 </div>
+<%--<script>
+    $(document).ready(function () {
+        $('#imgDiv :first-child').addClass('active');
+    });
+</script>--%>
+
+
+<script src="/resources/js/detail.js"></script>
 <!-- Scripts -->
 <script src="/resources/assets/js/jquery.min.js"></script>
 <script src="/resources/assets/js/jquery.dropotron.min.js"></script>
@@ -227,5 +175,7 @@
 <script src="/resources/assets/js/breakpoints.min.js"></script>
 <script src="/resources/assets/js/util.js"></script>
 <script src="/resources/assets/js/main.js"></script>
+
+
 </body>
 </html>

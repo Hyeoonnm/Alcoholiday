@@ -132,12 +132,6 @@
 
                 </div>
             </div>
-            <footer>
-                <ul class="actions">
-                    <li><a href="#" class="button large">Get Started</a></li>
-                    <li><a href="#drinkimg" class="button alt large">Learn More</a></li>
-                </ul>
-            </footer>
         </section>
     </section>
 
