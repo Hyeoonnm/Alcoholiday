@@ -68,13 +68,7 @@
                 <li class="current"><a href="/drink">DRINK</a></li>
                 <li><a href="/recipes">RECIPES</a></li>
                 <li><a href="/tools">TOOLS</a></li>
-                <li>
-                    <a href="#">SHARE</a>
-                    <ul>
-                        <li><a href="#">PLACE</a></li>
-                        <li><a href="alcohol/list">COCKTAIL</a></li>
-                    </ul>
-                </li>
+                <li><a href="place/list">PLACE</a></li>
             </ul>
         </nav>
 
@@ -90,13 +84,13 @@
     <!-- Main -->
     <section id="main">
         <%--글쓰기--%>
-            <!-- Add Button trigger modal -->
-            <div style="text-align: center">
+        <!-- Add Button trigger modal -->
+        <div style="text-align: center">
             <button type="button" class="btn btn-lg btn-outline-primary" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
                 <h7 style="color: black">new Writing</h7>
             </button>
-            </div>
+        </div>
 
         <div class="container">
             <div class="row row-cols-3">
@@ -274,13 +268,12 @@
                     </div>
 
                     <div>
-                        <input class="mb-2 form-control" type="number" name="stuffPrice" value="0"
-                               placeholder="Total price">
+                        <input class="mb-2 form-control" type="number" name="stuffPrice" placeholder="Total price">
                     </div>
 
                     <div class="form-floating">
                         <textarea class="form-control mb-2" id="floatingTextarea2" style="height: 150px"
-                                  name="stuffContent"></textarea>
+                                  name="stuffContent" maxlength="800"></textarea>
                         <label for="floatingTextarea2">Contents</label>
                     </div>
 

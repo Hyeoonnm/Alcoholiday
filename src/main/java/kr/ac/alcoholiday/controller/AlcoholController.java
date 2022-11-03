@@ -24,7 +24,6 @@ public class AlcoholController {
     @Autowired
     AlcoholService service;
 
-
     @RequestMapping("/drink")
     public String list(Model model) {
 

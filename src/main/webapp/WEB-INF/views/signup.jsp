@@ -40,7 +40,7 @@
 
                                     <div class="form-outline">
                                         <input type="text" id="userName" name="userName"
-                                               class="form-control form-control-lg " placeholder="Name"/>
+                                               class="form-control form-control-lg " placeholder="Name" minlength="2" maxlength="10"/>
                                         <label class="form-label" for="userName"/>
                                     </div>
 
@@ -49,7 +49,7 @@
 
                                     <div class="form-outline input-group">
                                         <input type="text" id="userId" name="userId"
-                                               class="form-control form-control-lg" placeholder="ID">
+                                               class="form-control form-control-lg" placeholder="ID" minlength="4" maxlength="14">
                                         <label class="form-label" for="userId"/>
                                         <div class="input-group-append form-outline">
                                             <button type="button" class="btn btn-primary" id="checkId" style="margin-left: 4%; width: 100%; height: 120%">
@@ -68,7 +68,7 @@
 
                                     <div class="form-outline">
                                         <input type="tel" id="userPhone" name="userPhone"
-                                               class="form-control form-control-lg" placeholder="Phone"/>
+                                               class="form-control form-control-lg" placeholder="Phone" maxlength="13" oninput="hypenTel(this)"/>
                                         <label class="form-label" for="userPhone"/>
                                     </div>
 
@@ -77,7 +77,7 @@
 
                                     <div class="form-outline">
                                         <input type="password" id="userPwd" name="userPwd"
-                                               class="form-control form-control-lg" placeholder="Password"/>
+                                               class="form-control form-control-lg" placeholder="Password" minlength="4" maxlength="12"/>
                                         <label class="form-label" for="userPwd"/>
                                     </div>
 
@@ -98,7 +98,7 @@
 
                                     <div class="form-outline">
                                         <input type="password" id="userPwdValid" name="userPwdValid"
-                                               class="form-control form-control-lg" placeholder="Confirm Password"/>
+                                               class="form-control form-control-lg" placeholder="Confirm Password" minlength="4" maxlength="12"/>
                                         <label class="form-label" for="userPwdValid"/>
                                     </div>
 
@@ -120,6 +120,12 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
+    // 전화번호 입력시 자동 -
+    const hypenTel = (target) => {
+        target.value = target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+    }
 
     /*아이디 중복 펑션*/
     /*function checkId() {

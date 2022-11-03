@@ -4,7 +4,6 @@ import kr.ac.alcoholiday.model.User;
 import kr.ac.alcoholiday.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -32,7 +31,7 @@ public class RootController {
     @PostMapping("/")
     public String login(User user, HttpSession session) {
 
-        if (service.login(user) == true) {
+        if (service.login(user)) {
             session.setAttribute("user", user);
 
             return "main";
