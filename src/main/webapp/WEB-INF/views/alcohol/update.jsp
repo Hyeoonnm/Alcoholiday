@@ -19,6 +19,20 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/detail.css">
 
+    <!-- colorb -->
+    <link href="/resources/form/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/resources/form/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="/resources/form/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/resources/form/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/resources/form/css/main.css" rel="stylesheet" media="all">
+
 
     <style>
         #detailImg {
@@ -82,68 +96,75 @@
             </ul>
         </nav>
 
-        <!-- Banner -->
-        <section id="banner">
-            <header>
-                <h2>${item.stuffName} Update</h2>
-                <p>DON'T DRINK TOO MUCH</p>
-            </header>
-        </section>
-    </section>
-
     <!-- Detail -->
 
     <section id="main">
-        <div class="container" style="background-color: #E2E2E2; margin-top: 5%; margin-bottom: 5%">
-            <div class="row row2">
-                <div class="col-md-5">
-                    <div class="project-info-box mt-0" style="text-align: left">
-                        <p><b>Title :</b> <input name="stuffName" type="text" placeholder="${item.stuffName}"></p>
-                        <p><b>Writer :</b> ${item.stuffUserId}</p>
-                        <p><b>Price :</b> <input name="stuffPrice" type="text" placeholder="${item.stuffPrice}"></p>
-                        <p><b>Categories :</b> Drink</p>
-                        <p><b>Date :</b> <fmt:formatDate value="${item.stuffRegDate}" type="date"
-                                                         pattern="YYYY/mm/dd HH:mm:ss"></fmt:formatDate></p>
-                    </div>
-                    <div class="project-info-box mt-0" style="word-break: break-all;">
-                        <p><b>Contents</b></p>
-                        <textarea style="width: 100%; height: 22rem" name="stuffContent">${item.stuffContent}</textarea>
-                    </div>
-                </div>
-
-                <div class="col-md-7">
-                   <%-- <div id="carouselExampleSlidesOnly" class="carousel slide"
-                         data-bs-ride="carousel">--%>
-                        <div class="project-info-box mt-0">
-                            <%--<div class="carousel-inner" id="imgDiv">--%>
-                                <c:forEach items="${item.attaches}" var="attaches">
-                                    <%--<div class="carousel-item">--%>
-                                    <div class="input-group mb-3" id="attachMain">
-                                        <input type="file" class="form-control" id="inputGroupFile04"
-                                               aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="attach">
-                                        <button class="btn btn-secondary" type="button">Main image</button>
-                                    </div>
-
-                                    <%--</div>--%>
-                                </c:forEach>
-                            </div>
+        <div class="container">
+            <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+                <div class="wrapper wrapper--w790">
+                    <div class="card card-5">
+                        <div class="card-heading">
+                            <h2 class="title">${item.stuffName} Update</h2>
                         </div>
-                    </div>
-                    <div class="project-info-box">
-                        <p><b>알코올 중독 자가진단 : </b> <a href="http://bgnmh.go.kr/checkmehealme/selftest/alcTest3.xx"
-                                                    target="_blank">진단하기</a></p>
+                        <div class="card-body">
+                            <form method="POST">
+                                <div class="form-row m-b-55">
+                                    <div class="name">Drink Title</div>
+                                    <div class="value">
+                                        <div class="row row-space">
+                                                <div class="input-group-desc">
+                                                    <input class="input--style-5" type="text" name="stuffName" placeholder="${item.stuffName}">
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="name">Drink Price</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input class="input--style-5" type="number" name="stuffPrice" placeholder="${item.stuffPrice}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="name">Contents</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <textarea name="stuffContent" placeholder="${item.stuffContent}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row m-b-55">
+                                    <div class="name">Images</div>
+                                    <div class="value">
+                                        <div class="row row-refine">
+                                            <div class="col-9">
+                                                <div class="input-group-desc mb-3" id="attachMain">
+                                                    <input type="file" class="form-control" id="inputGroupFile04"
+                                                           aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="attach">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="btn btn-success" id="attachAdd">Add picture</button>
+                                    <button class="btn btn--radius-2 btn--blue" type="submit">Update</button>
+                                    <a href="../drink"><button class="btn btn--radius-2 btn--red" type="button">Cancel</button></a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-            <%--Update / Cancel Button--%>
-            <button class="btn btn-sm btn-primary" style="margin-left: 89%;">
-                <h7 style="color: white">Update</h7>
-            </button>
-            <button type="button" class="btn btn-sm btn-danger">
-                <a href="../drink"><h7 style="color: white">Cancel</h7></a>
-            </button>
+            <!-- end document-->
         </div>
     </section>
+
     <!-- Footer -->
     <section id="footer" class="bg-dark">
         <div class="container">
@@ -228,20 +249,68 @@
         </div>
     </section>
 
-<script>
-    $(document).ready(function () {
-        $('#imgDiv :first-child').addClass('active');
-    });
-</script>
+    <script>
+        $(document).ready(function () {
+            $('#imgDiv :first-child').addClass('active');
+        });
+
+        $(function () {
+
+            // 이미지 추가한 것 삭제하는 기능
+            $("#attachMain").on("click", "#attachDelete", function () {
+                const div = $(this).closest(".input-group");
+                div.remove();
+            });
 
 
-<!-- Scripts -->
-<script src="/resources/assets/js/jquery.min.js"></script>
-<script src="/resources/assets/js/jquery.dropotron.min.js"></script>
-<script src="/resources/assets/js/browser.min.js"></script>
-<script src="/resources/assets/js/breakpoints.min.js"></script>
-<script src="/resources/assets/js/util.js"></script>
-<script src="/resources/assets/js/main.js"></script>
+            // 이미지 추가 버튼
+            $("#attachAdd").click(function () {
+                const div = $("<div>");
+                div.addClass("input-group mt-3");
+
+                const input = $("<input>");
+                input.addClass("form-control");
+                input.attr("type", "file");
+                input.attr("name", "attach");
+                input.attr("id", "inputGroupFile04");
+                input.attr("aria-describedby", "inputGroupFileAddon04");
+                input.attr("aria-label", "Upload");
+
+                const button = $("<button>");
+                button.text("delete");
+                button.attr("type", "button");
+                button.attr("id", "inputGroupFileAddon04");
+                button.attr("id", "attachDelete");
+                button.addClass("btn-danger");
+                button.addClass("btn");
+                button.addClass("btn-sm")
+
+
+                div.append(input);
+                div.append(button);
+
+                $("#attachMain").append(div);
+            });
+        });
+    </script>
+
+    <!-- Scripts -->
+    <script src="/resources/assets/js/jquery.min.js"></script>
+    <script src="/resources/assets/js/jquery.dropotron.min.js"></script>
+    <script src="/resources/assets/js/browser.min.js"></script>
+    <script src="/resources/assets/js/breakpoints.min.js"></script>
+    <script src="/resources/assets/js/util.js"></script>
+    <script src="/resources/assets/js/main.js"></script>
+
+    <!-- Jquery JS-->
+    <script src="/resources/form/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="/resources/form/vendor/select2/select2.min.js"></script>
+    <script src="/resources/form/vendor/datepicker/moment.min.js"></script>
+    <script src="/resources/form/vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="/resources/form/js/global.js"></script>
 
 </body>
 </html>
