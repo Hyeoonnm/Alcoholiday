@@ -4,7 +4,6 @@ import kr.ac.alcoholiday.dao.AlcoholDao;
 import kr.ac.alcoholiday.dao.AttachDao;
 import kr.ac.alcoholiday.model.Alcohol;
 import kr.ac.alcoholiday.model.Attach;
-import kr.ac.alcoholiday.pager.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,8 +45,17 @@ public class AlcoholServiceImpl implements AlcoholService{
     }
 
     @Override
+    @Transactional
     public void update(Alcohol item) {
         dao.update(item);
+
+        if (item.getAttaches() != null) {
+            for(Attach attach : item.getAttaches()) {
+                attach.setAttachStuffNum(item.getStuffNum());
+
+                attachDao.add(attach);
+            }
+        }
     }
 
     @Override

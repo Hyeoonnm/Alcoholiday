@@ -114,12 +114,22 @@
                      data-bs-ride="carousel">
                     <div class="project-info-box mt-0">
                         <div class="carousel-inner" id="imgDiv">
+                            <c:choose>
+                                <c:when test="${empty drink.attaches}">
+                                    <div class="carousel-item">
+                                        <img src="/resources/images/nopic.png" class="d-block"
+                                             style="width: 100%; height: 40rem; border-radius: 5px;" alt="...">
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
                             <c:forEach items="${drink.attaches}" var="attaches">
                                 <div class="carousel-item">
                                     <img src="/img/${attaches.attachFilename}" class="d-block"
                                          style="width: 100%; height: 40rem; border-radius: 5px;" alt="...">
                                 </div>
                             </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>

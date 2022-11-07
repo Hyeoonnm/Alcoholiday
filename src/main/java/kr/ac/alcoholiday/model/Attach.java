@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Attach {
+public class Attach{
 
     // == Attach table start ==
 

@@ -127,43 +127,7 @@
             .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
     }
 
-    /*아이디 중복 펑션*/
-    /*function checkId() {
-
-        const checkId = document.querySelector('#userId').value;
-
-        // console.log(checkId);
-        const xhr = new XMLHttpRequest();
-
-        const target = document.getElementById('signup_btn');
-
-        xhr.open("GET", "checkId/" + checkId, true);
-
-        xhr.send();
-
-        xhr.onreadystatechange = function () {
-
-            console.log(xhr.readyState);
-
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                if (xhr.status == 200) {
-                    const result = xhr.responseText;
-                    // console.log(result + "Check");
-
-                    if (result == "OK") {
-                        alert("ID is available");
-                        target.disabled = false;
-                    } else {
-                        alert("ID is already in use");
-                        target.disabled = true;
-                    }
-                }
-            }
-        };
-    }*/
-
     /*아이디 중복 펑션 (성민ver)*/
-
     $('#checkId').click(function () {
         $.ajax({
             type: 'POST',
@@ -254,6 +218,7 @@
             emailCheck.focus();
             return;
         }
+        alert("Success Signup")
         form.submit();
     }
 </script>

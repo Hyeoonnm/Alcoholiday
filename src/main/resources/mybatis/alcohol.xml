@@ -42,7 +42,8 @@
         SET stuff_name     = #{stuffName},
             stuff_price    = #{stuffPrice},
             stuff_reg_date = NOW(),
-            stuff_split    = 1
+            stuff_split    = 1,
+            stuff_content = ${stuffContent}
         WHERE stuff_num = #{stuffNum}
           AND stuff_user_id = #{stuffUserId}
     </update>

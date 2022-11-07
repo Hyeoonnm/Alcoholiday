@@ -93,7 +93,7 @@
                         <header>
                             <h2>DRINK</h2>
                         </header>
-                        <p>Some kind of beer, cocktail, shot</p>
+                        <p>Some kind of cocktail</p>
                     </section>
 
                 </div>
@@ -152,19 +152,13 @@
                                     <a href="#" class="image featured"><img src="/resources/images/pic08.jpg"
                                                                             alt=""/></a>
                                     <header>
-                                        <h3>Magna tempus consequat</h3>
-                                        <p>Posted 45 minutes ago</p>
+                                        <h3>best1</h3>
+                                        <p>~~~~~~</p>
                                     </header>
-                                    <p>Lorem ipsum dolor sit amet sit veroeros sed et blandit consequat sed veroeros
-                                        lorem et blandit adipiscing feugiat phasellus tempus hendrerit, tortor vitae
-                                        mattis tempor, sapien sem feugiat sapien, id suscipit magna felis nec elit.
-                                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                                        lorem ipsum dolor sit amet.</p>
+                                    <p>~~~~~~</p>
                                     <footer>
                                         <ul class="actions">
-                                            <li><a href="#" class="button icon solid fa-file-alt">Continue Reading</a>
-                                            </li>
-                                            <li><a href="#" class="button alt icon solid fa-comment">33 comments</a>
+                                            <li><a href="#" class="button icon solid fa-file-alt">Read More</a>
                                             </li>
                                         </ul>
                                     </footer>
@@ -175,19 +169,13 @@
                                     <a href="#" class="image featured"><img src="/resources/images/pic09.jpg"
                                                                             alt=""/></a>
                                     <header>
-                                        <h3>Aptent veroeros aliquam</h3>
-                                        <p>Posted 45 minutes ago</p>
+                                        <h3>best2</h3>
+                                        <p>~~~~~</p>
                                     </header>
-                                    <p>Lorem ipsum dolor sit amet sit veroeros sed et blandit consequat sed veroeros
-                                        lorem et blandit adipiscing feugiat phasellus tempus hendrerit, tortor vitae
-                                        mattis tempor, sapien sem feugiat sapien, id suscipit magna felis nec elit.
-                                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                                        lorem ipsum dolor sit amet.</p>
+                                    <p>~~~~~~~~</p>
                                     <footer>
                                         <ul class="actions">
-                                            <li><a href="#" class="button icon solid fa-file-alt">Continue Reading</a>
-                                            </li>
-                                            <li><a href="#" class="button alt icon solid fa-comment">33 comments</a>
+                                            <li><a href="#" class="button icon solid fa-file-alt">Read More</a>
                                             </li>
                                         </ul>
                                     </footer>

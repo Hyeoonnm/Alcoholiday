@@ -93,74 +93,52 @@
             </button>
         </div>
 
+            <%--카드형 이미지 리스트--%>
         <div class="container">
             <div class="row row-cols-3">
                 <c:forEach items="${drink}" var="drink">
-                    <c:choose>
+                    <div>
+                        <div class="card" style="width: 25rem;">
+                            <div class="album" id="slider">
+                                <c:choose>
 
-                        <%--attach에 파일이 존재하지 않을 경우--%>
-                        <c:when test="${empty drink.attaches}">
-                            <div>
-                                <div class="card" style="width: 25rem;">
-                                    <a href="/alcohol/detail/${drink.stuffNum}"><img src="/resources/images/nopic.png"
-                                                                                     class="card-img-top images"
-                                                                                     alt="..."></a>
-                                    <div class="card-body">
-                                        <hr>
-                                        <h5 class="card-title">${drink.stuffName}</h5>
-                                        <p>Writer : ${drink.stuffUserId}</p>
-                                        <p><fmt:formatDate value="${drink.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
-                                                           type="both"/></p>
-                                        <a href="/alcohol/detail/${drink.stuffNum}" class="btn btn-primary">Read
-                                            more.</a>
+                                    <c:when test="${empty drink.attaches}">
+                                        <a href="/alcohol/detail/${drink.stuffNum}"><img
+                                                src="/resources/images/nopic.png"
+                                                class="card-img-top images"
+                                                alt="..."></a>
+                                    </c:when>
 
-                                        <c:if test="${sessionScope.user.userId == drink.stuffUserId}">
-                                            <a href="/alcohol/update/${drink.stuffNum}">
-                                                <button class="btn btn-success">Update</button>
-                                            </a>
-                                            <a href="/alcohol/delete/${drink.stuffNum}">
-                                                <button class="btn btn-danger">Delete</button>
-                                            </a>
-                                        </c:if>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:when>
-
-                        <%--attach에 사진 파일이 존재 할 경우--%>
-                        <c:otherwise>
-                            <div>
-                                <div class="card" style="width: 25rem;">
-                                    <div class="album" id="slider">
+                                    <c:otherwise>
                                         <c:forEach items="${drink.attaches}" var="attaches">
                                             <a href="/alcohol/detail/${drink.stuffNum}"><img
                                                     src="/img/${attaches.attachFilename}" class="card-img-top images"
                                                     alt="..."></a>
                                         </c:forEach>
-                                    </div>
-                                    <div class="card-body">
-                                        <hr>
-                                        <h5 class="card-title">${drink.stuffName}</h5>
-                                        <p>Writer : ${drink.stuffUserId}</p>
-                                        <p><fmt:formatDate value="${drink.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
-                                                           type="both"/></p>
-                                        <a href="/alcohol/detail/${drink.stuffNum}" class="btn btn-primary">Read
-                                            more.</a>
-
-                                        <c:if test="${sessionScope.user.userId == drink.stuffUserId}">
-                                            <a href="/alcohol/update/${drink.stuffNum}">
-                                                <button class="btn btn-success">Update</button>
-                                            </a>
-                                            <a href="/alcohol/delete/${drink.stuffNum}">
-                                                <button class="btn btn-danger">Delete</button>
-                                            </a>
-                                        </c:if>
-                                    </div>
-                                </div>
-
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
-                        </c:otherwise>
-                    </c:choose>
+                            <div class="card-body">
+                                <hr>
+                                <h5 class="card-title">${drink.stuffName}</h5>
+                                <p>Writer : ${drink.stuffUserId}</p>
+                                <p><fmt:formatDate value="${drink.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
+                                                   type="both"/></p>
+                                <a href="/alcohol/detail/${drink.stuffNum}" class="btn btn-primary">Read
+                                    more.</a>
+
+                                <c:if test="${sessionScope.user.userId == drink.stuffUserId}">
+                                    <a href="/alcohol/update/${drink.stuffNum}">
+                                        <button class="btn btn-success">Update</button>
+                                    </a>
+                                    <a href="/alcohol/delete/${drink.stuffNum}">
+                                        <button class="btn btn-danger">Delete</button>
+                                    </a>
+                                </c:if>
+                            </div>
+                        </div>
+
+                    </div>
                 </c:forEach>
 
             </div>
@@ -253,7 +231,7 @@
 <!-- Add Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1"
      aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-xl" id="addModalReturn">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="ModalLabel">Add new drink</h1>
@@ -262,20 +240,20 @@
             </div>
             <div class="modal-body">
 
-                <form method="post" action="../alcohol/add" enctype="multipart/form-data">
+                <form method="post" action="../alcohol/add" enctype="multipart/form-data" id="addForm">
                     <div>
                         <input class="mb-2 form-control" type="text" name="stuffName" id="stuffName"
                                placeholder="Drink Name">
                     </div>
 
                     <div>
-                        <input class="mb-2 form-control" type="number" name="stuffPrice" placeholder="Total price">
+                        <input class="mb-2 form-control" type="number" name="stuffPrice" id="stuffPrice" placeholder="Price">
                     </div>
 
                     <div class="form-floating">
-                        <textarea class="form-control mb-2" id="floatingTextarea2" style="height: 150px"
+                        <textarea class="form-control mb-2" id="floatingTextarea2 stuffContent" style="height: 150px"
                                   name="stuffContent" maxlength="800"></textarea>
-                        <label for="floatingTextarea2">Contents</label>
+                        <label for="floatingTextarea2 stuffContent">Contents</label>
                     </div>
 
                     <input type="hidden" name="stuffUserId" value="${sessionScope.user.userId}">
@@ -289,7 +267,7 @@
                     <%--Add button--%>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" id="attachAdd">Add picture</button>
-                        <button class="btn btn-primary">Save</button>
+                        <button class="btn btn-primary" id="addButton" type="button">Save</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
@@ -300,44 +278,7 @@
 </div>
 <%--===== add modal end =====--%>
 
-<script>
-    $(function () {
-
-        // 이미지 추가한 것 삭제하는 기능
-        $("#attachMain").on("click", "#attachDelete", function () {
-            const div = $(this).closest(".input-group");
-            div.remove();
-        });
-
-
-        // 이미지 추가 버튼
-        $("#attachAdd").click(function () {
-            const div = $("<div>");
-            div.addClass("input-group mt-3");
-
-            const input = $("<input>");
-            input.addClass("form-control");
-            input.attr("type", "file");
-            input.attr("name", "attach");
-            input.attr("id", "inputGroupFile04");
-            input.attr("aria-describedby", "inputGroupFileAddon04");
-            input.attr("aria-label", "Upload");
-
-            const button = $("<button>");
-            button.text("delete");
-            button.attr("type", "button");
-            button.attr("id", "inputGroupFileAddon04");
-            button.attr("id", "attachDelete");
-            button.addClass("btn-danger");
-            button.addClass("btn")
-
-            div.append(input);
-            div.append(button);
-
-            $("#attachMain").append(div);
-        });
-    });
-</script>
+<script src="/resources/js/drinkJsp.js"></script>
 
 <!-- Scripts -->
 <script src="/resources/assets/js/jquery.min.js"></script>
