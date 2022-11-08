@@ -21,13 +21,6 @@
 
 
     <style>
-        #detailImg {
-            text-align: center;
-            position: relative;
-            padding: 8em 0;
-            margin: 4em 0 0 0;
-        }
-
         a {
             text-decoration-line: none;
         }
@@ -99,15 +92,15 @@
                     <div class="project-info-box mt-0" style="text-align: left">
                         <p><b>Title : </b><input type="text" name="stuffName" value="${item.stuffName}"></p>
                         <p><b>Writer : </b>${item.stuffUserId}</p>
-                        <p><b>Price : </b><input type="text" name="stuffPrice" value="${item.stuffPrice}"></p>
+                        <p><b>Price : </b><input type="number" name="stuffPrice" value="${item.stuffPrice}" maxlength="8"></p>
                         <p><b>Categories :</b> Drink</p>
                         <p><b>Date :</b> <fmt:formatDate value="${item.stuffRegDate}" type="date"
                                                          pattern="YYYY/mm/dd HH:mm:ss"></fmt:formatDate></p>
                     </div>
                     <div class="project-info-box mt-0" style="word-break: break-all;">
                         <p><b>Contents</b></p>
-                        <textarea class="form-control mb-2" id="floatingTextarea2 stuffContent" style="height: 150px"
-                                  name="stuffContent" maxlength="800">${item.stuffContent}</textarea>
+                        <textarea type="text" class="form-control mb-2" id="floatingTextarea2 stuffContent" style="height: 150px"
+                        name="stuffContent" maxlength="800">${item.stuffContent}</textarea>
                         <label for="floatingTextarea2 stuffContent"></label>
                     </div>
                 </div>
@@ -118,14 +111,28 @@
                         <div class="project-info-box mt-0">
                             <div class="carousel-inner" id="imgDiv">
                                 <c:forEach var="attaches" items="${item.attaches}" varStatus="status">
-                                    <input type="file" id="files${status.index}" name="attach" aria-hidden="false" style="visibility: hidden" onchange="updateImgName('files${status.index}')">
-                                    <label style="z-index: 1;" for="files${status.index}">${attaches.attachFilename}
-                                        <button onclick="updateImg('files${status.index}')" type="button">Update</button>
-                                    </label>
+                                    <div style="display: inline-block;">
+
+                                    <input type="file" id="files${status.index}" name="attach" style="visibility: hidden" onchange="updateImgName('files${status.index}')">
+                                    <label style="width: 10rem" for="files${status.index}"> ${attaches.attachFilename}</label>
+                                    <input type="hidden" id="imgVal${status.index}" value="${attaches.attachNum}">
+                                    <button class="btn-sm btn btn-primary" onclick="updateImg('files${status.index}')" type="button">Update</button>
+                                    <button class="btn-sm btn btn-danger" onclick="deleteImg('imgVal${status.index}')" type="button">Delete</button>
+                                    </div>
                                 </c:forEach>
-                                <button style="float: right" type="button" class="btn btn-success" id="attachAdd">Add
-                                    picture
-                                </button>
+
+                                <%--이미지 선택 추가하는 부분만 나눠놓음--%>
+                                <section>
+                                    <header class="major mt-5">
+                                        <h2>new Photo</h2>
+                                    </header>
+                                    <div class="input-group" id="attachMain">
+                                        <input type="file" class="form-control" id="inputGroupFile04"
+                                               aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="attach">
+                                    </div>
+                                </section>
+
+
                             </div>
                         </div>
                     </div>
@@ -133,8 +140,8 @@
                         <p><b>알코올 중독 자가진단 : </b> <a href="http://bgnmh.go.kr/checkmehealme/selftest/alcTest3.xx"
                                                     target="_blank">진단하기</a></p>
                     </div>
-
                     <div style="float: right;">
+                        <button type="button" class="btn btn-success" id="attachAdd">Add picture</button>
                         <button class="btn btn-primary">Update</button>
                         <a href="../drink">
                             <button class="btn btn-danger" type="button">Cancel</button>

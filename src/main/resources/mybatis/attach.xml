@@ -12,4 +12,10 @@
         FROM attach
         WHERE attach_stuff_num = #{stuffNum}
     </delete>
+
+    <delete id="imgDelete">
+        DELETE
+        FROM attach
+        WHERE attach_num = #{attachNum}
+    </delete>
 </mapper>

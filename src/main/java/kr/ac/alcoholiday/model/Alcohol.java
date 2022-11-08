@@ -34,10 +34,8 @@ public class Alcohol {
 
     // == Alcohol table end ==
 
-
     // User FK
     private String stuffUserId;
-
 
     // Attach
     private List<MultipartFile> attach;

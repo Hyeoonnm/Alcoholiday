@@ -22,17 +22,17 @@ USE `alcoholiday`;
 DROP TABLE IF EXISTS `alcohol`;
 CREATE TABLE IF NOT EXISTS `alcohol` (
   `stuff_num` int(32) NOT NULL AUTO_INCREMENT COMMENT '술, 도구, 레시피 고유 번호',
-  `stuff_name` varchar(128) NOT NULL DEFAULT 'Alcoholiday' COMMENT '술, 도구, 레시피 이름',
-  `stuff_price` int(32) NOT NULL COMMENT '술, 도구, 레시피 가격',
+  `stuff_name` varchar(128) NOT NULL COMMENT '술, 도구, 레시피 이름',
+  `stuff_price` int(128) NOT NULL COMMENT '술, 도구, 레시피 가격',
   `stuff_reg_date` datetime NOT NULL COMMENT '술, 도구, 레시피 등록일',
   `stuff_split` int(32) NOT NULL COMMENT '술, 도구 ,레시피 등 분류 번호',
   `stuff_user_id` varchar(128) NOT NULL DEFAULT '' COMMENT '유저 고유 아이디',
-  `stuff_content` longtext DEFAULT NULL COMMENT '술, 도구, 레시피 설명',
+  `stuff_content` varchar(1024) DEFAULT NULL COMMENT '술, 도구, 레시피 설명',
   PRIMARY KEY (`stuff_num`) USING BTREE,
   KEY `alcohol_user_id` (`stuff_user_id`) USING BTREE,
   KEY `stuff_num` (`stuff_num`),
   CONSTRAINT `FK_stuff_user` FOREIGN KEY (`stuff_user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COMMENT='게시판';
+) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8mb4 COMMENT='게시판';
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -40,12 +40,12 @@ CREATE TABLE IF NOT EXISTS `alcohol` (
 DROP TABLE IF EXISTS `attach`;
 CREATE TABLE IF NOT EXISTS `attach` (
   `attach_num` int(32) NOT NULL AUTO_INCREMENT COMMENT '이미지 고유 번호',
-  `attach_filename` varchar(128) NOT NULL COMMENT '이미지 파일 이름',
-  `attach_stuff_num` int(32) NOT NULL COMMENT '술, 레시피, 도구 고유 번호',
+  `attach_filename` text DEFAULT NULL COMMENT '이미지 파일 이름',
+  `attach_stuff_num` int(32) DEFAULT NULL COMMENT '디테일 고유 번호',
   PRIMARY KEY (`attach_num`),
   KEY `FK_attach_detail` (`attach_stuff_num`) USING BTREE,
   CONSTRAINT `FK_attach_alcohol` FOREIGN KEY (`attach_stuff_num`) REFERENCES `alcohol` (`stuff_num`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COMMENT='이미지 파일\r\n';
+) ENGINE=InnoDB AUTO_INCREMENT=144 DEFAULT CHARSET=utf8mb4 COMMENT='이미지 파일\r\n';
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 

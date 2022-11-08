@@ -56,10 +56,7 @@
                                                 Check
                                             </button>
                                         </div>
-
-
                                     </div>
-
                                 </div>
                             </div>
 

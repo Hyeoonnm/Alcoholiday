@@ -1,5 +1,6 @@
 package kr.ac.alcoholiday.controller;
 
+import kr.ac.alcoholiday.dao.AttachDao;
 import kr.ac.alcoholiday.model.Alcohol;
 import kr.ac.alcoholiday.model.Attach;
 import kr.ac.alcoholiday.model.User;
@@ -23,6 +24,17 @@ public class AlcoholController {
 
     @Autowired
     AlcoholService service;
+
+    @Autowired
+    AttachDao attachDao;
+
+    // 한개의 이미지 파일 삭제
+    @ResponseBody
+    @RequestMapping(value = "/imgDelete", method = RequestMethod.POST)
+    public String imgDelete(String attachNum) {
+        attachDao.imgDelete(attachNum);
+        return "1";
+    }
 
     @RequestMapping("/drink")
     public String list(Model model) {
@@ -80,7 +92,22 @@ public class AlcoholController {
     @PostMapping("/update/{stuffNum}")
     public String update(@PathVariable int stuffNum, Alcohol item, @SessionAttribute User user) {
         item.setStuffUserId(user.getUserId());
+        List<Attach> list = new ArrayList<Attach>(); // 이미지를 담을 list
+        MutipartBinder binder = new MutipartBinder();
 
+        for(MultipartFile attach : item.getAttach()) {
+            if(attach != null && !attach.isEmpty()) {
+                String fileName = binder.binding(attach);
+
+                Attach file = new Attach();
+                file.setAttachFilename(fileName);
+
+                list.add(file);
+            }
+
+            item.setAttaches(list);
+
+        }
         service.update(item);
 
         return "redirect:../drink";

@@ -19,4 +19,8 @@ public class AttachDaoImpl implements AttachDao{
     public void delete(int stuffNum) {
         sql.delete("attach.delete", stuffNum);
     }
+
+    public void imgDelete(String attachNum) {
+        sql.delete("attach.imgDelete", attachNum);
+    }
 }
