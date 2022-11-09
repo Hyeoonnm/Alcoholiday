@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `alcohol` (
   KEY `alcohol_user_id` (`stuff_user_id`) USING BTREE,
   KEY `stuff_num` (`stuff_num`),
   CONSTRAINT `FK_stuff_user` FOREIGN KEY (`stuff_user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8mb4 COMMENT='게시판';
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb4 COMMENT='게시판';
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -45,7 +45,19 @@ CREATE TABLE IF NOT EXISTS `attach` (
   PRIMARY KEY (`attach_num`),
   KEY `FK_attach_detail` (`attach_stuff_num`) USING BTREE,
   CONSTRAINT `FK_attach_alcohol` FOREIGN KEY (`attach_stuff_num`) REFERENCES `alcohol` (`stuff_num`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=144 DEFAULT CHARSET=utf8mb4 COMMENT='이미지 파일\r\n';
+) ENGINE=InnoDB AUTO_INCREMENT=217 DEFAULT CHARSET=utf8mb4 COMMENT='이미지 파일\r\n';
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 alcoholiday.recipes 구조 내보내기
+DROP TABLE IF EXISTS `recipes`;
+CREATE TABLE IF NOT EXISTS `recipes` (
+  `recipes_num` int(11) NOT NULL AUTO_INCREMENT,
+  `recipes_name` varchar(128) NOT NULL,
+  `recipes_content` varchar(1024) NOT NULL,
+  `recipes_reg_date` datetime NOT NULL,
+  PRIMARY KEY (`recipes_num`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
