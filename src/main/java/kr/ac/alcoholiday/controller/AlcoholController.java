@@ -31,9 +31,12 @@ public class AlcoholController {
     // 한개의 이미지 파일 삭제
     @ResponseBody
     @RequestMapping(value = "/imgDelete", method = RequestMethod.POST)
-    public String imgDelete(String attachNum) {
+    public List<Attach> imgDelete(String attachNum, String stuffNum, Model model) {
         attachDao.imgDelete(attachNum);
-        return "1";
+
+        List<Attach> attachList = attachDao.list(stuffNum);
+
+        return attachList;
     }
 
     @RequestMapping("/drink")
@@ -92,6 +95,7 @@ public class AlcoholController {
     @PostMapping("/update/{stuffNum}")
     public String update(@PathVariable int stuffNum, Alcohol item, @SessionAttribute User user) {
         item.setStuffUserId(user.getUserId());
+
         List<Attach> list = new ArrayList<Attach>(); // 이미지를 담을 list
         MutipartBinder binder = new MutipartBinder();
 

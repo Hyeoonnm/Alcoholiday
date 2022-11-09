@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class AlcoholServiceImpl implements AlcoholService{
+public class AlcoholServiceImpl implements AlcoholService {
 
     @Autowired
     AlcoholDao dao;
@@ -31,7 +31,7 @@ public class AlcoholServiceImpl implements AlcoholService{
         dao.add(item);
 
         if (item.getAttaches() != null) {
-            for(Attach attach : item.getAttaches()) {
+            for (Attach attach : item.getAttaches()) {
                 attach.setAttachStuffNum(item.getStuffNum());
 
                 attachDao.add(attach);
@@ -50,9 +50,8 @@ public class AlcoholServiceImpl implements AlcoholService{
         dao.update(item);
 
         if (item.getAttaches() != null) {
-            for(Attach attach : item.getAttaches()) {
+            for (Attach attach : item.getAttaches()) {
                 attach.setAttachStuffNum(item.getStuffNum());
-
                 attachDao.add(attach);
             }
         }

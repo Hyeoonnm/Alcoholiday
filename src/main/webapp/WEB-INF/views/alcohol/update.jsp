@@ -69,19 +69,12 @@
             <ul>
                 <li><a href="/main">MAIN</a></li>
                 <li class="current"><a href="../drink">DRINK</a></li>
-                <li><a href="recipes">RECIPES</a></li>
+                <li><a href="../../recipes/list">RECIPES</a></li>
                 <li><a href="tools">TOOLS</a></li>
                 <li><a href="place/list">PLACE</a></li>
             </ul>
         </nav>
 
-        <!-- Banner -->
-        <section id="banner">
-            <header>
-                <h2>${item.stuffName} Update</h2>
-                <p>DON'T DRINK TOO MUCH</p>
-            </header>
-        </section>
     </section>
 
     <!-- Detail -->
@@ -114,10 +107,14 @@
                                     <div style="display: inline-block;">
 
                                     <input type="file" id="files${status.index}" name="attach" style="visibility: hidden" onchange="updateImgName('files${status.index}')">
-                                    <label style="width: 10rem" for="files${status.index}"> ${attaches.attachFilename}</label>
+                                    <label style="width: 10rem" for="files${status.index}" class="imgLabel${status.index}"> ${attaches.attachFilename}</label>
+
+                                        <%--attach / stuff pk 값 전달--%>
                                     <input type="hidden" id="imgVal${status.index}" value="${attaches.attachNum}">
+                                    <input type="hidden" id="listVal${status.index}" value="${item.stuffNum}">
+
                                     <button class="btn-sm btn btn-primary" onclick="updateImg('files${status.index}')" type="button">Update</button>
-                                    <button class="btn-sm btn btn-danger" onclick="deleteImg('imgVal${status.index}')" type="button">Delete</button>
+                                    <button class="btn-sm btn btn-danger" onclick="deleteImg('imgVal${status.index}', 'listVal${status.index}', ${status.index}, '.imgLabel${status.index}')" type="button">Delete</button>
                                     </div>
                                 </c:forEach>
 
@@ -246,7 +243,40 @@
 <script src="/resources/assets/js/breakpoints.min.js"></script>
 <script src="/resources/assets/js/util.js"></script>
 <script src="/resources/assets/js/main.js"></script>
+<script>
+    // 이미지 파일 버튼 클릭시 ajax 통신 attach_num
+    function deleteImg(obj1, obj2, obj3, obj4) {
+
+        /*obj1 : attach pk
+        obj2 : stuff pk*/
+
+        var param = {
+            attachNum: $("#"+obj1).val(),
+            stuffNum : $("#"+obj2).val(),
+            statusIndex : obj3,
+            imgLabel : obj4,
+        }
+        /*alert(obj3);*/
+        /*alert($("#"+ obj1).val());
+        alert($("#"+ obj2).val());*/
 
 
+        // ajax 통신
+        $.ajax({
+            type : "POST",            // HTTP method type(GET, POST) 형식이다.
+            url : "/alcohol/imgDelete",      // 컨트롤러에서 대기중인 URL 주소이다.
+            data : param,// Json 형식의 데이터이다.
+            dataType : "JSON",
+            success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
+                // 응답코드 > 0000
+                location.reload();
+                /*alert(res);*/
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                alert("이미지 삭제 실패")
+            }
+        });
+    }
+</script>
 </body>
 </html>

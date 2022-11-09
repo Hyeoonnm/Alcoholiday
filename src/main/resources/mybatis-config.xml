@@ -10,12 +10,14 @@
         <typeAlias type="kr.ac.alcoholiday.model.Alcohol" alias="Alcohol"/>
         <typeAlias type="kr.ac.alcoholiday.model.User" alias="User"/>
         <typeAlias type="kr.ac.alcoholiday.model.Attach" alias="Attach"/>
+        <typeAlias type="kr.ac.alcoholiday.model.Recipes" alias="Recipes"/>
     </typeAliases>
 
     <mappers>
         <mapper resource="mybatis/alcohol.xml"/>
         <mapper resource="mybatis/user.xml"/>
         <mapper resource="mybatis/attach.xml"/>
+        <mapper resource="mybatis/recipes.xml"/>
     </mappers>
 
 </configuration>

@@ -37,7 +37,7 @@
     <section id="header">
 
         <%--로그아웃--%>
-        <div style="position: absolute; left: 95%; top: 10px;">
+        <div style="position: fixed; left: 95%; top: 10px;">
             <a href="/logout"><img src="/resources/images/logout.jpg" style="width: 50%; height: 50%;"></a>
         </div>
 
@@ -64,7 +64,7 @@
             <ul>
                 <li class="current"><a href="/main">MAIN</a></li>
                 <li><a href="alcohol/drink">DRINK</a></li>
-                <li><a href="recipes">RECIPES</a></li>
+                <li><a href="recipes/list">RECIPES</a></li>
                 <li><a href="tools">TOOLS</a></li>
                 <li><a href="place/list">PLACE</a></li>
             </ul>

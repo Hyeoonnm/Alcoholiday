@@ -2,6 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="attach">
 
+    <select id="list" resultType="Attach">
+        SELECT *
+        FROM attach
+        WHERE attach_stuff_num = ${stuffNum}
+    </select>
+
     <insert id="add">
         INSERT INTO attach(attach_filename, attach_stuff_num)
         VALUES (#{attachFilename}, #{attachStuffNum})
@@ -18,4 +24,6 @@
         FROM attach
         WHERE attach_num = #{attachNum}
     </delete>
+
+
 </mapper>
