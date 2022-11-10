@@ -7,17 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <style>
-        .card-registration .select-input.form-control[readonly]:not([disabled]) {
-            font-size: 1rem;
-            line-height: 2.15;
-            padding-left: .75em;
-            padding-right: .75em;
-        }
-
-        .card-registration .select-arrow {
-            top: 13px;
-        }
-
         a {
             text-decoration: none;
         }
@@ -40,7 +29,8 @@
 
                                     <div class="form-outline">
                                         <input type="text" id="userName" name="userName"
-                                               class="form-control form-control-lg " placeholder="Name" minlength="2" maxlength="10"/>
+                                               class="form-control form-control-lg " placeholder="Name" minlength="2"
+                                               maxlength="10"/>
                                         <label class="form-label" for="userName"/>
                                     </div>
 
@@ -49,10 +39,12 @@
 
                                     <div class="form-outline input-group">
                                         <input type="text" id="userId" name="userId"
-                                               class="form-control form-control-lg" placeholder="ID" minlength="4" maxlength="14">
+                                               class="form-control form-control-lg" placeholder="ID" minlength="4"
+                                               maxlength="14">
                                         <label class="form-label" for="userId"/>
                                         <div class="input-group-append form-outline">
-                                            <button type="button" class="btn btn-primary" id="checkId" style="margin-left: 4%; width: 100%; height: 120%">
+                                            <button type="button" class="btn btn-primary" id="checkId"
+                                                    style="margin-left: 4%; width: 100%; height: 120%">
                                                 Check
                                             </button>
                                         </div>
@@ -65,7 +57,8 @@
 
                                     <div class="form-outline">
                                         <input type="tel" id="userPhone" name="userPhone"
-                                               class="form-control form-control-lg" placeholder="Phone" maxlength="13" oninput="hypenTel(this)"/>
+                                               class="form-control form-control-lg" placeholder="Phone" maxlength="13"
+                                               oninput="hypenTel(this)"/>
                                         <label class="form-label" for="userPhone"/>
                                     </div>
 
@@ -74,7 +67,8 @@
 
                                     <div class="form-outline">
                                         <input type="password" id="userPwd" name="userPwd"
-                                               class="form-control form-control-lg" placeholder="Password" minlength="4" maxlength="12"/>
+                                               class="form-control form-control-lg" placeholder="Password" minlength="4"
+                                               maxlength="12"/>
                                         <label class="form-label" for="userPwd"/>
                                     </div>
 
@@ -95,15 +89,23 @@
 
                                     <div class="form-outline">
                                         <input type="password" id="userPwdValid" name="userPwdValid"
-                                               class="form-control form-control-lg" placeholder="Confirm Password" minlength="4" maxlength="12"/>
+                                               class="form-control form-control-lg" placeholder="Confirm Password"
+                                               minlength="4" maxlength="12"/>
                                         <label class="form-label" for="userPwdValid"/>
                                     </div>
 
                                 </div>
                             </div>
 
-                                <button disabled type="button" style="width: 100%; height: 100%" class="mb-3 btn bnt-sm btn-dark bg-gradient btn-outline-light signupButton" onclick="signup()" id="signup_btn">Signup</button>
-                                <a href="/main" style="color : white"><button type="button" class="btn btn-sm btn-dark bg-gradient btn-outline-light" style="width: 100%; height: 100%">Back</button></a>
+                            <button disabled type="button" style="width: 100%; height: 100%"
+                                    class="mb-3 btn bnt-sm btn-dark bg-gradient btn-outline-light signupButton"
+                                    onclick="signup()" id="signup_btn">Signup
+                            </button>
+                            <a href="/main" style="color : white">
+                                <button type="button" class="btn btn-sm btn-dark bg-gradient btn-outline-light"
+                                        style="width: 100%; height: 100%">Back
+                                </button>
+                            </a>
 
                         </form>
                     </div>
@@ -123,7 +125,7 @@
             .replace(/[^0-9]/g, '')
             .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
     }
-
+    let inputId = null;
     /*아이디 중복 펑션 (성민ver)*/
     $('#checkId').click(function () {
         $.ajax({
@@ -134,11 +136,13 @@
             },
             success: function (result) {
                 if (result == 'OK') {
-                    console.log(result);
                     alert("사용 가능한 아이디입니다.");
+                    /*console.log(result);*/
+                    inputId = $('#userId').val();
+                    /*console.log(inputId);*/
                     $('.signupButton').removeAttr('disabled');
                 } else {
-                    console.log(result);
+                    /*console.log(result);*/
                     alert("이미 사용 중인 아이디입니다.");
                     $('.signupButton').attr('disabled');
                 }
@@ -215,7 +219,11 @@
             emailCheck.focus();
             return;
         }
-        alert("Success Signup")
+        if (inputId != $('#userId').val()) {
+            alert("Check your ID.");
+            $('.signupButton').attr('disabled');
+            return;
+        }
         form.submit();
     }
 </script>
