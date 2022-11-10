@@ -10,7 +10,6 @@
         <typeAlias type="kr.ac.alcoholiday.model.Alcohol" alias="Alcohol"/>
         <typeAlias type="kr.ac.alcoholiday.model.User" alias="User"/>
         <typeAlias type="kr.ac.alcoholiday.model.Attach" alias="Attach"/>
-        <typeAlias type="kr.ac.alcoholiday.model.Recipes" alias="Recipes"/>
     </typeAliases>
 
     <mappers>

@@ -1,7 +1,7 @@
 package kr.ac.alcoholiday.service;
 
 import kr.ac.alcoholiday.dao.RecipesDao;
-import kr.ac.alcoholiday.model.Recipes;
+import kr.ac.alcoholiday.model.Alcohol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,27 @@ public class RecipesServiceImpl implements RecipesService{
     RecipesDao dao;
 
     @Override
-    public List<Recipes> list() {
+    public List<Alcohol> list() {
         return dao.list();
+    }
+
+    @Override
+    public void add(Alcohol item) {
+        dao.add(item);
+    }
+
+    @Override
+    public Alcohol item() {
+        return dao.item();
+    }
+
+    @Override
+    public void update(Alcohol item) {
+        dao.update(item);
+    }
+
+    @Override
+    public void delete(int stuffNum) {
+        dao.delete(stuffNum);
     }
 }

@@ -2,7 +2,7 @@
 $(function () {
 
     // 추가한 이미지 input 삭제
-    $("#imgDiv").on("click", "#attachDelete", function () {
+    $("#attachMain").on("click", "#attachDelete", function () {
         const div = $(this).closest(".carousel-inner");
         div.remove();
     });
@@ -13,7 +13,7 @@ $(function () {
 
         div.addClass("mt-3");
         div.addClass("input-group")
-        div.attr("id", "imgDiv");
+        div.attr("id", "attachMain");
         div.css("text-align", "center")
 
         const input = $("<input>");

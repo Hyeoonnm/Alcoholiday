@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Alcoholiday</title>
@@ -69,12 +70,38 @@
         </nav>
 
     </section>
-<!-- list -->
+    <!-- list -->
 
-    ${recipes.recipesNum}
-    ${recipes.recipesName}
-    ${recipes.recipesContent}
-    ${recipes.recipesRegDate}
+<div style="width : 60%; border: 1px solid black; text-align: center" class="mt-3">
+    <table class="table">
+        <thead class="table-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Recipes Name</th>
+            <th scope="col">Writer</th>
+            <th scope="col">RegDate</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <c:if test="${recipes.size() < 1}">
+            <tr>
+                <td>Nothing</td>
+            </tr>
+        </c:if>
+        <c:forEach items="${recipes}" var="recipes" varStatus="status">
+            <tr>
+                <th scope="row">${status.index + 1}</th>
+                <td>${recipes.stuffName}</td>
+                <td>${recipes.stuffUserId}</td>
+                <td>${recipes.stuffRegDate}</td>
+            </tr>
+        </c:forEach>
+
+        </tbody>
+    </table>
+</div>
 
     <!-- Footer -->
     <section id="footer" class="bg-dark">

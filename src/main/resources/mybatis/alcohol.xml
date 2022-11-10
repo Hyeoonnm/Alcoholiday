@@ -5,7 +5,8 @@
 
     <resultMap type="Alcohol" id="AlcoholMap" autoMapping="true">
         <id column="stuff_num" property="stuffNum"/>
-        <collection property="attaches" column="attach_stuff_num" ofType="Attach" javaType="ArrayList" autoMapping="true">
+        <collection property="attaches" column="attach_stuff_num" ofType="Attach" javaType="ArrayList"
+                    autoMapping="true">
             <id column="attach_num" property="attachNum"/>
             <id column="attach_filename" property="attachFilename"/>
             <id column="attach_stuff_num" property="stuffAttachNum"/>
@@ -14,9 +15,10 @@
 
 
     <select id="list" resultMap="AlcoholMap">
-        select alcohol.* , attach_num , attach_filename
+        select alcohol.*, attach_num, attach_filename
         from alcohol
                  left join attach on (alcohol.stuff_num = attach.attach_stuff_num)
+        WHERE stuff_split = 1
         ORDER BY stuff_num
     </select>
 
@@ -31,10 +33,11 @@
 
 
     <select id="item" resultMap="AlcoholMap">
-        select alcohol.* , attach_num , attach_filename
+        select alcohol.*, attach_num, attach_filename
         from alcohol
                  left join attach on (alcohol.stuff_num = attach.attach_stuff_num)
         WHERE stuff_num = ${stuffNum}
+          AND stuff_split = 1
     </select>
 
     <update id="update">
@@ -43,9 +46,10 @@
             stuff_price    = #{stuffPrice},
             stuff_reg_date = NOW(),
             stuff_split    = 1,
-            stuff_content = #{stuffContent}
+            stuff_content  = #{stuffContent}
         WHERE stuff_num = #{stuffNum}
           AND stuff_user_id = #{stuffUserId}
+          AND stuff_split = 1
     </update>
 
     <delete id="delete">
@@ -53,6 +57,7 @@
         FROM alcohol
         WHERE stuff_num = #{stuffNum}
           AND stuff_user_id = #{userId}
+          AND stuff_split = 1
     </delete>
 
 </mapper>

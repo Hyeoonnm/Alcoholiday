@@ -3,11 +3,36 @@
 
 <mapper namespace="recipes">
 
-
-    <select id="list" resultType="Recipes">
+    <select id="list" resultType="Alcohol">
         SELECT *
-        FROM recipes
+        FROM alcohol
+        WHERE stuff_split = 2
     </select>
 
+    <insert id="add">
+        INSERT INTO alcohol(stuff_name, stuff_price, stuff_reg_date, stuff_split, stuff_content)
+        VALUES (#{stuffName}, 0, NOW(), 2, #{stuffContent})
+    </insert>
+
+    <select id="item" resultType="Alcohol">
+        SELECT *
+        FROM alcohol
+        WHERE stuff_split = 2
+    </select>
+
+    <update id="update">
+        UPDATE alcohol
+        SET stuff_name     = #{stuffName},
+            stuff_reg_date = NOW(),
+            stuff_content  = #{stuffContent}
+        WHERE stuff_split = 2
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM alcohol
+        WHERE stuff_num = #{stuffNum}
+          AND stuff_split = 2
+    </delete>
 
 </mapper>
