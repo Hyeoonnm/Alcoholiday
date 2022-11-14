@@ -120,7 +120,6 @@ public class AlcoholController {
     @RequestMapping("/delete/{stuffNum}")
     public String delete(@PathVariable int stuffNum, @SessionAttribute User user) {
 
-
         service.delete(stuffNum, user.getUserId());
 
         return "redirect:../drink";

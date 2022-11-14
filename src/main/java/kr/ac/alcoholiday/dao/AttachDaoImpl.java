@@ -31,4 +31,9 @@ public class AttachDaoImpl implements AttachDao{
     public List<Attach> list(String stuffNum) {
         return sql.selectList("attach.list", stuffNum);
     }
+
+    @Override
+    public void updateImgDelete(int attachKey) {
+        sql.delete("attach.updateImgDelete", attachKey);
+    }
 }

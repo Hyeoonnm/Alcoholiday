@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -25,8 +26,8 @@ public class RecipesDaoImpl implements RecipesDao {
     }
 
     @Override
-    public Alcohol item() {
-        return sql.selectOne("recipes.item");
+    public Alcohol item(int stuffNum) {
+        return sql.selectOne("recipes.item", stuffNum);
     }
 
     @Override
@@ -35,7 +36,12 @@ public class RecipesDaoImpl implements RecipesDao {
     }
 
     @Override
-    public void delete(int stuffNum) {
-        sql.delete("recipes.delete", stuffNum);
+    public void delete(int stuffNum, String userId) {
+        HashMap<String, Object> map = new HashMap<>();
+
+        map.put("stuffNum",stuffNum);
+        map.put("userId", userId);
+
+        sql.delete("recipes.delete", map);
     }
 }

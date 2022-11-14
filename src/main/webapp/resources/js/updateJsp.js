@@ -2,14 +2,18 @@
 $(function () {
 
     // 추가한 이미지 input 삭제
-    $("#attachMain").on("click", "#attachDelete", function () {
-        const div = $(this).closest(".carousel-inner");
+    $("#deleteDiv").on("click", "#attachDelete", function () {
+        const div = $(this).closest("#deleteDiv");
+        console.log(div);
         div.remove();
     });
 
     // 이미지 추가 버튼 클릭시 생성 html
     $("#attachAdd").click(function () {
         const div = $("<div>");
+        const deleteDiv = $("<div>");
+
+        deleteDiv.attr("id", "deleteDiv")
 
         div.addClass("mt-3");
         div.addClass("input-group")
@@ -33,10 +37,11 @@ $(function () {
         button.addClass("btn");
         button.addClass("btn-sm");
 
+        deleteDiv.append(div);
         div.append(input);
         div.append(button);
 
-        $("#imgDiv").append(div);
+        $("#deleteDiv").append(deleteDiv);
     });
 });
 
@@ -52,4 +57,8 @@ function updateImgName(obj) {
     console.log(fileInput.files[0])
     $("label[for=" + obj + "]").text(fileInput.files[0].name);
 }
+
+$('#updateButton').click(function () {
+  alert("Success Update");
+})
 

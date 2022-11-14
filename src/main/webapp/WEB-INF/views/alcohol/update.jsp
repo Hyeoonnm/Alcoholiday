@@ -88,7 +88,7 @@
                         <p><b>Price : </b><input type="number" name="stuffPrice" value="${item.stuffPrice}" maxlength="8"></p>
                         <p><b>Categories :</b> Drink</p>
                         <p><b>Date :</b> <fmt:formatDate value="${item.stuffRegDate}" type="date"
-                                                         pattern="YYYY/mm/dd HH:mm:ss"></fmt:formatDate></p>
+                                                         pattern="yyyy/MM/dd HH:mm"></fmt:formatDate></p>
                     </div>
                     <div class="project-info-box mt-0" style="word-break: break-all;">
                         <p><b>Contents</b></p>
@@ -110,10 +110,10 @@
                                     <label style="width: 10rem" for="files${status.index}" class="imgLabel${status.index}"> ${attaches.attachFilename}</label>
 
                                         <%--attach / stuff pk 값 전달--%>
-                                    <input type="hidden" id="imgVal${status.index}" value="${attaches.attachNum}">
+                                    <input type="hidden" id="imgVal${status.index}" name="attachKey" value="${attaches.attachNum}">
                                     <input type="hidden" id="listVal${status.index}" value="${item.stuffNum}">
 
-                                    <button class="btn-sm btn btn-primary" onclick="updateImg('files${status.index}')" type="button">Update</button>
+                                    <button class="btn-sm btn btn-primary" onclick="updateImg('files${status.index}')" id="updateButton" type="button">Update</button>
                                     <button class="btn-sm btn btn-danger" onclick="deleteImg('imgVal${status.index}', 'listVal${status.index}', ${status.index}, '.imgLabel${status.index}')" type="button">Delete</button>
                                     </div>
                                 </c:forEach>
@@ -121,14 +121,16 @@
                                 <%--이미지 선택 추가하는 부분만 나눠놓음--%>
                                 <section>
                                     <header class="major mt-5">
-                                        <h2>new Photo</h2>
+                                        <h2>new Picture</h2>
                                     </header>
+                                </section>
+
+                                <div id="deleteDiv">
                                     <div class="input-group" id="attachMain">
                                         <input type="file" class="form-control" id="inputGroupFile04"
                                                aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="attach">
                                     </div>
-                                </section>
-
+                                </div>
 
                             </div>
                         </div>

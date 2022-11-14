@@ -12,4 +12,6 @@ public interface AttachDao {
     void imgDelete(String attachNum);
 
     List<Attach> list(String stuffNum);
+
+    void updateImgDelete(int attachKey);
 }

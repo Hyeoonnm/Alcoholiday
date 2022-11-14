@@ -1,14 +1,12 @@
 package kr.ac.alcoholiday.controller;
 
 import kr.ac.alcoholiday.model.Alcohol;
+import kr.ac.alcoholiday.model.User;
 import kr.ac.alcoholiday.service.RecipesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,7 +18,7 @@ public class RecipesController {
     RecipesService service;
 
     @RequestMapping("/list")
-    public String list(Model model) {
+    public String list(Model model ) {
 
         List<Alcohol> recipes = service.list();
 
@@ -30,32 +28,38 @@ public class RecipesController {
     }
 
     @PostMapping("/add")
-    public String add(Alcohol item) {
+    public String add(Alcohol item, @SessionAttribute User user) {
+        item.setStuffUserId(user.getUserId());
+
         service.add(item);
 
         return "redirect:/recipes/list";
     }
 
-    @GetMapping("/update")
-    public String update(Model model) {
-        Alcohol item = service.item();
+    @GetMapping("/update/{stuffNum}")
+    public String update(@PathVariable int stuffNum, Model model) {
+        Alcohol item = service.item(stuffNum);
 
         model.addAttribute("item", item);
 
         return "recipes/update";
     }
 
-    @PostMapping("/update")
-    public String update(Alcohol item) {
+    @PostMapping("/update/{stuffNum}")
+    public String update(@PathVariable int stuffNum, @SessionAttribute User user ,Alcohol item) {
+        item.setStuffUserId(user.getUserId());
+
         service.update(item);
 
-        return "redirect:../list";
+        return "redirect:../recipes/list";
     }
 
     @RequestMapping("/delete/{stuffNum}")
-    public String delete(@PathVariable int stuffNum) {
-        service.delete(stuffNum);
+    public String delete(@PathVariable int stuffNum, @SessionAttribute User user) {
 
-        return "recipes/list";
+
+        service.delete(stuffNum, user.getUserId());
+
+        return "redirect:../list";
     }
 }

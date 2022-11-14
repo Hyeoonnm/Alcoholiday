@@ -85,7 +85,7 @@
             </button>
         </div>
 
-            <%--카드형 이미지 리스트--%>
+        <%--카드형 이미지 리스트--%>
         <div class="container">
             <div class="row row-cols-3">
                 <c:forEach items="${drink}" var="drink">
@@ -226,7 +226,7 @@
     <div class="modal-dialog modal-xl" id="addModalReturn">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="ModalLabel">Add new drink</h1>
+                <h1 class="modal-title fs-5" id="ModalLabel">new Drink</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
@@ -239,7 +239,8 @@
                     </div>
 
                     <div>
-                        <input class="mb-2 form-control" type="number" name="stuffPrice" id="stuffPrice" placeholder="Price">
+                        <input class="mb-2 form-control" type="number" name="stuffPrice" id="stuffPrice"
+                               placeholder="Price">
                     </div>
 
                     <div class="form-floating">

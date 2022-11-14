@@ -100,7 +100,7 @@
                 <div class="col-4 col-12-medium">
 
                     <section class="middle">
-                        <a href="recipes">
+                        <a href="recipes/list">
                             <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor"
                                  class="bi bi-journal-text" style="margin-bottom: 3em;" viewBox="0 0 16 16">
                                 <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>

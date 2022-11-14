@@ -1,4 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Alcoholiday</title>
@@ -62,46 +64,95 @@
         <nav id="nav">
             <ul>
                 <li><a href="/main">MAIN</a></li>
-                <li class="current"><a href="#banner">DRINK</a></li>
-                <li><a href="../recipes/list">RECIPES</a></li>
+                <li><a href="../alcohol/drink">DRINK</a></li>
+                <li class="current"><a href="../recipes/list">RECIPES</a></li>
                 <li><a href="/tools">TOOLS</a></li>
                 <li><a href="place/list">PLACE</a></li>
             </ul>
         </nav>
 
     </section>
+
+    <!-- Button trigger modal -->
+    <div style="text-align: center" class="mt-3">
+        <button type="button" class="btn btn-lg btn-outline-primary" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+            <h7 style="color: black">new Writing</h7>
+        </button>
+    </div>
+
     <!-- list -->
-
-<div style="width : 60%; border: 1px solid black; text-align: center" class="mt-3">
-    <table class="table">
-        <thead class="table-light">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Recipes Name</th>
-            <th scope="col">Writer</th>
-            <th scope="col">RegDate</th>
-        </tr>
-        </thead>
-
-        <tbody>
-
-        <c:if test="${recipes.size() < 1}">
+    <div style="width : 60%; border: 1px solid black; margin: auto" class="mt-3 mb-3">
+        <table class="table">
+            <thead class="table-light">
             <tr>
-                <td>Nothing</td>
+                <th scope="col">#</th>
+                <th scope="col">Recipes Name</th>
+                <th scope="col">Writer</th>
+                <th scope="col">RegDate</th>
+                <th scope="col"></th>
             </tr>
-        </c:if>
-        <c:forEach items="${recipes}" var="recipes" varStatus="status">
-            <tr>
-                <th scope="row">${status.index + 1}</th>
-                <td>${recipes.stuffName}</td>
-                <td>${recipes.stuffUserId}</td>
-                <td>${recipes.stuffRegDate}</td>
-            </tr>
-        </c:forEach>
+            </thead>
 
-        </tbody>
-    </table>
-</div>
+            <tbody>
+            <c:if test="${recipes.size() < 1}">
+                <tr>
+                    <td>Nothing</td>
+                </tr>
+            </c:if>
+            <c:forEach items="${recipes}" var="recipes" varStatus="status">
+                <tr>
+                    <th scope="row">${status.index + 1}</th>
+                    <td>${recipes.stuffName}</td>
+                    <td>${recipes.stuffUserId}</td>
+                    <td><fmt:formatDate value="${recipes.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
+                                        type="both"/></td>
+
+                    <c:if test="${sessionScope.user.userId == recipes.stuffUserId}">
+                        <td><a href="../recipes/update/${recipes.stuffNum}">
+                            <button class="btn btn-sm btn-primary">update</button>
+                        </a>
+                            <a href="../recipes/delete/${recipes.stuffNum}">
+                                <button class="btn btn-sm btn-danger">delete</button>
+                            </a>
+                        </td>
+                    </c:if>
+
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">new Recipes</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form method="post" action="../recipes/add">
+                        <div>
+                            <input class="mb-2 form-control" type="text" name="stuffName" placeholder="Recipes Name" minlength="2">
+                        </div>
+
+                        <div>
+                            <textarea type="text" name="stuffContent" placeholder="Recipes Contents" minlength="1"></textarea>
+                        </div>
+
+                        <input type="hidden" name="stuffUserId" value="${sessionScope.user.userId}">
+                        <div class="modal-footer">
+                            <button class="btn btn-primary">Write</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <section id="footer" class="bg-dark">

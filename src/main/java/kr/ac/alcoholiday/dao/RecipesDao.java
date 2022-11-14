@@ -9,9 +9,9 @@ public interface RecipesDao {
 
     void add(Alcohol item);
 
-    Alcohol item();
+    Alcohol item(int stuffNum);
 
     void update(Alcohol item);
 
-    void delete(int stuffNum);
+    void delete(int stuffNum, String userId);
 }

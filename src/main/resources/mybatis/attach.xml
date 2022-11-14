@@ -25,5 +25,10 @@
         WHERE attach_num = #{attachNum}
     </delete>
 
+    <delete id="updateImgDelete">
+        DELETE
+        FROM attach
+        WHERE attach_num = ${attachKey}
+    </delete>
 
 </mapper>

@@ -24,8 +24,8 @@ public class RecipesServiceImpl implements RecipesService{
     }
 
     @Override
-    public Alcohol item() {
-        return dao.item();
+    public Alcohol item(int stuffNum) {
+        return dao.item(stuffNum);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class RecipesServiceImpl implements RecipesService{
     }
 
     @Override
-    public void delete(int stuffNum) {
-        dao.delete(stuffNum);
+    public void delete(int stuffNum, String userId) {
+        dao.delete(stuffNum, userId);
     }
 }

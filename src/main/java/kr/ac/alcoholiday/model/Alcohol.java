@@ -26,7 +26,7 @@ public class Alcohol {
     // 등록일
     private Date stuffRegDate;
 
-    // 술, 도구, 레시피 등 구분 번호
+    // 술, 도구, 레시피 등 구분 번호 1 drink, 2 recipes, 3 tools, 4 place
     private int stuffSplit;
 
     // 상세 내용
@@ -40,4 +40,6 @@ public class Alcohol {
     // Attach
     private List<MultipartFile> attach;
     private List<Attach> attaches;
+    private int attachKey;
+    private int newAttachKey;
 }

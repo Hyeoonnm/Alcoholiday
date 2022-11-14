@@ -47,7 +47,8 @@ public class AlcoholServiceImpl implements AlcoholService {
     @Override
     @Transactional
     public void update(Alcohol item) {
-        dao.update(item);
+
+        attachDao.updateImgDelete(item.getAttachKey());
 
         if (item.getAttaches() != null) {
             for (Attach attach : item.getAttaches()) {
@@ -55,6 +56,7 @@ public class AlcoholServiceImpl implements AlcoholService {
                 attachDao.add(attach);
             }
         }
+        dao.update(item);
     }
 
     @Override

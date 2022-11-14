@@ -10,14 +10,15 @@
     </select>
 
     <insert id="add">
-        INSERT INTO alcohol(stuff_name, stuff_price, stuff_reg_date, stuff_split, stuff_content)
-        VALUES (#{stuffName}, 0, NOW(), 2, #{stuffContent})
+        INSERT INTO alcohol(stuff_name, stuff_price, stuff_reg_date, stuff_split, stuff_content, stuff_user_id)
+        VALUES (#{stuffName}, 0, NOW(), 2, #{stuffContent}, #{stuffUserId})
     </insert>
 
     <select id="item" resultType="Alcohol">
         SELECT *
         FROM alcohol
         WHERE stuff_split = 2
+          AND stuff_num = #{stuffNum}
     </select>
 
     <update id="update">
