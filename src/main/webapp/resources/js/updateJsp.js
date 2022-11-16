@@ -58,7 +58,7 @@ function updateImgName(obj) {
     $("label[for=" + obj + "]").text(fileInput.files[0].name);
 }
 
-$('#updateButton').click(function () {
+$('#updateSubmitButton').click(function () {
   alert("Success Update");
 })
 

@@ -144,7 +144,7 @@
                     <!-- Best Contents -->
                     <section>
                         <header class="major">
-                            <h2>Best Contents</h2>
+                            <h2>Many Comments</h2>
                         </header>
                         <div class="row">
                             <div class="col-6 col-12-small">

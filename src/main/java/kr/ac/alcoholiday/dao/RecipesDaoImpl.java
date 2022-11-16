@@ -2,6 +2,7 @@ package kr.ac.alcoholiday.dao;
 
 
 import kr.ac.alcoholiday.model.Alcohol;
+import kr.ac.alcoholiday.pager.Pager;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,8 +17,8 @@ public class RecipesDaoImpl implements RecipesDao {
     SqlSession sql;
 
     @Override
-    public List<Alcohol> list() {
-        return sql.selectList("recipes.list");
+    public List<Alcohol> list(Pager pager) {
+        return sql.selectList("recipes.list", pager);
     }
 
     @Override
@@ -43,5 +44,10 @@ public class RecipesDaoImpl implements RecipesDao {
         map.put("userId", userId);
 
         sql.delete("recipes.delete", map);
+    }
+
+    @Override
+    public int total() {
+        return sql.selectOne("recipes.total");
     }
 }

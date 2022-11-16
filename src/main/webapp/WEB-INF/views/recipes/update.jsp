@@ -75,10 +75,32 @@
         </nav>
     </section>
 
-<%--    update--%>
+    <%--    update--%>
+    <form method="post">
 
+        <div class="w-50 mb-3" style="margin: auto">
 
+            <div class="input-group mb-3 mt-3">
+                <span class="input-group-text" id="basic-addon1">@</span>
+                <input type="text" class="form-control" name="stuffName" placeholder="${item.stuffName}" aria-label="Username"
+                       aria-describedby="basic-addon1">
+            </div>
 
+            <div class="input-group mb-3">
+                <span class="input-group-text">Contents</span>
+                <textarea class="form-control" name="stuffContent" style="height: 24rem" aria-label="With textarea">${item.stuffContent}</textarea>
+            </div>
+            <input type="hidden" name="stuffNum" value="${stuffNum}">
+
+            <div style="text-align: right">
+            <button class="btn btn-sm btn-primary">Update</button>
+            <a href="../list">
+                <button type="button" class="btn btn-sm btn-danger">Back</button>
+            </a>
+            </div>
+
+        </div>
+    </form>
 
     <!-- Footer -->
     <section id="footer" class="bg-dark">

@@ -102,7 +102,7 @@
                                     </c:when>
 
                                     <c:otherwise>
-                                        <c:forEach items="${drink.attaches}" var="attaches">
+                                        <c:forEach items="${drink.attaches}" var="attaches" varStatus="status">
                                             <a href="/alcohol/detail/${drink.stuffNum}"><img
                                                     src="/img/${attaches.attachFilename}" class="card-img-top images"
                                                     alt="..."></a>
@@ -112,7 +112,7 @@
                             </div>
                             <div class="card-body">
                                 <hr>
-                                <h5 class="card-title">${drink.stuffName}</h5>
+                                <a href="/alcohol/detail/${drink.stuffNum}"><h5 class="card-title">${drink.stuffName}</h5></a>
                                 <p>Writer : ${drink.stuffUserId}</p>
                                 <p><fmt:formatDate value="${drink.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
                                                    type="both"/></p>

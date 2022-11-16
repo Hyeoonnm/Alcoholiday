@@ -2,6 +2,7 @@ package kr.ac.alcoholiday.service;
 
 import kr.ac.alcoholiday.dao.RecipesDao;
 import kr.ac.alcoholiday.model.Alcohol;
+import kr.ac.alcoholiday.pager.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,12 @@ public class RecipesServiceImpl implements RecipesService{
     RecipesDao dao;
 
     @Override
-    public List<Alcohol> list() {
-        return dao.list();
+    public List<Alcohol> list(Pager pager) {
+        int total = dao.total();
+
+        pager.setTotal(total);
+
+        return dao.list(pager);
     }
 
     @Override

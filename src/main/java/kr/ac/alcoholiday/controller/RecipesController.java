@@ -2,6 +2,7 @@ package kr.ac.alcoholiday.controller;
 
 import kr.ac.alcoholiday.model.Alcohol;
 import kr.ac.alcoholiday.model.User;
+import kr.ac.alcoholiday.pager.Pager;
 import kr.ac.alcoholiday.service.RecipesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,9 +19,9 @@ public class RecipesController {
     RecipesService service;
 
     @RequestMapping("/list")
-    public String list(Model model ) {
+    public String list(Model model, Pager pager) {
 
-        List<Alcohol> recipes = service.list();
+        List<Alcohol> recipes = service.list(pager);
 
         model.addAttribute("recipes", recipes);
 
@@ -51,7 +52,7 @@ public class RecipesController {
 
         service.update(item);
 
-        return "redirect:../recipes/list";
+        return "redirect:../list";
     }
 
     @RequestMapping("/delete/{stuffNum}")

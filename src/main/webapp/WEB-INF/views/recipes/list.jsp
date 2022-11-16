@@ -70,10 +70,9 @@
                 <li><a href="place/list">PLACE</a></li>
             </ul>
         </nav>
-
     </section>
 
-    <!-- Button trigger modal -->
+    <!-- Add Button trigger modal -->
     <div style="text-align: center" class="mt-3">
         <button type="button" class="btn btn-lg btn-outline-primary" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
@@ -82,49 +81,68 @@
     </div>
 
     <!-- list -->
-    <div style="width : 60%; border: 1px solid black; margin: auto" class="mt-3 mb-3">
+    <div class="container mt-3">
         <table class="table">
-            <thead class="table-light">
+            <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Recipes Name</th>
                 <th scope="col">Writer</th>
                 <th scope="col">RegDate</th>
-                <th scope="col"></th>
+                <th scope="col">Control</th>
             </tr>
             </thead>
 
             <tbody>
-            <c:if test="${recipes.size() < 1}">
+            <c:forEach var="recipes" items="${recipes}">
                 <tr>
-                    <td>Nothing</td>
-                </tr>
-            </c:if>
-            <c:forEach items="${recipes}" var="recipes" varStatus="status">
-                <tr>
-                    <th scope="row">${status.index + 1}</th>
-                    <td>${recipes.stuffName}</td>
+                    <th scope="row">${recipes.stuffNum}</th>
+                    <a href="recipes/detail/${recipes.stuffNum}">
+                        <td>${recipes.stuffName}</td>
+                    </a>
                     <td>${recipes.stuffUserId}</td>
                     <td><fmt:formatDate value="${recipes.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
                                         type="both"/></td>
-
                     <c:if test="${sessionScope.user.userId == recipes.stuffUserId}">
-                        <td><a href="../recipes/update/${recipes.stuffNum}">
-                            <button class="btn btn-sm btn-primary">update</button>
-                        </a>
-                            <a href="../recipes/delete/${recipes.stuffNum}">
-                                <button class="btn btn-sm btn-danger">delete</button>
-                            </a>
+                        <td>
+                            <a href="../recipes/update/${recipes.stuffNum}" class="btn btn-sm btn-primary ms-1">Update</a>
+                            <a href="../recipes/delete/${recipes.stuffNum}" class="btn btn-sm btn-danger">Delete</a>
                         </td>
                     </c:if>
-
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+
+        <div class="pagination-wrap mt-5 d-flex justify-content-center" data-aos="fade-in" data-aos-delay="100">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="?page=1&langname=angular">First</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=${pager.prev}&langname=angular" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <c:forEach var="page" items="${pager.list}">
+                        <li class="page-item">
+                            <a class="page-link ${page eq pager.page ? 'active' : ''}"
+                               href="?page=${page}&langname=angular">${page}</a>
+                        </li>
+                    </c:forEach>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=${pager.next}&langname=angular" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=${pager.last}&langname=angular">Last</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 
-    <!-- Modal -->
+    <!-- ADD Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -136,11 +154,13 @@
 
                     <form method="post" action="../recipes/add">
                         <div>
-                            <input class="mb-2 form-control" type="text" name="stuffName" placeholder="Recipes Name" minlength="2">
+                            <input class="mb-2 form-control" type="text" name="stuffName" placeholder="Recipes Name"
+                                   minlength="2">
                         </div>
 
                         <div>
-                            <textarea type="text" name="stuffContent" placeholder="Recipes Contents" minlength="1"></textarea>
+                            <textarea type="text" name="stuffContent" placeholder="Recipes Contents"
+                                      minlength="1"></textarea>
                         </div>
 
                         <input type="hidden" name="stuffUserId" value="${sessionScope.user.userId}">

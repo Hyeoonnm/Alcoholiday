@@ -21,6 +21,7 @@
 
 
     <style>
+
         a {
             text-decoration-line: none;
         }
@@ -85,15 +86,17 @@
                     <div class="project-info-box mt-0" style="text-align: left">
                         <p><b>Title : </b><input type="text" name="stuffName" value="${item.stuffName}"></p>
                         <p><b>Writer : </b>${item.stuffUserId}</p>
-                        <p><b>Price : </b><input type="number" name="stuffPrice" value="${item.stuffPrice}" maxlength="8"></p>
+                        <p><b>Price : </b><input type="number" name="stuffPrice" value="${item.stuffPrice}"
+                                                 maxlength="8"></p>
                         <p><b>Categories :</b> Drink</p>
                         <p><b>Date :</b> <fmt:formatDate value="${item.stuffRegDate}" type="date"
                                                          pattern="yyyy/MM/dd HH:mm"></fmt:formatDate></p>
                     </div>
                     <div class="project-info-box mt-0" style="word-break: break-all;">
                         <p><b>Contents</b></p>
-                        <textarea type="text" class="form-control mb-2" id="floatingTextarea2 stuffContent" style="height: 150px"
-                        name="stuffContent" maxlength="800">${item.stuffContent}</textarea>
+                        <textarea type="text" class="form-control mb-2" id="floatingTextarea2 stuffContent"
+                                  style="height: 150px"
+                                  name="stuffContent" maxlength="800">${item.stuffContent}</textarea>
                         <label for="floatingTextarea2 stuffContent"></label>
                     </div>
                 </div>
@@ -101,37 +104,48 @@
                 <div class="col-md-7">
                     <div id="carouselExampleSlidesOnly" class="carousel slide"
                          data-bs-ride="carousel">
-                        <div class="project-info-box mt-0">
-                            <div class="carousel-inner" id="imgDiv">
+                        <div class="project-info-box mt-0" style="text-align: center">
+                            <div class="carousel-inner row-cols-5" id="imgDiv">
                                 <c:forEach var="attaches" items="${item.attaches}" varStatus="status">
-                                    <div style="display: inline-block;">
+                                    <div style="display: inline-block; text-align: center; margin: auto" class="mb-3">
 
-                                    <input type="file" id="files${status.index}" name="attach" style="visibility: hidden" onchange="updateImgName('files${status.index}')">
-                                    <label style="width: 10rem" for="files${status.index}" class="imgLabel${status.index}"> ${attaches.attachFilename}</label>
+                                        <ul class="list-group fileDiv">
+                                            <li class="list-group-item active" aria-current="true">${status.index + 1}</li>
 
-                                        <%--attach / stuff pk 값 전달--%>
-                                    <input type="hidden" id="imgVal${status.index}" name="attachKey" value="${attaches.attachNum}">
-                                    <input type="hidden" id="listVal${status.index}" value="${item.stuffNum}">
+                                            <li class="list-group-item">
+                                                <input type="file" id="files${status.index}" name="attach" style="visibility: hidden" onchange="updateImgName('files${status.index}')">
+                                            <label for="files${status.index}" class="imgLabel${status.index}"> ${attaches.attachFilename}
+                                                <button class=" btn btn-primary mt-2" style="width: 100%" onclick="updateImg('files${status.index}')" id="updateButton" type="button">Update</button>
+                                                <button class="btn btn-danger mt-1" style="width: 100%" onclick="deleteImg('imgVal${status.index}', 'listVal${status.index}', ${status.index}, '.imgLabel${status.index}')" type="button">Delete</button>
+                                            </label>
+                                            </li>
 
-                                    <button class="btn-sm btn btn-primary" onclick="updateImg('files${status.index}')" id="updateButton" type="button">Update</button>
-                                    <button class="btn-sm btn btn-danger" onclick="deleteImg('imgVal${status.index}', 'listVal${status.index}', ${status.index}, '.imgLabel${status.index}')" type="button">Delete</button>
+                                                <%--attach / stuff pk 값 전달--%>
+                                            <input type="hidden" id="imgVal${status.index}" name="attachKey"
+                                                   value="${attaches.attachNum}">
+                                            <input type="hidden" id="listVal${status.index}" value="${item.stuffNum}">
+                                        </ul>
                                     </div>
+
+
                                 </c:forEach>
 
                                 <%--이미지 선택 추가하는 부분만 나눠놓음--%>
-                                <section>
-                                    <header class="major mt-5">
-                                        <h2>new Picture</h2>
-                                    </header>
-                                </section>
 
-                                <div id="deleteDiv">
-                                    <div class="input-group" id="attachMain">
-                                        <input type="file" class="form-control" id="inputGroupFile04"
-                                               aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="attach">
-                                    </div>
+
+                            </div>
+                            <section>
+                                <header class="major mt-5">
+                                    <h2>new Picture</h2>
+                                </header>
+                            </section>
+
+                            <div id="deleteDiv">
+                                <div class="input-group" id="attachMain">
+                                    <input type="file" class="form-control" id="inputGroupFile04"
+                                           aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+                                           name="attach">
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -139,14 +153,21 @@
                         <p><b>알코올 중독 자가진단 : </b> <a href="http://bgnmh.go.kr/checkmehealme/selftest/alcTest3.xx"
                                                     target="_blank">진단하기</a></p>
                     </div>
-                    <div style="float: right;">
+                    <%--<div style="float: right;">
                         <button type="button" class="btn btn-success" id="attachAdd">Add picture</button>
-                        <button class="btn btn-primary">Update</button>
+                        <button class="btn btn-primary" id="updateSubmitButton">Update</button>
                         <a href="../drink">
                             <button class="btn btn-danger" type="button">Cancel</button>
                         </a>
-                    </div>
+                    </div>--%>
                 </div>
+            </div>
+            <div style="float: right;" class="mt-3">
+                <button type="button" class="btn btn-success" id="attachAdd">Add picture</button>
+                <button class="btn btn-primary" id="updateSubmitButton">Update</button>
+                <a href="../drink">
+                    <button class="btn btn-danger" type="button">Cancel</button>
+                </a>
             </div>
         </div>
     </form>
@@ -245,6 +266,7 @@
 <script src="/resources/assets/js/breakpoints.min.js"></script>
 <script src="/resources/assets/js/util.js"></script>
 <script src="/resources/assets/js/main.js"></script>
+
 <script>
     // 이미지 파일 버튼 클릭시 ajax 통신 attach_num
     function deleteImg(obj1, obj2, obj3, obj4) {
@@ -253,10 +275,10 @@
         obj2 : stuff pk*/
 
         var param = {
-            attachNum: $("#"+obj1).val(),
-            stuffNum : $("#"+obj2).val(),
-            statusIndex : obj3,
-            imgLabel : obj4,
+            attachNum: $("#" + obj1).val(),
+            stuffNum: $("#" + obj2).val(),
+            statusIndex: obj3,
+            imgLabel: obj4,
         }
         /*alert(obj3);*/
         /*alert($("#"+ obj1).val());
@@ -265,20 +287,21 @@
 
         // ajax 통신
         $.ajax({
-            type : "POST",            // HTTP method type(GET, POST) 형식이다.
-            url : "/alcohol/imgDelete",      // 컨트롤러에서 대기중인 URL 주소이다.
-            data : param,// Json 형식의 데이터이다.
-            dataType : "JSON",
-            success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
+            type: "POST",            // HTTP method type(GET, POST) 형식이다.
+            url: "/alcohol/imgDelete",      // 컨트롤러에서 대기중인 URL 주소이다.
+            data: param,// Json 형식의 데이터이다.
+            dataType: "JSON",
+            success: function (res) { // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
                 // 응답코드 > 0000
                 location.reload();
                 /*alert(res);*/
             },
-            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+            error: function (XMLHttpRequest, textStatus, errorThrown) { // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
                 alert("이미지 삭제 실패")
             }
         });
     }
+
 </script>
 </body>
 </html>

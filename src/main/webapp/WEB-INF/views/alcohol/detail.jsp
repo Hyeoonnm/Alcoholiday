@@ -21,6 +21,9 @@
 
 
     <style>
+        .imgButton:hover {
+            background-color : rgba(255, 255, 255 , 0)!important;
+        }
         #detailImg {
             text-align: center;
             position: relative;
@@ -81,14 +84,6 @@
                 <li><a href="place/list">PLACE</a></li>
             </ul>
         </nav>
-
-        <!-- Banner -->
-        <section id="banner">
-            <header>
-                <h2>${drink.stuffName} Information</h2>
-                <p>DON'T DRINK TOO MUCH</p>
-            </header>
-        </section>
     </section>
 
     <!-- Detail -->
@@ -110,7 +105,7 @@
             </div>
 
             <div class="col-md-7">
-                <div id="carouselExampleSlidesOnly" class="carousel slide"
+                <div id="carouselExampleControls" class="carousel slide"
                      data-bs-ride="carousel">
                     <div class="project-info-box mt-0">
                         <div class="carousel-inner" id="imgDiv">
@@ -132,6 +127,14 @@
                             </c:choose>
                         </div>
                     </div>
+                    <button class="carousel-control-prev imgButton" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next imgButton" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
                 <div class="project-info-box" style="text-align: center">
                     <p><b>알코올 중독 자가진단 : </b> <a href="http://bgnmh.go.kr/checkmehealme/selftest/alcTest3.xx" target="_blank">진단하기</a></p>
