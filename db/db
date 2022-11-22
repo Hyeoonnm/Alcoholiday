@@ -21,18 +21,18 @@ USE `alcoholiday`;
 -- 테이블 alcoholiday.alcohol 구조 내보내기
 DROP TABLE IF EXISTS `alcohol`;
 CREATE TABLE IF NOT EXISTS `alcohol` (
-  `stuff_num` int(32) NOT NULL AUTO_INCREMENT COMMENT '술, 도구, 레시피 고유 번호',
-  `stuff_name` varchar(128) NOT NULL COMMENT '술, 도구, 레시피 이름',
-  `stuff_price` int(128) NOT NULL COMMENT '술, 도구, 레시피 가격',
-  `stuff_reg_date` datetime NOT NULL COMMENT '술, 도구, 레시피 등록일',
-  `stuff_split` int(32) NOT NULL COMMENT '술, 도구 ,레시피 등 분류 번호',
+  `stuff_num` int(32) NOT NULL AUTO_INCREMENT COMMENT 'stuff 번호',
+  `stuff_name` varchar(128) NOT NULL COMMENT 'stuff 이름',
+  `stuff_price` varchar(512) NOT NULL DEFAULT '' COMMENT 'stuff 가격',
+  `stuff_reg_date` datetime NOT NULL COMMENT 'stuff 등록일',
+  `stuff_split` int(32) NOT NULL COMMENT 'stuff 분류 번호',
   `stuff_user_id` varchar(128) NOT NULL DEFAULT '' COMMENT '유저 고유 아이디',
-  `stuff_content` varchar(1024) DEFAULT NULL COMMENT '술, 도구, 레시피 설명',
+  `stuff_content` varchar(256) DEFAULT NULL COMMENT 'stuff 설명',
   PRIMARY KEY (`stuff_num`) USING BTREE,
   KEY `alcohol_user_id` (`stuff_user_id`) USING BTREE,
   KEY `stuff_num` (`stuff_num`),
   CONSTRAINT `FK_stuff_user` FOREIGN KEY (`stuff_user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8mb4 COMMENT='게시판';
+) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=utf8mb4 COMMENT='게시판';
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -45,7 +45,24 @@ CREATE TABLE IF NOT EXISTS `attach` (
   PRIMARY KEY (`attach_num`),
   KEY `FK_attach_detail` (`attach_stuff_num`) USING BTREE,
   CONSTRAINT `FK_attach_alcohol` FOREIGN KEY (`attach_stuff_num`) REFERENCES `alcohol` (`stuff_num`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8mb4 COMMENT='이미지 파일\r\n';
+) ENGINE=InnoDB AUTO_INCREMENT=333 DEFAULT CHARSET=utf8mb4 COMMENT='이미지 파일\r\n';
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 alcoholiday.reply 구조 내보내기
+DROP TABLE IF EXISTS `reply`;
+CREATE TABLE IF NOT EXISTS `reply` (
+  `reply_num` int(11) NOT NULL AUTO_INCREMENT COMMENT '댓글 고유 번호',
+  `reply_user_id` varchar(128) NOT NULL COMMENT '댓글 작성자',
+  `reply_stuff_num` int(11) NOT NULL COMMENT '게시글 고유 번호',
+  `reply_content` varchar(128) NOT NULL COMMENT '댓글 내용',
+  `reply_reg_date` datetime NOT NULL,
+  PRIMARY KEY (`reply_num`),
+  KEY `reply_stuff_num` (`reply_stuff_num`),
+  KEY `FK_reply_user` (`reply_user_id`),
+  CONSTRAINT `FK__alcohol` FOREIGN KEY (`reply_stuff_num`) REFERENCES `alcohol` (`stuff_num`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_reply_user` FOREIGN KEY (`reply_user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COMMENT='댓글';
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
