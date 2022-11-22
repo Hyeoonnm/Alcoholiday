@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reply">
+    <insert id="add">
+        INSERT INTO reply (reply_stuff_num, reply_content, reply_user_id, reply_reg_date)
+        VALUES (#{replyStuffNum}, #{replyContent}, #{replyUserId}, NOW())
+    </insert>
+
+    <delete id="delete">
+        DELETE
+        FROM reply
+        WHERE reply_user_id = #{userId}
+          AND reply_num = #{replyNum}
+    </delete>
+
+    <delete id="deleteAll">
+        DELETE
+        FROM reply
+        WHERE reply_stuff_num = #{stuffNum}
+    </delete>
+
+    <update id="update">
+        UPDATE reply
+        SET reply_content = #{replyContent}
+        WHERE reply_stuff_num = #{replyStuffNum}
+          AND reply_num = #{replyNum}
+    </update>
+</mapper>

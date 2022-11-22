@@ -68,11 +68,10 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li><a href="/main">MAIN</a></li>
-                <li class="current"><a href="../drink">DRINK</a></li>
-                <li><a href="../../recipes/list">RECIPES</a></li>
-                <li><a href="tools">TOOLS</a></li>
-                <li><a href="place/list">PLACE</a></li>
+                <li><a href="/main">Main</a></li>
+                <li class="current"><a href="../drink">Drink</a></li>
+                <li><a href="../../recipes/list">Recipes</a></li>
+                <li><a href="notice">Notice</a></li>
             </ul>
         </nav>
 

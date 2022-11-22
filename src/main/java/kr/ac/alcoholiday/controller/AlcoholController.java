@@ -1,10 +1,13 @@
 package kr.ac.alcoholiday.controller;
 
 import kr.ac.alcoholiday.dao.AttachDao;
+import kr.ac.alcoholiday.dao.ReplyDao;
 import kr.ac.alcoholiday.model.Alcohol;
 import kr.ac.alcoholiday.model.Attach;
+import kr.ac.alcoholiday.model.Reply;
 import kr.ac.alcoholiday.model.User;
 import kr.ac.alcoholiday.pager.Pager;
+import kr.ac.alcoholiday.search.Search;
 import kr.ac.alcoholiday.service.AlcoholService;
 import kr.ac.alcoholiday.util.MutipartBinder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +27,6 @@ public class AlcoholController {
 
     @Autowired
     AlcoholService service;
-
     @Autowired
     AttachDao attachDao;
 
@@ -40,9 +42,9 @@ public class AlcoholController {
     }
 
     @RequestMapping("/drink")
-    public String list(Model model) {
+    public String list(Model model, Search search) {
 
-        List<Alcohol> drink = service.list();
+        List<Alcohol> drink = service.list(search);
         model.addAttribute("drink", drink);
 
         return "alcohol/drink";
@@ -57,7 +59,6 @@ public class AlcoholController {
 
         return "alcohol/detail";
     }
-
 
     @PostMapping("/add")
     public String add(Alcohol item, @SessionAttribute User user) {

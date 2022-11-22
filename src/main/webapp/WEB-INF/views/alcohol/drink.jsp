@@ -63,11 +63,10 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li><a href="/main">MAIN</a></li>
-                <li class="current"><a href="#banner">DRINK</a></li>
-                <li><a href="../recipes/list">RECIPES</a></li>
-                <li><a href="/tools">TOOLS</a></li>
-                <li><a href="place/list">PLACE</a></li>
+                <li><a href="/main">Main</a></li>
+                <li class="current"><a href="#banner">Drink</a></li>
+                <li><a href="../recipes/list">Recipes</a></li>
+                <li><a href="/notice">Notice</a></li>
             </ul>
         </nav>
 
@@ -78,12 +77,29 @@
 
         <%--글쓰기--%>
         <!-- Add Button trigger modal -->
-        <div style="text-align: center">
-            <button type="button" class="btn btn-lg btn-outline-primary" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                <h7 style="color: black">new Writing</h7>
-            </button>
-        </div>
+        <form method="post">
+            <div style="text-align: center">
+                <div class="input-group w-50" style="margin:auto">
+                    <div style="margin-right: 1%">
+                        <select class="form-select" aria-label="Default select example" name="searchType">
+                            <option selected value="0">Select Menu</option>
+                            <option value="1">Title</option>
+                            <option value="2">Writer</option>
+                            <option value="3">Content</option>
+                        </select>
+                    </div>
+                    <input type="text" name="keywords" class="form-control" placeholder="Search"
+                           aria-label="Recipient's username with two button addons">
+                    <button class="btn btn-secondary btn-sm">Search</button>
+
+                    <div style="margin-left: 1%">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">new Writing
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
 
         <%--카드형 이미지 리스트--%>
         <div class="container">
@@ -112,7 +128,11 @@
                             </div>
                             <div class="card-body">
                                 <hr>
-                                <a href="/alcohol/detail/${drink.stuffNum}"><h5 class="card-title">${drink.stuffName}</h5></a>
+                                <a href="/alcohol/detail/${drink.stuffNum}"><h5 class="card-title">${drink.stuffName}
+                                    <c:if test="${drink.replyCnt != 0}">
+                                        <i class="bi bi-chat-dots" style="float: right"><small>&nbsp;<c:out
+                                                value="${drink.replyCnt}"/></small></i>
+                                    </c:if></h5></a>
                                 <p>Writer : ${drink.stuffUserId}</p>
                                 <p><fmt:formatDate value="${drink.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
                                                    type="both"/></p>

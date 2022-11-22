@@ -11,15 +11,38 @@
             <id column="attach_filename" property="attachFilename"/>
             <id column="attach_stuff_num" property="stuffAttachNum"/>
         </collection>
+
+        <collection property="replyList" column="reply_stuff_num" ofType="Reply" javaType="ArrayList"
+                    autoMapping="true">
+            <id column="reply_user_id" property="replyUserId"/>
+            <id column="reply_content" property="replyContent"/>
+            <id column="reply_reg_date" property="replyRegDate"/>
+        </collection>
     </resultMap>
 
-
     <select id="list" resultMap="AlcoholMap">
-        select alcohol.*, attach_num, attach_filename
+        select alcohol.*, attach_num, attach_filename, s.*
         from alcohol
-                 left join attach on (alcohol.stuff_num = attach.attach_stuff_num)
-        WHERE stuff_split = 1
-        ORDER BY stuff_num
+        left join attach on (alcohol.stuff_num = attach.attach_stuff_num)
+
+        LEFT OUTER JOIN (SELECT reply_stuff_num, COUNT(reply_stuff_num) replyCnt
+        FROM alcohol,
+        reply
+        WHERE alcohol.stuff_num = reply.reply_stuff_num) s
+        ON (alcohol.stuff_num = s.reply_stuff_num)
+
+        <where>
+            stuff_split = 1
+            <if test="searchType == 1">AND alcohol.stuff_name LIKE CONCAT(CONCAT('%', #{keywords}), '%')</if>
+
+            <if test="searchType == 2">AND alcohol.stuff_user_id LIKE CONCAT(CONCAT('%', #{keywords}), '%')</if>
+
+            <if test="searchType == 3">AND alcohol.stuff_content LIKE CONCAT(CONCAT('%', #{keywords}), '%')</if>
+        </where>
+
+
+        GROUP BY stuff_num
+        ORDER BY stuff_num;
     </select>
 
     <!--drink 메뉴는 split 번호 1-->
@@ -33,10 +56,11 @@
 
 
     <select id="item" resultMap="AlcoholMap">
-        select alcohol.*, attach_num, attach_filename
+        select alcohol.*, attach_num, attach_filename, reply_user_id, reply_content, reply_reg_date, reply_num
         from alcohol
                  left join attach on (alcohol.stuff_num = attach.attach_stuff_num)
-        WHERE stuff_num = ${stuffNum}
+                 left join reply on alcohol.stuff_num = reply.reply_stuff_num
+        WHERE stuff_num = #{stuffNum}
           AND stuff_split = 1
     </select>
 

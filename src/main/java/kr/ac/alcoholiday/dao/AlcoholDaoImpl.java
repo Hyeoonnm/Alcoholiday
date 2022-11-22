@@ -1,7 +1,7 @@
 package kr.ac.alcoholiday.dao;
 
 import kr.ac.alcoholiday.model.Alcohol;
-import kr.ac.alcoholiday.pager.Pager;
+import kr.ac.alcoholiday.search.Search;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,8 +16,8 @@ public class AlcoholDaoImpl implements AlcoholDao{
     SqlSession sql;
 
     @Override
-    public List<Alcohol> list() {
-        return sql.selectList("drink.list");
+    public List<Alcohol> list(Search search) {
+        return sql.selectList("drink.list", search);
     }
 
     @Override

@@ -42,4 +42,10 @@ public class Alcohol {
     private List<Attach> attaches;
     private int attachKey;
     private int newAttachKey;
+
+    // Reply
+    private List<Reply> replyList;
+
+    // Reply Count
+    private String replyCnt;
 }

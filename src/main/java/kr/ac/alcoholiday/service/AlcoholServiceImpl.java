@@ -2,8 +2,10 @@ package kr.ac.alcoholiday.service;
 
 import kr.ac.alcoholiday.dao.AlcoholDao;
 import kr.ac.alcoholiday.dao.AttachDao;
+import kr.ac.alcoholiday.dao.ReplyDao;
 import kr.ac.alcoholiday.model.Alcohol;
 import kr.ac.alcoholiday.model.Attach;
+import kr.ac.alcoholiday.search.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,9 +21,12 @@ public class AlcoholServiceImpl implements AlcoholService {
     @Autowired
     AttachDao attachDao;
 
+    @Autowired
+    ReplyDao replyDao;
+
     @Override
-    public List<Alcohol> list() {
-        return dao.list();
+    public List<Alcohol> list(Search search) {
+        return dao.list(search);
     }
 
     @Override
@@ -63,7 +68,7 @@ public class AlcoholServiceImpl implements AlcoholService {
     @Transactional
     public void delete(int stuffNum, String userId) {
         attachDao.delete(stuffNum);
-
+        replyDao.deleteAll(stuffNum);
         dao.delete(stuffNum, userId);
     }
 }

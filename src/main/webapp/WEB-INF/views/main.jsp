@@ -62,11 +62,10 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li class="current"><a href="/main">MAIN</a></li>
-                <li><a href="alcohol/drink">DRINK</a></li>
-                <li><a href="recipes/list">RECIPES</a></li>
-                <li><a href="tools">TOOLS</a></li>
-                <li><a href="place/list">PLACE</a></li>
+                <li class="current"><a href="/main">Main</a></li>
+                <li><a href="alcohol/drink">Drink</a></li>
+                <li><a href="recipes/list">Recipes</a></li>
+                <li><a href="notice">Notice</a></li>
             </ul>
         </nav>
 
@@ -120,14 +119,14 @@
                     <section class="last">
                         <a href="tools">
                             <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor"
-                                 class="bi bi-box-seam" style="margin-bottom: 3em;" viewBox="0 0 16 16">
-                                <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
+                                 class="bi bi-bell" style="margin-bottom: 3em;" viewBox="0 0 16 16">
+                                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
                             </svg>
                         </a>
                         <header>
-                            <h2>TOOL</h2>
+                            <h2>NOTICE</h2>
                         </header>
-                        <p>Tools needed to make cocktails</p>
+                        <p>Admin notice</p>
                     </section>
 
                 </div>

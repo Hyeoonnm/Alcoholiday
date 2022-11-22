@@ -28,7 +28,8 @@
             stuff_reg_date = NOW(),
             stuff_content  = #{stuffContent}
         WHERE stuff_split = 2
-AND stuff_num = ${stuffNum}
+          AND stuff_num = #{stuffNum}
+          AND stuff_user_id = #{userId}
     </update>
 
     <delete id="delete">
@@ -36,6 +37,7 @@ AND stuff_num = ${stuffNum}
         FROM alcohol
         WHERE stuff_num = #{stuffNum}
           AND stuff_split = 2
+          AND stuff_user_id = #{userId}
     </delete>
 
     <select id="total" resultType="Integer">

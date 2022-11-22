@@ -22,8 +22,9 @@
 
     <style>
         .imgButton:hover {
-            background-color : rgba(255, 255, 255 , 0)!important;
+            background-color: rgba(255, 255, 255, 0) !important;
         }
+
         #detailImg {
             text-align: center;
             position: relative;
@@ -77,11 +78,10 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li><a href="/main">MAIN</a></li>
-                <li class="current"><a href="../drink">DRINK</a></li>
-                <li><a href="../../recipes/list">RECIPES</a></li>
-                <li><a href="tools">TOOLS</a></li>
-                <li><a href="place/list">PLACE</a></li>
+                <li><a href="/main">Main</a></li>
+                <li class="current"><a href="../drink">Drink</a></li>
+                <li><a href="../../recipes/list">Recipes</a></li>
+                <li><a href="notice">Notice</a></li>
             </ul>
         </nav>
     </section>
@@ -98,7 +98,7 @@
                     <p><b>Date :</b> <fmt:formatDate value="${drink.stuffRegDate}" type="date"
                                                      pattern="YYYY/mm/dd HH:mm:ss"></fmt:formatDate></p>
                 </div>
-                <div class="project-info-box mt-0" style="word-break: break-all;">
+                <div class="project-info-box mt-0" style="word-break: break-all; height: 59%">
                     <p><b>Contents</b></p>
                     <p>${drink.stuffContent}</p>
                 </div>
@@ -117,31 +117,97 @@
                                     </div>
                                 </c:when>
                                 <c:otherwise>
-                            <c:forEach items="${drink.attaches}" var="attaches">
-                                <div class="carousel-item">
-                                    <img src="/img/${attaches.attachFilename}" class="d-block"
-                                         style="width: 100%; height: 40rem; border-radius: 5px;" alt="...">
-                                </div>
-                            </c:forEach>
+                                    <c:forEach items="${drink.attaches}" var="attaches">
+                                        <div class="carousel-item">
+                                            <img src="/img/${attaches.attachFilename}" class="d-block"
+                                                 style="width: 100%; height: 40rem; border-radius: 5px;" alt="...">
+                                        </div>
+                                    </c:forEach>
                                 </c:otherwise>
                             </c:choose>
                         </div>
                     </div>
-                    <button class="carousel-control-prev imgButton" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <button class="carousel-control-prev imgButton" type="button"
+                            data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next imgButton" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <button class="carousel-control-next imgButton" type="button"
+                            data-bs-target="#carouselExampleControls" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
                 <div class="project-info-box" style="text-align: center">
-                    <p><b>알코올 중독 자가진단 : </b> <a href="http://bgnmh.go.kr/checkmehealme/selftest/alcTest3.xx" target="_blank">진단하기</a></p>
+                    <p><b>알코올 중독 자가진단 : </b> <a href="http://bgnmh.go.kr/checkmehealme/selftest/alcTest3.xx"
+                                                target="_blank">진단하기</a></p>
                 </div>
             </div>
         </div>
     </div>
+    <hr>
+
+
+    <%--댓글--%>
+    <h1 style="text-align: center">Comments</h1>
+    <form method="post" action="/reply/add">
+        <div class="input-group mb-3 mt-3" style="width: 60%; margin: auto">
+            <textarea style="height: 100px" type="text" class="form-control" name="replyContent"
+                      placeholder="Leave a Comment" aria-describedby="button-addon2"></textarea>
+            <button class="btn btn-primary" id="button-addon2">Enter</button>
+            <input type="hidden" name="replyStuffNum" value="${drink.stuffNum}">
+        </div>
+    </form>
+
+    <div class="container">
+        <c:forEach items="${drink.replyList}" var="reply" varStatus="status">
+            <div class="card mb-3" style="width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title">${reply.replyContent}</h5>
+                    <p>Writer : ${reply.replyUserId}</p>
+                    <p><fmt:formatDate value="${reply.replyRegDate}" type="date"
+                                       pattern="YYYY/MM/dd hh:mm:ss"></fmt:formatDate></p>
+                    <c:if test="${sessionScope.user.userId == reply.replyUserId}">
+                        <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal${status.index}">
+                                Update
+                            </button>
+                        <a href="/reply/delete/${drink.stuffNum}/${reply.replyNum}">
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </a>
+                    </c:if>
+                </div>
+            </div>
+
+            <!-- 댓글 updqte Modal -->
+            <form method="post" action="/reply/update/${drink.stuffNum}/${reply.replyNum}">
+                <div class="modal fade" id="exampleModal${status.index}" tabindex="-1"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Comment Update</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <textarea style="height: 100px" type="text" class="form-control" name="replyContent"
+                                          aria-describedby="button-addon2">${reply.replyContent}</textarea>
+                                <input type="hidden" name="replyStuffNum" value="${drink.stuffNum}">
+
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary">Update</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </c:forEach>
+    </div>
+
 
     <!-- Footer -->
     <section id="footer" class="bg-dark">
