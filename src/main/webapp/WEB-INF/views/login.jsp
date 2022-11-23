@@ -14,6 +14,12 @@
             src="/resources/js/bootstrap.bundle.min.js"></script>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+        .body{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
         a {
             text-decoration-line: none;
         }
@@ -22,10 +28,11 @@
             text-align: center;
             margin-top: 2em;
         }
+
     </style>
 </head>
 
-<body>
+<body class="body">
 <div>
     <h1 id="logo"><b><a href="#" class="text-black-50">Alcoholiday</a></b></h1>
 </div>
@@ -59,7 +66,7 @@
                             </form>
 
                             <p class="small mb-5 pb-lg-2">
-                                <a class="text-white-50" href="#!">Forgot password?</a>
+                                <a class="text-white-50" href="#!"></a>
                             </p>
 
                         </div>

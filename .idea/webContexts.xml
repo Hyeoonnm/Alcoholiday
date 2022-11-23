@@ -7,6 +7,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/alcohol/update.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/alcohol" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/recipes/detail.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/recipes" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/signup.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
       </map>
     </option>

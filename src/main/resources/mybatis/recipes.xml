@@ -3,10 +3,27 @@
 
 <mapper namespace="recipes">
 
+    <resultMap type="Alcohol" id="AlcoholMap" autoMapping="true">
+        <id column="stuff_num" property="stuffNum"/>
+        <collection property="replyList" column="reply_stuff_num" ofType="Reply" javaType="ArrayList" autoMapping="true">
+            <id column="reply_user_id" property="replyUserId"/>
+            <id column="reply_content" property="replyContent"/>
+            <id column="reply_reg_date" property="replyRegDate"/>
+        </collection>
+    </resultMap>
+
     <select id="list" resultType="Alcohol">
-        SELECT *
-        FROM alcohol
-        WHERE stuff_split = 2
+        SELECT *, (SELECT COUNT(*) FROM reply WHERE reply.reply_stuff_num = alcohol.stuff_num) replyCnt
+        FROM alcohol left join reply r on alcohol.stuff_num = r.reply_stuff_num
+        <where>
+            stuff_split = 2
+            <if test="searchType == 3">AND alcohol.stuff_name LIKE CONCAT(CONCAT('%', #{keywords}), '%')</if>
+
+            <if test="searchType == 4">AND alcohol.stuff_user_id LIKE CONCAT(CONCAT('%', #{keywords}), '%')</if>
+
+            <if test="searchType == 5">AND alcohol.stuff_content LIKE CONCAT(CONCAT('%', #{keywords}), '%')</if>
+        </where>
+        GROUP BY stuff_num
         LIMIT #{offset}, #{perPage}
     </select>
 
@@ -15,12 +32,15 @@
         VALUES (#{stuffName}, 0, NOW(), 2, #{stuffContent}, #{stuffUserId})
     </insert>
 
-    <select id="item" resultType="Alcohol">
-        SELECT *
-        FROM alcohol
-        WHERE stuff_split = 2
-          AND stuff_num = #{stuffNum}
+    <select id="item" resultMap="AlcoholMap">
+        select alcohol.*, reply_user_id, reply_content, reply_reg_date, reply_num
+        from alcohol
+
+                 left join reply on alcohol.stuff_num = reply.reply_stuff_num
+        WHERE stuff_num = #{stuffNum}
+          AND stuff_split = 2
     </select>
+
 
     <update id="update">
         UPDATE alcohol
@@ -29,7 +49,7 @@
             stuff_content  = #{stuffContent}
         WHERE stuff_split = 2
           AND stuff_num = #{stuffNum}
-          AND stuff_user_id = #{userId}
+          AND stuff_user_id = #{stuffUserId}
     </update>
 
     <delete id="delete">

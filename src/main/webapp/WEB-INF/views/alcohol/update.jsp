@@ -21,6 +21,11 @@
 
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+        .body{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
 
         a {
             text-decoration-line: none;
@@ -36,7 +41,7 @@
 
     </style>
 </head>
-<body class="homepage is-preload">
+<body class="homepage is-preload body">
 <div id="page-wrapper">
 
     <!-- Header -->

@@ -19,6 +19,13 @@
     <link rel="stylesheet" href="/resources/css/drinklist.css">
 
     <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+        .body{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
         a {
             text-decoration-line: none;
         }
@@ -32,7 +39,7 @@
         }
     </style>
 </head>
-<body class="no-sidebar is-preload">
+<body class="no-sidebar is-preload body">
 <div id="page-wrapper">
     <!-- Header -->
     <section id="header">
@@ -83,13 +90,13 @@
                     <div style="margin-right: 1%">
                         <select class="form-select" aria-label="Default select example" name="searchType">
                             <option selected value="0">Select Menu</option>
-                            <option value="1">Title</option>
-                            <option value="2">Writer</option>
-                            <option value="3">Content</option>
+                            <option value="1" <c:if test="${search eq '1'}">selected</c:if>>Title</option>
+                            <option value="2" <c:if test="${search eq '2'}">selected</c:if>>Writer</option>
+                            <option value="3" <c:if test="${search eq '3'}">selected</c:if>>Content</option>
                         </select>
                     </div>
-                    <input type="text" name="keywords" class="form-control" placeholder="Search"
-                           aria-label="Recipient's username with two button addons">
+                    <input type="text" name="keywords" class="form-control" placeholder="${keywords}"
+                           aria-label="Recipient's username with two button addons" style="height: 2.5rem;">
                     <button class="btn btn-secondary btn-sm">Search</button>
 
                     <div style="margin-left: 1%">

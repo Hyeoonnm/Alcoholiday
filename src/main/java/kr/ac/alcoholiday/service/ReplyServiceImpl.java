@@ -17,11 +17,13 @@ public class ReplyServiceImpl implements ReplyService{
     }
 
     @Override
+    @Transactional
     public void delete(int replyNum, String userId) {
         replyDao.delete(replyNum, userId);
     }
 
     @Override
+    @Transactional
     public void update(Reply reply) {
         replyDao.update(reply);
     }

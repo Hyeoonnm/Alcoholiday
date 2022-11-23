@@ -46,6 +46,8 @@ public class AlcoholController {
 
         List<Alcohol> drink = service.list(search);
         model.addAttribute("drink", drink);
+        model.addAttribute("keywords", search.getKeywords());
+        model.addAttribute("search", search.getSearchType());
 
         return "alcohol/drink";
     }

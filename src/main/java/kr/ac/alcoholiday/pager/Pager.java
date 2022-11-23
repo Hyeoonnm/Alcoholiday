@@ -4,12 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pager {
+	// 검색어
+	private String keywords;
 
+	// 검색 옵션
+	private String searchType;
 	private int page = 1;
 	private int perPage = 10;
 	private float total;
 	final int perGroup = 5;
-	
+
+	public String getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public Pager() {
+	}
+
 	public float getTotal() {
 		return total;
 	}

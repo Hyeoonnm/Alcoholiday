@@ -18,6 +18,7 @@ public class RecipesDaoImpl implements RecipesDao {
 
     @Override
     public List<Alcohol> list(Pager pager) {
+
         return sql.selectList("recipes.list", pager);
     }
 

@@ -20,6 +20,12 @@
 
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+        .body{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
         a {
             text-decoration-line: none;
         }
@@ -34,7 +40,7 @@
 
     </style>
 </head>
-<body class="homepage is-preload">
+<body class="homepage is-preload body">
 <div id="page-wrapper">
 
     <!-- Header -->
@@ -82,7 +88,7 @@
             <div class="input-group mb-3 mt-3">
                 <span class="input-group-text" id="basic-addon1">@</span>
                 <input type="text" class="form-control" name="stuffName" placeholder="${item.stuffName}" aria-label="Username"
-                       aria-describedby="basic-addon1">
+                       aria-describedby="basic-addon1" value="${item.stuffName}">
             </div>
 
             <div class="input-group mb-3">

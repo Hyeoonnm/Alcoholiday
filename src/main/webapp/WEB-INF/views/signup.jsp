@@ -10,9 +10,17 @@
         a {
             text-decoration: none;
         }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+        .body{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+
 
     </style>
 </head>
+<body class="body">
 <section class="vh-100">
     <div class="container py-5 h-100">
         <div class="row justify-content-center align-items-center h-100">

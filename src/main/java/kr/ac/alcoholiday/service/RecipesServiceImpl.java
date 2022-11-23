@@ -1,6 +1,7 @@
 package kr.ac.alcoholiday.service;
 
 import kr.ac.alcoholiday.dao.RecipesDao;
+import kr.ac.alcoholiday.dao.ReplyDao;
 import kr.ac.alcoholiday.model.Alcohol;
 import kr.ac.alcoholiday.pager.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ public class RecipesServiceImpl implements RecipesService{
 
     @Autowired
     RecipesDao dao;
+
+    @Autowired
+    ReplyDao replyDao;
 
     @Override
     public List<Alcohol> list(Pager pager) {
@@ -40,6 +44,7 @@ public class RecipesServiceImpl implements RecipesService{
 
     @Override
     public void delete(int stuffNum, String userId) {
+        replyDao.deleteAll(stuffNum);
         dao.delete(stuffNum, userId);
     }
 }

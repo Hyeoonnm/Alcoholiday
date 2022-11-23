@@ -20,7 +20,14 @@
     <link rel="stylesheet" href="/resources/css/detail.css">
 
 
+
+
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+        .body{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
         .imgButton:hover {
             background-color: rgba(255, 255, 255, 0) !important;
         }
@@ -46,7 +53,7 @@
 
     </style>
 </head>
-<body class="homepage is-preload">
+<body class="homepage is-preload body">
 <div id="page-wrapper">
 
     <!-- Header -->

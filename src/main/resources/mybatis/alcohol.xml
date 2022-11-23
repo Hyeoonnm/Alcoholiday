@@ -21,15 +21,10 @@
     </resultMap>
 
     <select id="list" resultMap="AlcoholMap">
-        select alcohol.*, attach_num, attach_filename, s.*
+        select alcohol.*, attach_num, attach_filename,
+               (SELECT COUNT(*) FROM reply WHERE reply.reply_stuff_num = alcohol.stuff_num) replyCnt
         from alcohol
         left join attach on (alcohol.stuff_num = attach.attach_stuff_num)
-
-        LEFT OUTER JOIN (SELECT reply_stuff_num, COUNT(reply_stuff_num) replyCnt
-        FROM alcohol,
-        reply
-        WHERE alcohol.stuff_num = reply.reply_stuff_num) s
-        ON (alcohol.stuff_num = s.reply_stuff_num)
 
         <where>
             stuff_split = 1

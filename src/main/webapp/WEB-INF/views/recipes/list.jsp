@@ -18,6 +18,12 @@
     <link rel="stylesheet" href="/resources/css/drinklist.css">
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+        .body{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
         a {
             text-decoration-line: none;
         }
@@ -31,7 +37,7 @@
         }
     </style>
 </head>
-<body class="no-sidebar is-preload">
+<body class="no-sidebar is-preload body">
 <div id="page-wrapper">
 
     <!-- Header -->
@@ -71,13 +77,29 @@
         </nav>
     </section>
 
-    <!-- Add Button trigger modal -->
-    <div style="text-align: center" class="mt-3">
-        <button type="button" class="btn btn-lg btn-outline-primary" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
-            <h7 style="color: black">new Writing</h7>
-        </button>
-    </div>
+    <form method="post">
+        <div style="text-align: center" class="mt-3">
+            <div class="input-group w-50" style="margin:auto">
+                <div style="margin-right: 1%">
+                    <select class="form-select" aria-label="Default select example" name="searchType">
+                        <option selected value="0">Select Menu</option>
+                        <option value="3" <c:if test="${search.searchType eq '3'}">selected</c:if>>Recipes Title</option>
+                        <option value="4" <c:if test="${search.searchType eq '4'}">selected</c:if>>Recipes Writer</option>
+                        <option value="5" <c:if test="${search.searchType eq '5'}">selected</c:if>>Recipes Content</option>
+                    </select>
+                </div>
+                <input type="text" name="keywords" class="form-control" placeholder="${search.keywords}"
+                       aria-label="Recipient's username with two button addons" style="height: 2.5rem;">
+                <button class="btn btn-secondary btn-sm">Search</button>
+
+                <div style="margin-left: 1%">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">new Writing
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
 
     <!-- list -->
     <div class="container mt-3">
@@ -89,25 +111,30 @@
                 <th scope="col">Writer</th>
                 <th scope="col">RegDate</th>
                 <th scope="col">Control</th>
+                <th scope="col">Comments</th>
             </tr>
             </thead>
 
             <tbody>
-            <c:forEach var="recipes" items="${recipes}">
+            <c:forEach var="recipes" items="${recipes}" varStatus="status">
                 <tr>
                     <th scope="row">${recipes.stuffNum}</th>
-                    <a href="recipes/detail/${recipes.stuffNum}">
-                        <td>${recipes.stuffName}</td>
-                    </a>
+                    <%--<td>${recipes.stuffName}</td>--%>
+                        <td><a href="/recipes/detail/${recipes.stuffNum}">${recipes.stuffName}</a></td>
                     <td>${recipes.stuffUserId}</td>
                     <td><fmt:formatDate value="${recipes.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
                                         type="both"/></td>
                     <c:if test="${sessionScope.user.userId == recipes.stuffUserId}">
                         <td>
-                            <a href="../recipes/update/${recipes.stuffNum}" class="btn btn-sm btn-primary ms-1">Update</a>
+                            <a href="../recipes/update/${recipes.stuffNum}"
+                               class="btn btn-sm btn-primary ms-1">Update</a>
                             <a href="../recipes/delete/${recipes.stuffNum}" class="btn btn-sm btn-danger">Delete</a>
                         </td>
                     </c:if>
+                        <td>
+                        <i class="bi bi-chat-dots" style="text-align: center"><small>&nbsp;<c:out
+                                value="${recipes.replyCnt}"/></small></i>
+                        </td>
                 </tr>
             </c:forEach>
             </tbody>

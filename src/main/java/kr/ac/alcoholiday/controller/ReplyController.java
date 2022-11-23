@@ -4,6 +4,7 @@ import kr.ac.alcoholiday.model.Reply;
 import kr.ac.alcoholiday.model.User;
 import kr.ac.alcoholiday.service.ReplyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -14,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ReplyController {
     private final ReplyService replyService;
 
+
+    /*ALCOHOL COMMENT*/
     @PostMapping("/add")
     public String add(Reply reply, RedirectAttributes redirectAttributes, @SessionAttribute User user) {
         reply.setReplyUserId(user.getUserId());
@@ -39,5 +42,33 @@ public class ReplyController {
         replyService.update(reply);
 
         return "redirect:/alcohol/detail/" + replyStuffNum;
+    }
+
+    /*RECIPES COMMENT*/
+    @PostMapping("/recipesAdd")
+    public String recipesAdd(Reply reply, RedirectAttributes redirectAttributes, @SessionAttribute User user) {
+        reply.setReplyUserId(user.getUserId());
+
+        replyService.add(reply);
+
+        redirectAttributes.addAttribute("stuffNum", reply.getReplyStuffNum());
+
+        return "redirect:/recipes/detail/{stuffNum}";
+    }
+
+    @RequestMapping("/recipesDelete/{replyStuffNum}/{replyNum}")
+    public String recipesDelete(@SessionAttribute User user, @PathVariable int replyStuffNum, @PathVariable int replyNum) {
+        replyService.delete(replyNum, user.getUserId());
+
+        return "redirect:/recipes/detail/" + replyStuffNum;
+    }
+
+    @PostMapping("/recipesUpdate/{replyStuffNum}/{replyNum}")
+    public String recipesUpdate(@SessionAttribute User user, @PathVariable int replyStuffNum, @PathVariable int replyNum, Reply reply) {
+        reply.setReplyUserId(user.getUserId());
+
+        replyService.update(reply);
+
+        return "redirect:/recipes/detail/" + replyStuffNum;
     }
 }
