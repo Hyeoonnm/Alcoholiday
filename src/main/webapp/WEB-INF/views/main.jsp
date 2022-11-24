@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML>
 <html>
@@ -18,7 +19,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-        .body{
+        .body {
             font-family: 'Noto Sans KR', sans-serif;
         }
 
@@ -43,8 +44,11 @@
     <section id="header">
 
         <%--로그아웃--%>
-        <div style="position: fixed; left: 95%; top: 10px;">
-            <a href="/logout"><img src="/resources/images/logout.jpg" style="width: 50%; height: 50%;"></a>
+        <div style="position: fixed; left: 95%; top: 10px; z-index: 0">
+            <a href="/logout"><svg xmlns="http://www.w3.org/2000/svg" width="40%" height="40%" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+                <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
+            </svg></a>
         </div>
 
         <%--페이지 상단으로 이동--%>
@@ -68,10 +72,10 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li class="current"><a href="/main">Main</a></li>
+                <li class="current"><a href="#">Main</a></li>
                 <li><a href="alcohol/drink">Drink</a></li>
                 <li><a href="recipes/list">Recipes</a></li>
-                <li><a href="notice">Notice</a></li>
+                <li><a href="notice/list">Notice</a></li>
             </ul>
         </nav>
 
@@ -152,43 +156,48 @@
                             <h2>Many Comments</h2>
                         </header>
                         <div class="row">
-                            <div class="col-6 col-12-small">
-                                <section class="box">
-                                    <a href="#" class="image featured"><img src="/resources/images/pic08.jpg"
-                                                                            alt=""/></a>
-                                    <header>
-                                        <h3>best1</h3>
-                                        <p>~~~~~~</p>
-                                    </header>
-                                    <p>~~~~~~</p>
-                                    <footer>
-                                        <ul class="actions">
-                                            <li><a href="#" class="button icon solid fa-file-alt">Read More</a>
-                                            </li>
-                                        </ul>
-                                    </footer>
-                                </section>
-                            </div>
-                            <div class="col-6 col-12-small">
-                                <section class="box">
-                                    <a href="#" class="image featured"><img src="/resources/images/pic09.jpg"
-                                                                            alt=""/></a>
-                                    <header>
-                                        <h3>best2</h3>
-                                        <p>~~~~~</p>
-                                    </header>
-                                    <p>~~~~~~~~</p>
-                                    <footer>
-                                        <ul class="actions">
-                                            <li><a href="#" class="button icon solid fa-file-alt">Read More</a>
-                                            </li>
-                                        </ul>
-                                    </footer>
-                                </section>
-                            </div>
+                            <c:forEach items="${bc}" var="bc" varStatus="status">
+                                <div class="col-6 col-12-small">
+                                    <section class="box">
+                                        <c:choose>
+
+                                            <c:when test="${empty bc.attaches}">
+                                                <a href="/alcohol/detail/${bc.stuffNum}"><img
+                                                        src="/resources/images/nopic.png"
+                                                        style="width: 30rem; height: 30rem; padding-left: 15%"
+                                                        class="card-img-top images"
+                                                        alt="..."></a>
+                                            </c:when>
+
+                                            <c:otherwise>
+                                                <c:forEach items="${bc.attaches}" var="attaches" varStatus="status">
+                                                    <a href="/alcohol/detail/${bc.stuffNum}"><img
+                                                            src="/img/${attaches.attachFilename}"
+                                                            class="card-img-top images"
+                                                            style="width: 30rem; height: 30rem; padding-left: 15%"
+                                                            alt="..."></a>
+                                                </c:forEach>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <hr>
+                                        <header>
+                                            <h3>Title : ${bc.stuffName} <small><i class="bi bi-chat-dots"
+                                                                                  style="float: right">&nbsp;&nbsp;<c:out
+                                                    value="${bc.replyCnt}"/></i></small></h3>
+                                        </header>
+                                        <p>${bc.stuffContent}</p>
+                                        <footer>
+                                            <ul class="actions">
+                                                <li><a href="/alcohol/detail/${bc.stuffNum}"
+                                                       class="button icon solid fa-file-alt">Read More</a>
+                                                </li>
+                                            </ul>
+                                        </footer>
+                                    </section>
+                                </div>
+                            </c:forEach>
                         </div>
                     </section>
-
                 </div>
             </div>
         </div>

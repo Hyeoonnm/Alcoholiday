@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>Alcoholiday Recipes</title>
+    <title>Alcoholiday Notice</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
@@ -20,7 +20,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-        .body{
+        .body {
             font-family: 'Noto Sans KR', sans-serif;
         }
 
@@ -45,10 +45,13 @@
 
         <%--로그아웃--%>
         <div style="position: fixed; left: 95%; top: 10px; z-index: 0">
-            <a href="/logout"><svg xmlns="http://www.w3.org/2000/svg" width="40%" height="40%" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
-                <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
-                <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
-            </svg></a>
+            <a href="/logout">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40%" height="40%" fill="currentColor"
+                     class="bi bi-door-open" viewBox="0 0 16 16">
+                    <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                    <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
+                </svg>
+            </a>
         </div>
 
         <%--페이지 상단으로 이동--%>
@@ -74,8 +77,8 @@
             <ul>
                 <li><a href="/main">Main</a></li>
                 <li><a href="../alcohol/drink">Drink</a></li>
-                <li class="current"><a href="#">Recipes</a></li>
-                <li><a href="../notice/list">Notice</a></li>
+                <li><a href="../recipes/list">Recipes</a></li>
+                <li class="current"><a href="#">Notice</a></li>
             </ul>
         </nav>
     </section>
@@ -86,63 +89,151 @@
                 <div style="margin-right: 1%">
                     <select class="form-select" aria-label="Default select example" name="searchType">
                         <option selected value="0">Select Menu</option>
-                        <option value="3" <c:if test="${search.searchType eq '3'}">selected</c:if>>Title</option>
-                        <option value="4" <c:if test="${search.searchType eq '4'}">selected</c:if>>Writer</option>
-                        <option value="5" <c:if test="${search.searchType eq '5'}">selected</c:if>>Content</option>
+                        <option value="6" <c:if test="${pager.searchType eq '6'}">selected</c:if>>Title</option>
+                        <option value="7" <c:if test="${pager.searchType eq '7'}">selected</c:if>>Content</option>
                     </select>
                 </div>
-                <input type="text" name="keywords" class="form-control" placeholder="${search.keywords}"
-                       aria-label="Recipient's username with two button addons" style="height: 2.5rem;" value="${search.keywords}">
+                <input type="text" name="keywords" class="form-control" placeholder="${pager.keywords}"
+                       value="${pager.keywords}"
+                       aria-label="Recipient's username with two button addons" style="height: 2.5rem;">
                 <button class="btn btn-secondary btn-sm">Search</button>
 
+
+                <c:if test="${sessionScope.user.userId eq 'admin'}">
+
+                    <%--add modal trigger--%>
                 <div style="margin-left: 1%">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">new Writing
+                            data-bs-target="#exampleModalAdd">new Notice
                     </button>
+                    </c:if>
                 </div>
             </div>
         </div>
     </form>
 
+    <%--add modal--%>
+    <div class="modal fade" id="exampleModalAdd" tabindex="-1"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">New Notice</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="../notice/add">
+                        <div>
+                            <input class="mb-2 form-control" type="text" name="stuffName" placeholder="Notice Name">
+                        </div>
+
+                        <div>
+                            <textarea type="text" name="stuffContent" placeholder="Notice Contents"
+                                      minlength="1"></textarea>
+                        </div>
+
+                        <input type="hidden" name="stuffUserId" value="${sessionScope.user.userId}">
+                        <div class="modal-footer">
+                            <button class="btn btn-primary">Write</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- list -->
     <div class="container mt-3">
-        <table class="table">
+        <table class="table table-dark table-hover">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Recipes Name</th>
+                <th scope="col">Notice Name</th>
                 <th scope="col">Writer</th>
                 <th scope="col">RegDate</th>
-                <th scope="col">Control</th>
-                <th scope="col">Comments</th>
+                <th scope="col">View</th>
+                <c:if test="${sessionScope.user.userId eq 'admin'}">
+                    <th scope="col">Control</th>
+                </c:if>
+
             </tr>
             </thead>
 
             <tbody>
-            <c:forEach var="recipes" items="${recipes}" varStatus="status">
+            <c:forEach var="notice" items="${notice}" varStatus="status">
                 <tr>
-                    <th scope="row">${recipes.rowNum}</th>
-                    <%--<td>${recipes.stuffName}</td>--%>
-                        <td><a href="/recipes/detail/${recipes.stuffNum}">${recipes.stuffName}</a></td>
-                    <td>${recipes.stuffUserId}</td>
-                    <td><fmt:formatDate value="${recipes.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
+                    <th scope="row">${notice.rowNum}</th>
+                    <!-- notice detail Button trigger -->
+                    <td>${notice.stuffName}</td>
+                    <!-- notice detail Modal -->
+                    <div class="modal fade" id="exampleModalDetail${status.index}" tabindex="-1"
+                         aria-labelledby="exampleModalLabel${status.index}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5"
+                                        id="exampleModalLabel${status.index}">${notice.stuffName}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div style="white-space: pre-wrap"><c:out value="${notice.stuffContent}"/></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <td>Admin</td>
+                    <td><fmt:formatDate value="${notice.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
                                         type="both"/></td>
-                    <c:if test="${sessionScope.user.userId == recipes.stuffUserId}">
+                    <td><button type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
+                            data-bs-target="#exampleModalDetail${status.index}">Read</button></td>
+                    <c:if test="${sessionScope.user.userId eq 'admin'}">
                         <td>
-                            <a href="../recipes/update/${recipes.stuffNum}"
-                               class="btn btn-sm btn-primary ms-1">Update</a>
-                            <a href="../recipes/delete/${recipes.stuffNum}" class="btn btn-sm btn-danger">Delete</a>
+                            <form method="post" action="/notice/update/${notice.stuffNum}">
+                                <!-- notice update modal trigger -->
+                                <button type="button" class="btn btn-primary btn-sm"
+                                        style="float:left; margin-right: 3px" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModalUpdate${status.index}">
+                                    Update
+                                </button>
+                                <!-- notice update Modal -->
+                                <div class="modal fade" id="exampleModalUpdate${status.index}" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel${status.index}" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5"
+                                                    id="exampleModalLabel${status.index}">${notice.rowNum}</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <input name="stuffName" class="form-control mb-3"
+                                                       value="${notice.stuffName}">
+                                                <textarea name="stuffContent">${notice.stuffContent}</textarea>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary">Update</button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                                    Cancel
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <a href="../notice/delete/${notice.stuffNum}" class="btn btn-sm btn-danger">Delete</a>
                         </td>
                     </c:if>
-                    <c:if test="${sessionScope.user.userId != recipes.stuffUserId}">
-                        <td>
-                            -
-                        </td>
-                    </c:if>
-                        <td>
-                        <i class="bi bi-chat-dots" style="text-align: center"><small>&nbsp;&nbsp;<c:out
-                                value="${recipes.replyCnt}"/></small></i>
-                        </td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -173,38 +264,6 @@
                     </li>
                 </ul>
             </nav>
-        </div>
-    </div>
-
-    <!-- ADD Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">new Recipes</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <form method="post" action="../recipes/add">
-                        <div>
-                            <input class="mb-2 form-control" type="text" name="stuffName" placeholder="Recipes Name"
-                                   minlength="2">
-                        </div>
-
-                        <div>
-                            <textarea type="text" name="stuffContent" placeholder="Recipes Contents"
-                                      minlength="1"></textarea>
-                        </div>
-
-                        <input type="hidden" name="stuffUserId" value="${sessionScope.user.userId}">
-                        <div class="modal-footer">
-                            <button class="btn btn-primary">Write</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 

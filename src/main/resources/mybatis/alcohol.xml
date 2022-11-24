@@ -22,7 +22,7 @@
 
     <select id="list" resultMap="AlcoholMap">
         select alcohol.*, attach_num, attach_filename,
-               (SELECT COUNT(*) FROM reply WHERE reply.reply_stuff_num = alcohol.stuff_num) replyCnt
+        (SELECT COUNT(*) FROM reply WHERE reply.reply_stuff_num = alcohol.stuff_num) replyCnt
         from alcohol
         left join attach on (alcohol.stuff_num = attach.attach_stuff_num)
 
@@ -42,8 +42,8 @@
 
     <!--drink 메뉴는 split 번호 1-->
     <insert id="add" parameterType="kr.ac.alcoholiday.model.Alcohol">
-        INSERT INTO alcohol (stuff_name, stuff_price, stuff_reg_date, stuff_split, stuff_user_id, stuff_content)
-        VALUES (#{stuffName}, #{stuffPrice}, NOW(), 1, #{stuffUserId}, #{stuffContent})
+        INSERT INTO alcohol (stuff_name, stuff_reg_date, stuff_split, stuff_user_id, stuff_content)
+        VALUES (#{stuffName}, NOW(), 1, #{stuffUserId}, #{stuffContent})
         <selectKey order="AFTER" keyProperty="stuffNum" resultType="Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -62,7 +62,6 @@
     <update id="update">
         UPDATE alcohol
         SET stuff_name     = #{stuffName},
-            stuff_price    = #{stuffPrice},
             stuff_reg_date = NOW(),
             stuff_split    = 1,
             stuff_content  = #{stuffContent}
@@ -78,5 +77,18 @@
           AND stuff_user_id = #{userId}
           AND stuff_split = 1
     </delete>
+
+    <select id="bc" resultMap="AlcoholMap">
+        select alcohol.*,
+               attach_num,
+               attach_filename,
+               (SELECT COUNT(*) FROM reply WHERE reply.reply_stuff_num = alcohol.stuff_num) replyCnt
+        from alcohol
+                 left join attach on (alcohol.stuff_num = attach.attach_stuff_num)
+        WHERE stuff_split = 1
+        GROUP BY stuff_num
+        ORDER BY replyCnt desc
+        LIMIT 2;
+    </select>
 
 </mapper>

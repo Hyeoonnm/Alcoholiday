@@ -13,7 +13,7 @@
     </resultMap>
 
     <select id="list" resultType="Alcohol">
-        SELECT *, (SELECT COUNT(*) FROM reply WHERE reply.reply_stuff_num = alcohol.stuff_num) replyCnt
+        SELECT *, (SELECT COUNT(*) FROM reply WHERE reply.reply_stuff_num = alcohol.stuff_num) replyCnt, ROW_NUMBER() over () rowNum
         FROM alcohol left join reply r on alcohol.stuff_num = r.reply_stuff_num
         <where>
             stuff_split = 2
@@ -28,8 +28,8 @@
     </select>
 
     <insert id="add">
-        INSERT INTO alcohol(stuff_name, stuff_price, stuff_reg_date, stuff_split, stuff_content, stuff_user_id)
-        VALUES (#{stuffName}, 0, NOW(), 2, #{stuffContent}, #{stuffUserId})
+        INSERT INTO alcohol(stuff_name, stuff_reg_date, stuff_split, stuff_content, stuff_user_id)
+        VALUES (#{stuffName}, NOW(), 2, #{stuffContent}, #{stuffUserId})
     </insert>
 
     <select id="item" resultMap="AlcoholMap">

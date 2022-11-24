@@ -71,4 +71,9 @@ public class AlcoholServiceImpl implements AlcoholService {
         replyDao.deleteAll(stuffNum);
         dao.delete(stuffNum, userId);
     }
+
+    @Override
+    public List<Alcohol> bc() {
+        return dao.bc();
+    }
 }

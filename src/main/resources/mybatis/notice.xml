@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+    <select id="list" resultType="Alcohol">
+        SELECT *, ROW_NUMBER() over () rowNum
+        FROM alcohol
+        <where>
+            stuff_split = 3
+            <if test="searchType == 6">AND alcohol.stuff_name LIKE CONCAT(CONCAT('%', #{keywords}), '%')</if>
+
+            <if test="searchType == 7">AND alcohol.stuff_content LIKE CONCAT(CONCAT('%', #{keywords}), '%')</if>
+        </where>
+        LIMIT #{offset}, #{perPage}
+    </select>
+
+    <select id="total" resultType="Integer">
+        SELECT COUNT(*)
+        FROM alcohol
+        WHERE stuff_split = 3
+    </select>
+
+    <insert id="add">
+        INSERT INTO alcohol(stuff_name, stuff_reg_date, stuff_split, stuff_user_id, stuff_content)
+        VALUES (#{stuffName}, NOW(), 3, #{stuffUserId}, #{stuffContent})
+    </insert>
+
+    <update id="update">
+        UPDATE alcohol
+        SET stuff_name     = #{stuffName},
+            stuff_reg_date = NOW(),
+            stuff_content  = #{stuffContent}
+        WHERE stuff_num = #{stuffNum}
+          AND stuff_user_id = 'admin'
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM alcohol
+        WHERE stuff_user_id = 'admin'
+          AND stuff_num = #{stuffNum}
+    </delete>
+</mapper>

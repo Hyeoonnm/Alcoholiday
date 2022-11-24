@@ -6,54 +6,57 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>Title</title>
-    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    <head>
-        <title>Alcoholiday</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <title>Alcoholiday</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-        <link rel="stylesheet" href="/resources/assets/css/main.css"/>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-                crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-              crossorigin="anonymous">
-        <link rel="stylesheet" href="/resources/css/drinklist.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="/resources/assets/css/main.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/drinklist.css">
 
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-            .body {
-                font-family: 'Noto Sans KR', sans-serif;
-            }
+        .body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
 
-            a {
-                text-decoration-line: none;
-            }
+        a {
+            text-decoration-line: none;
+        }
 
-            /*배너 위치 조절*/
-            dl, ol, ul {
-                margin-top: 0;
-                position: relative;
-                margin-bottom: 1rem;
-                left: -1%;
-            }
-        </style>
-    </head>
+        /*배너 위치 조절*/
+        dl, ol, ul {
+            margin-top: 0;
+            position: relative;
+            margin-bottom: 1rem;
+            left: -1%;
+        }
+    </style>
+</head>
 <body class="no-sidebar is-preload body">
 <div id="page-wrapper">
     <!-- Header -->
     <section id="header">
 
         <%--로그아웃--%>
+        <div style="position: fixed; left: 95%; top: 10px; z-index: 0">
+            <a href="/logout"><svg xmlns="http://www.w3.org/2000/svg" width="40%" height="40%" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+                <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
+            </svg></a>
+        </div><%--로그아웃--%>
         <div style="position: absolute; left: 95%; top: 10px;">
             <a href="/logout"><img src="/resources/images/logout.jpg" style="width: 50%; height: 50%;"></a>
         </div>
@@ -73,7 +76,7 @@
 
         <!-- Logo -->
         <div id="logo">
-            <h1><a href="#logo">Alcoholiday</a></h1>
+            <h1><a href="/main">Alcoholiday</a></h1>
         </div>
 
         <!-- Nav -->
@@ -82,7 +85,7 @@
                 <li><a href="/main">Main</a></li>
                 <li><a href="../../alcohol/drink">Drink</a></li>
                 <li class="current"><a href="../../recipes/list">Recipes</a></li>
-                <li><a href="/notice">Notice</a></li>
+                <li><a href="../../notice/list">Notice</a></li>
             </ul>
         </nav>
     </section>
@@ -96,7 +99,7 @@
         <h6 class="card-subtitle mb-2 text-muted">Writer : ${recipes.stuffUserId}</h6>
         <hr>
         <p class="card-text">${recipes.stuffContent}</p>
-        <a href="../list" style="float: right" class="card-link">Back</a>
+        <a href="../list" style="float: right" class="card-link"><button class="btn btn-danger">Back</button></a>
     </div>
 </div>
 

@@ -15,4 +15,6 @@ public interface AlcoholDao {
     void update(Alcohol item);
 
     void delete(int stuffNum, String userId);
+
+    List<Alcohol> bc();
 }

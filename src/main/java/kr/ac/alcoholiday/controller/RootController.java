@@ -1,12 +1,16 @@
 package kr.ac.alcoholiday.controller;
 
+import kr.ac.alcoholiday.model.Alcohol;
 import kr.ac.alcoholiday.model.User;
+import kr.ac.alcoholiday.service.AlcoholService;
 import kr.ac.alcoholiday.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 
@@ -15,9 +19,14 @@ public class RootController {
     @Autowired
     UserService service;
 
+    @Autowired
+    AlcoholService alcoholService;
+
     /* 홈 화면 */
     @RequestMapping("/main")
-    public String main() {
+    public String main(Model model) {
+        List<Alcohol> bc = alcoholService.bc();
+        model.addAttribute("bc", bc);
         return "main";
     }
     // 홈 화면 끝
@@ -34,7 +43,7 @@ public class RootController {
         if (service.login(user)) {
             session.setAttribute("user", user);
 
-            return "main";
+            return "redirect:main";
 
         } else
 

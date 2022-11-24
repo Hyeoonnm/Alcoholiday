@@ -45,4 +45,9 @@ public class AlcoholDaoImpl implements AlcoholDao{
         sql.delete("drink.delete", map);
     }
 
+    @Override
+    public List<Alcohol> bc() {
+        return sql.selectList("drink.bc");
+    }
+
 }

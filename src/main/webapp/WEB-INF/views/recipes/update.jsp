@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Alcoholiday</title>
+    <title>Alcoholiday Recipes</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
@@ -47,8 +47,11 @@
     <section id="header">
 
         <%--로그아웃--%>
-        <div style="position: absolute; left: 95%; top: 10px;">
-            <a href="/logout"><img src="/resources/images/logout.jpg" style="width: 50%; height: 50%;"></a>
+        <div style="position: fixed; left: 95%; top: 10px; z-index: 0">
+            <a href="/logout"><svg xmlns="http://www.w3.org/2000/svg" width="40%" height="40%" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+                <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
+            </svg></a>
         </div>
 
         <%--페이지 상단으로 이동--%>
@@ -66,7 +69,7 @@
 
         <!-- Logo -->
         <div id="logo">
-            <h1><a href="#logo">Alcoholiday</a></h1>
+            <h1><a href="/main">Alcoholiday</a></h1>
         </div>
 
         <!-- Nav -->
@@ -75,7 +78,7 @@
                 <li><a href="/main">Main</a></li>
                 <li><a href="../../alcohol/drink">Drink</a></li>
                 <li class="current"><a href="../../recipes/list">Recipes</a></li>
-                <li><a href="notice">Notice</a></li>
+                <li><a href="../../notice/list">Notice</a></li>
             </ul>
         </nav>
     </section>

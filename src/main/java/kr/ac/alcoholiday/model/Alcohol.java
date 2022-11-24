@@ -20,9 +20,6 @@ public class Alcohol {
     // 이름
     private String stuffName;
 
-    // 가격
-    private String stuffPrice;
-
     // 등록일
     private Date stuffRegDate;
 
@@ -48,4 +45,7 @@ public class Alcohol {
 
     // Reply Count
     private String replyCnt;
+
+    // 게시글 번호
+    private int rowNum;
 }
