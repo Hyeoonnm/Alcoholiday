@@ -270,7 +270,7 @@
 
                     <div class="form-floating">
                         <textarea class="form-control mb-2" id="floatingTextarea2 stuffContent" style="height: 150px"
-                                  name="stuffContent" maxlength="900" placeholder="최대 900자"></textarea>
+                                  name="stuffContent" maxlength="600" placeholder="최대 600자"></textarea>
                     </div>
 
                     <input type="hidden" name="stuffUserId" value="${sessionScope.user.userId}">

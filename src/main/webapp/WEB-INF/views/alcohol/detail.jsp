@@ -175,7 +175,7 @@
         <c:forEach items="${drink.replyList}" var="reply" varStatus="status">
             <div class="card mb-3" style="width: 100%;">
                 <div class="card-body">
-                    <h5 class="card-title">${reply.replyContent}</h5>
+                    <div style="white-space: pre-wrap"><h5 class="card-title">${reply.replyContent}</h5></div>
                     <p>Writer : ${reply.replyUserId}</p>
                     <p><fmt:formatDate value="${reply.replyRegDate}" type="date"
                                        pattern="YYYY/MM/dd hh:mm:ss"></fmt:formatDate></p>
