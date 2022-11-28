@@ -92,17 +92,19 @@
 </div>
 
 <%-- Detail --%>
-
+<form method="post">
 <div class="card mt-3 mb-3" style="width: 70%; margin: auto; text-align: center">
     <div class="card-body" style="white-space: pre-wrap">
         <h5 class="card-title">Recipes Title : ${recipes.stuffName}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Writer : ${recipes.stuffUserId}</h6>
         <hr>
+        <input type="hidden" name="recipesUserId" value="${recipes.stuffUserId}">
+        <input type="hidden" name="stuffNum" value="${recipes.stuffNum}">
         <p class="card-text">${recipes.stuffContent}</p>
         <a href="../list" style="float: right" class="card-link"><button class="btn btn-danger">Back</button></a>
     </div>
 </div>
-
+</form>
 <%--댓글--%>
 <hr>
 <h1 style="text-align: center">Comments</h1>
@@ -123,7 +125,7 @@
                 <p>Writer : ${reply.replyUserId}</p>
                 <p><fmt:formatDate value="${reply.replyRegDate}" type="date"
                                    pattern="YYYY/MM/dd hh:mm:ss"></fmt:formatDate></p>
-                <c:if test="${sessionScope.user.userId == reply.replyUserId}">
+                <c:if test="${sessionScope.user.userId == reply.replyUserId || sessionScope.user.userId == 'admin'}">
 
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
@@ -152,7 +154,8 @@
                         <div class="modal-body">
                                 <textarea style="height: 100px" type="text" class="form-control" name="replyContent"
                                           aria-describedby="button-addon2">${reply.replyContent}</textarea>
-                            <input type="hidden" name="replyStuffNum" value="${recipes.stuffNum}">
+                            <input type="hidden" name="replyStuffNum" value="${recipes.stuffNum}"/>
+                            <input type="hidden" name="replyUserId" value="${reply.replyUserId}"/>
 
                             <div class="modal-footer">
                                 <button class="btn btn-primary">Update</button>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -38,15 +39,16 @@ public class RootController {
     }
 
     @PostMapping("/")
-    public String login(User user, HttpSession session) {
+    public String login(User user, HttpSession session, Model model) {
 
         if (service.login(user)) {
+
             session.setAttribute("user", user);
 
             return "redirect:main";
 
         } else
-
+            model.addAttribute("loginFail", "로그인에 실패하였습니다.");
             return "login";
 
     }

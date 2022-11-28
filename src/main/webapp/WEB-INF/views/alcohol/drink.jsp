@@ -110,7 +110,9 @@
                 </div>
             </div>
         </form>
-
+<c:if test="${empty drink}">
+    <h5 style="text-align: center" class="mt-5">" ${keywords} " 에 대해 검색된 결과가 없습니다.</h5>
+</c:if>
         <%--카드형 이미지 리스트--%>
         <div class="container">
             <div class="row row-cols-3">
@@ -149,7 +151,7 @@
                                 <a href="/alcohol/detail/${drink.stuffNum}" class="btn btn-primary">Read
                                     more.</a>
 
-                                <c:if test="${sessionScope.user.userId == drink.stuffUserId}">
+                                <c:if test="${sessionScope.user.userId == drink.stuffUserId || sessionScope.user.userId == 'admin'}">
                                     <a href="/alcohol/update/${drink.stuffNum}">
                                         <button class="btn btn-success">Update</button>
                                     </a>

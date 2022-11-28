@@ -109,14 +109,28 @@
         <table class="table">
             <thead>
             <tr>
+                <c:if test="${empty recipes}">
+                    <th scope="col">#</th>
+                </c:if>
+
+                <c:if test="${not empty recipes}">
                 <th scope="col">#</th>
                 <th scope="col">Recipes Name</th>
                 <th scope="col">Writer</th>
                 <th scope="col">RegDate</th>
                 <th scope="col">Control</th>
                 <th scope="col">Comments</th>
+                </c:if>
             </tr>
             </thead>
+
+            <c:if test="${empty recipes}">
+                <tr>
+                    <th scope="row">
+                        " ${search.keywords} " 에 대해 검색된 결과가 없습니다.
+                    </th>
+                </tr>
+            </c:if>
 
             <tbody>
             <c:forEach var="recipes" items="${recipes}" varStatus="status">
@@ -127,7 +141,7 @@
                     <td>${recipes.stuffUserId}</td>
                     <td><fmt:formatDate value="${recipes.stuffRegDate}" pattern="yyyy/MM/dd HH:mm"
                                         type="both"/></td>
-                    <c:if test="${sessionScope.user.userId == recipes.stuffUserId}">
+                    <c:if test="${sessionScope.user.userId == recipes.stuffUserId || sessionScope.user.userId == 'admin'}">
                         <td>
                             <a href="../recipes/update/${recipes.stuffNum}"
                                class="btn btn-sm btn-primary ms-1">Update</a>
@@ -175,7 +189,6 @@
             </nav>
         </div>
     </div>
-
     <!-- ADD Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">

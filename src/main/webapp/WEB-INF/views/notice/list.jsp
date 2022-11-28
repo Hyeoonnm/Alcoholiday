@@ -150,6 +150,11 @@
         <table class="table table-dark table-hover">
             <thead>
             <tr>
+                <c:if test="${empty notice}">
+                    <th scope="col">#</th>
+                </c:if>
+
+                <c:if test="${not empty notice}">
                 <th scope="col">#</th>
                 <th scope="col">Notice Name</th>
                 <th scope="col">Writer</th>
@@ -158,11 +163,16 @@
                 <c:if test="${sessionScope.user.userId eq 'admin'}">
                     <th scope="col">Control</th>
                 </c:if>
-
+                </c:if>
             </tr>
             </thead>
 
             <tbody>
+
+            <c:if test="${empty notice}">
+                    <td>" ${pager.keywords} " 에 대해 검색된 결과가 없습니다.</td>
+            </c:if>
+
             <c:forEach var="notice" items="${notice}" varStatus="status">
                 <tr>
                     <th scope="row">${notice.rowNum}</th>

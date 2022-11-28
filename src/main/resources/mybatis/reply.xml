@@ -10,8 +10,8 @@
     <delete id="delete">
         DELETE
         FROM reply
-        WHERE reply_user_id = #{userId}
-          AND reply_num = #{replyNum}
+        WHERE reply_num = #{replyNum}
+          /*AND (reply_user_id = #{userId} OR reply_user_id = 'admin')*/
     </delete>
 
     <delete id="deleteAll">
@@ -25,5 +25,6 @@
         SET reply_content = #{replyContent}
         WHERE reply_stuff_num = #{replyStuffNum}
           AND reply_num = #{replyNum}
+        /*AND (reply_user_id = #{replyUserId} OR reply_user_id = 'admin')*/
     </update>
 </mapper>

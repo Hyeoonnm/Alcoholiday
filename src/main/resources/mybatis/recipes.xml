@@ -41,7 +41,6 @@
           AND stuff_split = 2
     </select>
 
-
     <update id="update">
         UPDATE alcohol
         SET stuff_name     = #{stuffName},
@@ -49,7 +48,7 @@
             stuff_content  = #{stuffContent}
         WHERE stuff_split = 2
           AND stuff_num = #{stuffNum}
-          AND stuff_user_id = #{stuffUserId}
+          /*AND (stuff_user_id = #{stuffUserId} OR stuff_user_id = 'admin')*/
     </update>
 
     <delete id="delete">
@@ -57,7 +56,7 @@
         FROM alcohol
         WHERE stuff_num = #{stuffNum}
           AND stuff_split = 2
-          AND stuff_user_id = #{userId}
+          /*AND (stuff_user_id = #{userId} OR stuff_user_id = 'admin')*/
     </delete>
 
     <select id="total" resultType="Integer">

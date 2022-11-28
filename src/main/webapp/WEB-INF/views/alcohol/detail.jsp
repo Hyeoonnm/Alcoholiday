@@ -96,6 +96,7 @@
         </nav>
     </section>
 
+    <form method="post">
     <!-- Detail -->
     <div class="container" style="background-color: #E2E2E2; margin-top: 5%; margin-bottom: 5%">
         <div class="row row2">
@@ -105,7 +106,7 @@
                     <p><b>Writer :</b> ${drink.stuffUserId}</p>
                     <p><b>Categories :</b> Drink</p>
                     <p><b>Date :</b> <fmt:formatDate value="${drink.stuffRegDate}" type="date"
-                                                     pattern="YYYY/mm/dd HH:mm:ss"></fmt:formatDate></p>
+                                                     pattern="YYYY/MM/dd HH:mm:ss"></fmt:formatDate></p>
                 </div>
                 <div class="project-info-box mt-0" style="word-break: break-all; height: 69%">
                     <p><b>Contents</b></p>
@@ -155,7 +156,7 @@
             </div>
         </div>
     </div>
-
+    </form>
 
     <hr>
 
@@ -178,8 +179,8 @@
                     <div style="white-space: pre-wrap"><h5 class="card-title">${reply.replyContent}</h5></div>
                     <p>Writer : ${reply.replyUserId}</p>
                     <p><fmt:formatDate value="${reply.replyRegDate}" type="date"
-                                       pattern="YYYY/MM/dd hh:mm:ss"></fmt:formatDate></p>
-                    <c:if test="${sessionScope.user.userId == reply.replyUserId}">
+                                       pattern="YYYY/MM/dd HH:mm:ss"></fmt:formatDate></p>
+                    <c:if test="${sessionScope.user.userId == reply.replyUserId || sessionScope.user.userId == 'admin'}">
                         <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal${status.index}">
@@ -207,6 +208,7 @@
                                 <textarea style="height: 100px" type="text" class="form-control" name="replyContent"
                                           aria-describedby="button-addon2">${reply.replyContent}</textarea>
                                 <input type="hidden" name="replyStuffNum" value="${drink.stuffNum}">
+                                <input type="hidden" name="replyUserId" value="${reply.replyUserId}">
 
                                 <div class="modal-footer">
                                     <button class="btn btn-primary">Update</button>

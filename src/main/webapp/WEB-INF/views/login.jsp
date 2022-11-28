@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -47,7 +47,6 @@
 
                             <h2 class="fw-bold mb-2">LOGIN</h2>
                             <p class="text-white-50 mb-5">Please enter your id and password!</p>
-
                             <form method="post">
 
                                 <div class="form-outline form-white mb-4">
@@ -61,12 +60,13 @@
                                            class="form-control form-control-lg" placeholder="Password"/>
                                     <label class="form-label" for="userPwd"/>
                                 </div>
-
                                 <button class="btn btn-outline-light px-5">LOGIN</button>
                             </form>
 
+                                <p style="color: #f00">${loginFail}</p>
+
                             <p class="small mb-5 pb-lg-2">
-                                <a class="text-white-50" href="#!"></a>
+                                <a class="text-white-50" href="#"></a>
                             </p>
 
                         </div>
