@@ -74,7 +74,7 @@
             <ul>
                 <li><a href="/main">Main</a></li>
                 <li><a href="../alcohol/drink">Drink</a></li>
-                <li><h2>${sessionScope.user.userId}</h2></li>
+                <li><div style="border-radius: 5px; background-color: rebeccapurple"><h3 style="color: white">${sessionScope.user.userId}</h3></div></li>
                 <li class="current"><a href="#">Recipes</a></li>
                 <li><a href="../notice/list">Notice</a></li>
             </ul>

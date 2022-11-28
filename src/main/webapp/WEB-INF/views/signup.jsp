@@ -37,8 +37,7 @@
 
                                     <div class="form-outline">
                                         <input type="text" id="userName" name="userName"
-                                               class="form-control form-control-lg " placeholder="Name" minlength="2"
-                                               maxlength="10"/>
+                                               class="form-control form-control-lg " placeholder="Name" minlength="4" maxlength="8" required/>
                                         <label class="form-label" for="userName"/>
                                     </div>
 
@@ -48,7 +47,7 @@
                                     <div class="form-outline input-group">
                                         <input type="text" id="userId" name="userId"
                                                class="form-control form-control-lg" placeholder="ID" minlength="4"
-                                               maxlength="14">
+                                               maxlength="10">
                                         <label class="form-label" for="userId"/>
                                         <div class="input-group-append form-outline">
                                             <button type="button" class="btn btn-primary" id="checkId"
@@ -88,7 +87,7 @@
 
                                     <div class="form-outline">
                                         <input type="email" id="userEmail" name="userEmail"
-                                               class="form-control form-control-lg" placeholder="E-mail"/>
+                                               class="form-control form-control-lg" placeholder="E-mail" minlength="5" maxlength="30"/>
                                         <label class="form-label" for="userEmail"/>
                                     </div>
 
