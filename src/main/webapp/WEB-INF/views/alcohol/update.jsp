@@ -78,6 +78,7 @@
             <ul>
                 <li><a href="/main">Main</a></li>
                 <li class="current"><a href="../drink">Drink</a></li>
+                <li><h2>${sessionScope.user.userId}</h2></li>
                 <li><a href="../../recipes/list">Recipes</a></li>
                 <li><a href="../../notice/list">Notice</a></li>
             </ul>

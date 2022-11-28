@@ -76,4 +76,5 @@ public class AlcoholServiceImpl implements AlcoholService {
     public List<Alcohol> bc() {
         return dao.bc();
     }
+
 }

@@ -66,7 +66,7 @@
             stuff_split    = 1,
             stuff_content  = #{stuffContent}
         WHERE stuff_num = #{stuffNum}
-          /*AND (stuff_user_id = #{stuffUserId} OR stuff_user_id = 'admin')*/
+            /*AND (stuff_user_id = #{stuffUserId} OR stuff_user_id = 'admin')*/
           AND stuff_split = 1
     </update>
 
@@ -74,7 +74,7 @@
         DELETE
         FROM alcohol
         WHERE stuff_num = #{stuffNum}
-          /*AND (stuff_user_id = #{userId} OR stuff_user_id = 'admin')*/
+            /*AND (stuff_user_id = #{userId} OR stuff_user_id = 'admin')*/
           AND stuff_split = 1
     </delete>
 
@@ -90,5 +90,4 @@
         ORDER BY replyCnt desc
         LIMIT 2;
     </select>
-
 </mapper>

@@ -26,7 +26,9 @@ public class RootController {
     /* 홈 화면 */
     @RequestMapping("/main")
     public String main(Model model) {
+
         List<Alcohol> bc = alcoholService.bc();
+
         model.addAttribute("bc", bc);
         return "main";
     }
