@@ -232,6 +232,7 @@
             return;
         }
         form.submit();
+        alert("회원가입 성공");
     }
 </script>
 </body>

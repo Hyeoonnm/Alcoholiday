@@ -44,8 +44,9 @@
     <section id="header">
 
         <%--로그아웃--%>
-        <div style="position: fixed; left: 95%; top: 10px; z-index: 0">
+        <div style="position: fixed; left: 95%; top: 10px; z-index: 0;">
             <a href="/logout">
+                logout
                 <svg xmlns="http://www.w3.org/2000/svg" width="40%" height="40%" fill="currentColor"
                      class="bi bi-door-open" viewBox="0 0 16 16">
                     <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
