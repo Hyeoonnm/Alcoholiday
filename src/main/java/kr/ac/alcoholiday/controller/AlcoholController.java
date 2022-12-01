@@ -83,7 +83,8 @@ public class AlcoholController {
 
         }
         service.add(item);
-        return "redirect:/alcohol/drink";
+
+        return "redirect:/alcohol/detail/" + item.getStuffNum();
     }
 
     @GetMapping("/update/{stuffNum}")

@@ -107,15 +107,15 @@
         <div class="row row2">
             <div class="col-md-5">
                 <div class="project-info-box mt-0" style="text-align: left">
-                    <p><b>Title :</b> ${drink.stuffName}</p>
-                    <p><b>Writer :</b> ${drink.stuffUserId}</p>
-                    <p><b>Categories :</b> Drink</p>
-                    <p><b>Date :</b> <fmt:formatDate value="${drink.stuffRegDate}" type="date"
-                                                     pattern="YYYY/MM/dd HH:mm:ss"></fmt:formatDate></p>
+                    <p><b>Title : ${drink.stuffName}</b></p>
+                    <p><b>Writer : ${drink.stuffUserId}</b></p>
+                    <p><b>Categories : Drink</b></p>
+                    <p><b>Date : <fmt:formatDate value="${drink.stuffRegDate}" type="date"
+                                                     pattern="YYYY/MM/dd HH:mm:ss"></fmt:formatDate></b></p>
                 </div>
                 <div class="project-info-box mt-0" style="word-break: break-all; height: 69%">
                     <p><b>Contents</b></p>
-                    <div style="white-space: pre-wrap"><p>${drink.stuffContent}</p></div>
+                    <div style="white-space: pre-wrap"><p><b>${drink.stuffContent}</b></p></div>
                 </div>
             </div>
 
@@ -164,7 +164,6 @@
     </form>
 
     <hr>
-
 
     <%--댓글--%>
     <h1 style="text-align: center">Comments</h1>
